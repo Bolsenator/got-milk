@@ -79,7 +79,7 @@ stream = ExtResource("5_fkugw")
 volume_db = -30.0
 
 [node name="TakeDamageSound" type="AudioStreamPlayer" parent="." unique_id=1277605407]
-process_mode = 3
+process_mode = 1
 stream = ExtResource("6_8fjmc")
 volume_db = -30.0
 

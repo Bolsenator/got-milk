@@ -61,6 +61,9 @@ func _ready():
 	ui.level_up_ui.heal_player.connect(_on_heal_player) 
 	ui.game_over_ui.restart.connect(_on_restart)
 	ui.game_over_ui.quit.connect(_on_quit)
+	ui.pause_ui.resume.connect(_on_resume_from_pause)
+	ui.pause_ui.restart.connect(_on_restart)
+	ui.pause_ui.quit.connect(_on_quit)
 	
 	spawn_timer.wait_time = current_wave.interval
 
@@ -89,6 +92,11 @@ func _on_level_up():
 	get_tree().paused = true
 	ui.show_level_up_ui()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc"):
+		toggle_pause()
+		get_viewport().set_input_as_handled()
+
 func _on_summon_follower():
 	var follower_instance = follower.instantiate()
 	follower_instance.global_position = player.global_position
@@ -102,6 +110,9 @@ func _on_heal_player(amount: int):
 	get_tree().paused = false
 	level_up_completed()
 
+func _on_resume_from_pause():
+	toggle_pause()
+
 func _on_game_over():
 	get_tree().paused = true
 	ui.show_game_over_ui()
@@ -112,6 +123,10 @@ func _on_restart():
 
 func _on_quit():
 	get_tree().quit()
+
+func toggle_pause():
+	get_tree().paused = !get_tree().paused
+	ui.toggle_pause_ui()
 
 func level_up_completed():
 	ui.hide_level_up_ui()

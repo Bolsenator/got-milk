@@ -46,6 +46,7 @@ height = 68.0
 radius = 374.01202
 
 [node name="Follower" type="CharacterBody2D" unique_id=1000233962 groups=["follower"]]
+process_mode = 1
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_6srdf")

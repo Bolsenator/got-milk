@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://crstyy6ij5ra3" path="res://ui/ui.gd" id="1_wl5ax"]
 [ext_resource type="PackedScene" uid="uid://dtfl23jo5g75q" path="res://ui/level_up.tscn" id="2_ks8t7"]
 [ext_resource type="PackedScene" uid="uid://c3o2cquf8ly2k" path="res://ui/game_over.tscn" id="4_vkava"]
+[ext_resource type="PackedScene" uid="uid://bdywnhq5qx8iv" path="res://ui/pause.tscn" id="5_tf0e0"]
 
 [node name="UI" type="CanvasLayer" unique_id=95054969]
 script = ExtResource("1_wl5ax")
@@ -14,4 +15,7 @@ visible = false
 [node name="HUD" parent="." unique_id=2085557247 instance=ExtResource("1_nb4k0")]
 
 [node name="GameOver" parent="." unique_id=1045062818 instance=ExtResource("4_vkava")]
+visible = false
+
+[node name="Pause" parent="." unique_id=1586437350 instance=ExtResource("5_tf0e0")]
 visible = false
