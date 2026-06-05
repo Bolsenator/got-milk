@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://c7h2bw03q2tu0"]
+
+[ext_resource type="Script" uid="uid://daya5063y5353" path="res://entities/follower/follower.gd" id="1_6srdf"]
+[ext_resource type="Texture2D" uid="uid://mowbwsg0gh2p" path="res://entities/follower/Monsters.png" id="1_s0oyo"]
+[ext_resource type="AudioStream" uid="uid://ca734tmp2e7ej" path="res://assets/sfx/follower_attack.wav" id="3_p4gm5"]
+[ext_resource type="AudioStream" uid="uid://i7l2ht3vbxas" path="res://assets/sfx/summon_follower.wav" id="4_rdpfw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6srdf"]
+atlas = ExtResource("1_s0oyo")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18omj"]
+atlas = ExtResource("1_s0oyo")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4gm5"]
+atlas = ExtResource("1_s0oyo")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdpfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6srdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18omj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4gm5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0oyo"]
+radius = 19.0
+height = 68.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6srdf"]
+radius = 19.0
+height = 68.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18omj"]
+radius = 374.01202
+
+[node name="Follower" type="CharacterBody2D" unique_id=1000233962 groups=["follower"]]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_6srdf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=833127862]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_rdpfw")
+animation = &"idle"
+frame_progress = 0.45905343
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166876237]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_s0oyo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1281531770]
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=625364885]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1411372292]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_6srdf")
+
+[node name="AggroRange" type="Area2D" parent="." unique_id=529049262]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange" unique_id=1720110078]
+shape = SubResource("CircleShape2D_18omj")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=920829732]
+process_mode = 3
+stream = ExtResource("3_p4gm5")
+volume_db = -35.0
+
+[node name="SummonSound" type="AudioStreamPlayer" parent="." unique_id=2112374542]
+process_mode = 3
+stream = ExtResource("4_rdpfw")
+volume_db = -35.0
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
+[connection signal="body_exited" from="AggroRange" to="." method="_on_aggro_range_body_exited"]

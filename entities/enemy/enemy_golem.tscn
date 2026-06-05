@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bxys781bchpya"]
+
+[ext_resource type="PackedScene" uid="uid://bh5e8htrtsyur" path="res://entities/enemy/enemy_base.tscn" id="1_pcoj6"]
+[ext_resource type="Script" uid="uid://do2i2hpxc1oki" path="res://entities/enemy/enemy_golem.gd" id="2_lcjsr"]
+[ext_resource type="Texture2D" uid="uid://dt7csvme2gmb2" path="res://entities/enemy/Monsters.png" id="2_n4ewo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcjsr"]
+atlas = ExtResource("2_n4ewo")
+region = Rect2(16, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eruot"]
+atlas = ExtResource("2_n4ewo")
+region = Rect2(32, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63ths"]
+atlas = ExtResource("2_n4ewo")
+region = Rect2(48, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y63yu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcjsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eruot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63ths")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="EnemyGolem" unique_id=1000233962 instance=ExtResource("1_pcoj6")]
+script = ExtResource("2_lcjsr")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]
+sprite_frames = SubResource("SpriteFrames_y63yu")
+animation = &"idle"

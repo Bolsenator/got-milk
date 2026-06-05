@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b4p05oq4lsinu"]
+
+[ext_resource type="PackedScene" uid="uid://ctuqai7nsociw" path="res://world/dungeon.tscn" id="1_0u2o0"]
+[ext_resource type="Script" uid="uid://g2owj60c2p0g" path="res://world/level.gd" id="1_ype84"]
+[ext_resource type="PackedScene" uid="uid://bncc0esttelux" path="res://entities/player/player.tscn" id="2_jjmkw"]
+[ext_resource type="PackedScene" uid="uid://b2j1gr2vdc3or" path="res://ui/ui.tscn" id="4_s5sgh"]
+[ext_resource type="PackedScene" uid="uid://c7h2bw03q2tu0" path="res://entities/follower/follower.tscn" id="5_ype84"]
+[ext_resource type="AudioStream" uid="uid://cymk6h23x8i7m" path="res://assets/music/8bit Dungeon Boss.mp3" id="6_oh72w"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jjmkw"]
+vertices = PackedVector2Array(4658, -2866, 4659.992, 2868.9922, -4337, 2867, -4340.992, -2866.9922)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-4351, -2877, -4347, 2877, 4670, 2879, 4668, -2876)])
+
+[node name="Level" type="Node" unique_id=1882998417]
+script = ExtResource("1_ype84")
+
+[node name="Dungeon" parent="." unique_id=1684005168 instance=ExtResource("1_0u2o0")]
+
+[node name="Player" parent="." unique_id=772233312 instance=ExtResource("2_jjmkw")]
+position = Vector2(224, 326)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=975340226]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2050715963]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_jjmkw")
+
+[node name="UI" parent="." unique_id=95054969 instance=ExtResource("4_s5sgh")]
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=2085828705]
+autostart = true
+
+[node name="Follower" parent="." unique_id=1000233962 instance=ExtResource("5_ype84")]
+position = Vector2(268, 236)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=706112399]
+process_mode = 3
+stream = ExtResource("6_oh72w")
+volume_db = -35.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

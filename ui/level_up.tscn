@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dtfl23jo5g75q"]
+
+[ext_resource type="Script" uid="uid://c674xd42urld3" path="res://ui/level_up.gd" id="1_anw3t"]
+[ext_resource type="Texture2D" uid="uid://c1jl0bsowo1p0" path="res://ui/Frames.png" id="1_m7xbl"]
+[ext_resource type="Texture2D" uid="uid://xh7od4rpks8e" path="res://ui/Inputs.png" id="2_p252w"]
+[ext_resource type="Texture2D" uid="uid://mowbwsg0gh2p" path="res://entities/follower/Monsters.png" id="3_anw3t"]
+[ext_resource type="Texture2D" uid="uid://d1ylq8gol41i0" path="res://ui/Icons.png" id="4_w8hue"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d05f"]
+atlas = ExtResource("2_p252w")
+region = Rect2(16, 16, 48, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anw3t"]
+atlas = ExtResource("2_p252w")
+region = Rect2(80, 16, 48, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8hue"]
+atlas = ExtResource("2_p252w")
+region = Rect2(80, 16, 48, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd07s"]
+atlas = ExtResource("3_anw3t")
+region = Rect2(19, 17, 10, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmdc3"]
+atlas = ExtResource("2_p252w")
+region = Rect2(16, 16, 48, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsysc"]
+atlas = ExtResource("2_p252w")
+region = Rect2(80, 16, 48, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd747"]
+atlas = ExtResource("2_p252w")
+region = Rect2(80, 16, 48, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kef8f"]
+atlas = ExtResource("4_w8hue")
+region = Rect2(146, 178, 13, 14)
+
+[node name="LevelUp" type="Control" unique_id=88389703]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1080.0
+offset_bottom = -607.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_anw3t")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=824338216]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.6875
+offset_top = -36.875
+offset_right = 114.6875
+offset_bottom = 36.875
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m7xbl")
+region_rect = Rect2(70, 70, 52, 53)
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=748570909]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1096589109]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="SummonFollower" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1337689361]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_4d05f")
+texture_pressed = SubResource("AtlasTexture_anw3t")
+texture_hover = SubResource("AtlasTexture_w8hue")
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/SummonFollower" unique_id=809583193]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_jd07s")
+stretch_mode = 3
+
+[node name="HealPlayer" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=688557843]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_mmdc3")
+texture_pressed = SubResource("AtlasTexture_dsysc")
+texture_hover = SubResource("AtlasTexture_rd747")
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/HealPlayer" unique_id=209945009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_kef8f")
+expand_mode = 2
+stretch_mode = 3
+
+[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/SummonFollower" to="." method="_on_summon_follower_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/HealPlayer" to="." method="_on_heal_player_pressed"]

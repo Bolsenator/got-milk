@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c1r2h22ghceck"]
+
+[ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud.gd" id="1_276te"]
+[ext_resource type="Texture2D" uid="uid://dli5cao470tn6" path="res://ui/milk-bar.png" id="1_rbyyf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv4sj"]
+atlas = ExtResource("1_rbyyf")
+region = Rect2(0, 16, 99, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_276te"]
+atlas = ExtResource("1_rbyyf")
+region = Rect2(0, 0, 99, 12)
+
+[node name="HUD" type="Control" unique_id=2085557247]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_276te")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1712956337]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1080.0
+offset_bottom = 24.0
+grow_horizontal = 2
+scale = Vector2(4, 4)
+mouse_filter = 2
+alignment = 1
+
+[node name="MilkBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=332021824]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture_under = SubResource("AtlasTexture_pv4sj")
+texture_progress = SubResource("AtlasTexture_276te")

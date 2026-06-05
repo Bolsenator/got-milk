@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bre0h04a1l3c3"]
+
+[ext_resource type="PackedScene" uid="uid://bh5e8htrtsyur" path="res://entities/enemy/enemy_base.tscn" id="1_6xm10"]
+[ext_resource type="Script" uid="uid://cglhfmj466q4b" path="res://entities/enemy/enemy_skeleton.gd" id="2_3t311"]
+[ext_resource type="Texture2D" uid="uid://dt7csvme2gmb2" path="res://entities/enemy/Monsters.png" id="2_outud"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t311"]
+atlas = ExtResource("2_outud")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5gyf"]
+atlas = ExtResource("2_outud")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3sl4"]
+atlas = ExtResource("2_outud")
+region = Rect2(112, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibips"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t311")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5gyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3sl4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="EnemySkeleton" unique_id=1000233962 instance=ExtResource("1_6xm10")]
+script = ExtResource("2_3t311")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]
+sprite_frames = SubResource("SpriteFrames_ibips")
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=166876237]
+position = Vector2(-4, 0)
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(1455277756) index="0" unique_id=1203879583]
+position = Vector2(-4, 0)

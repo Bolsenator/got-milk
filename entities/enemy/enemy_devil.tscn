@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cpw6sjf70gkaa"]
+
+[ext_resource type="PackedScene" uid="uid://bh5e8htrtsyur" path="res://entities/enemy/enemy_base.tscn" id="1_lqgxb"]
+[ext_resource type="Script" uid="uid://doefot4guojlk" path="res://entities/enemy/enemy_devil.gd" id="2_0jay7"]
+[ext_resource type="Texture2D" uid="uid://dt7csvme2gmb2" path="res://entities/enemy/Monsters.png" id="2_gl10n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jay7"]
+atlas = ExtResource("2_gl10n")
+region = Rect2(144, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0tni"]
+atlas = ExtResource("2_gl10n")
+region = Rect2(160, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv4xm"]
+atlas = ExtResource("2_gl10n")
+region = Rect2(176, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q628s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jay7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0tni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv4xm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="EnemyDevil" unique_id=1000233962 instance=ExtResource("1_lqgxb")]
+script = ExtResource("2_0jay7")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]
+sprite_frames = SubResource("SpriteFrames_q628s")
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=166876237]
+position = Vector2(2, 2)
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(1455277756) index="0" unique_id=1203879583]
+position = Vector2(2, 2)
