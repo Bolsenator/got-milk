@@ -23,21 +23,32 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_276te")
 
+[node name="Control" type="Control" parent="." unique_id=463869524]
+anchors_preset = 0
+offset_right = 24.0
+offset_bottom = 24.0
+
+[node name="TimeElapsed" type="Label" parent="Control" unique_id=59333090]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 16.0
+offset_right = 20.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.5
+theme_override_fonts/font = ExtResource("2_546lt")
+theme_override_font_sizes/font_size = 26
+
 [node name="TopHUD" type="HBoxContainer" parent="." unique_id=1712956337]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_right = -1080.0
-offset_bottom = 24.0
+offset_bottom = 18.0
 grow_horizontal = 2
 scale = Vector2(4, 4)
 mouse_filter = 2
 alignment = 1
-
-[node name="TimeElapsed" type="Label" parent="TopHUD" unique_id=59333090]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_546lt")
 
 [node name="ExpBar" type="TextureProgressBar" parent="TopHUD" unique_id=332021824]
 layout_mode = 2

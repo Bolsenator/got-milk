@@ -86,28 +86,21 @@ theme_override_constants/separation = 16
 
 [node name="Resume" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1337689361]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_4d05f")
 texture_pressed = SubResource("AtlasTexture_anw3t")
 texture_hover = SubResource("AtlasTexture_w8hue")
 
 [node name="TextureRect" type="Label" parent="NinePatchRect/MarginContainer/HBoxContainer/Resume" unique_id=1007995466]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -7.5
-offset_right = 20.0
-offset_bottom = 7.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_71e5d")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 13
 text = "Resume"
+metadata/_edit_use_anchors_ = true
 
 [node name="Restart" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=688557843]
 layout_mode = 2
@@ -129,7 +122,7 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_71e5d")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 13
 text = "Restart"
 
 [node name="Quit" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1324684373]
@@ -152,7 +145,7 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_71e5d")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 13
 text = "Quit"
 
 [connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
