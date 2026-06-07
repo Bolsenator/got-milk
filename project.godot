@@ -23,6 +23,7 @@ GameManager="*uid://uewks6eupfb0"
 
 window/size/viewport_width=1440
 window/size/viewport_height=810
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [editor_plugins]

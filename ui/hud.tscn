@@ -5,11 +5,11 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pv4sj"]
 atlas = ExtResource("1_rbyyf")
-region = Rect2(0, 16, 99, 12)
+region = Rect2(0, 16, 203, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_276te"]
 atlas = ExtResource("1_rbyyf")
-region = Rect2(0, 0, 99, 12)
+region = Rect2(0, 0, 203, 12)
 
 [node name="HUD" type="Control" unique_id=2085557247]
 process_mode = 1
