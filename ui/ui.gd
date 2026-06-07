@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var level_up_ui = $LevelUp
 @onready var game_over_ui = $GameOver
 @onready var pause_ui = $Pause
+@onready var hud_ui = $HUD
 
 func show_level_up_ui():
 	level_up_ui.show()

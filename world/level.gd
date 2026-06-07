@@ -68,7 +68,9 @@ func _ready():
 	spawn_timer.wait_time = current_wave.interval
 
 func _process(delta: float):
-	time_elapsed += delta
+	if not get_tree().paused:
+		time_elapsed += delta
+		ui.hud_ui.update_time_elapsed(time_elapsed)
 	if current_wave_idx < WAVES.size() -1 and time_elapsed >= current_wave.time:
 		current_wave_idx += 1
 		current_wave = WAVES[current_wave_idx]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud.gd" id="1_276te"]
 [ext_resource type="Texture2D" uid="uid://dli5cao470tn6" path="res://ui/milk-bar.png" id="1_rbyyf"]
+[ext_resource type="FontFile" uid="uid://ct68h1075wr1b" path="res://assets/fonts/Logic_Loop.ttf" id="2_546lt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pv4sj"]
 atlas = ExtResource("1_rbyyf")
@@ -22,7 +23,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_276te")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1712956337]
+[node name="TopHUD" type="HBoxContainer" parent="." unique_id=1712956337]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -33,7 +34,12 @@ scale = Vector2(4, 4)
 mouse_filter = 2
 alignment = 1
 
-[node name="MilkBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=332021824]
+[node name="TimeElapsed" type="Label" parent="TopHUD" unique_id=59333090]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_546lt")
+
+[node name="ExpBar" type="TextureProgressBar" parent="TopHUD" unique_id=332021824]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
