@@ -1,7 +1,7 @@
 extends Control
 
-@onready var exp_bar_ui = $TopHUD/ExpBar
-@onready var time_elapsed_ui = $Control/TimeElapsed
+@onready var exp_bar_ui = $ExpBar
+@onready var time_elapsed_ui = $TimeElapsed
 
 func _ready():
 	var player = get_tree().get_first_node_in_group("player")

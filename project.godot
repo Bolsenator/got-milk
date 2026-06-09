@@ -14,6 +14,7 @@ config/name="got-milk"
 run/main_scene="uid://decapard53thi"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+boot_splash/size/viewport_height=648
 
 [autoload]
 
@@ -21,8 +22,8 @@ GameManager="*uid://uewks6eupfb0"
 
 [display]
 
-window/size/viewport_width=1440
-window/size/viewport_height=810
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 
