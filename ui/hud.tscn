@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://c1r2h22ghceck"]
 
 [ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud.gd" id="1_276te"]
+[ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/ui_theme.tres" id="1_546lt"]
 [ext_resource type="Texture2D" uid="uid://dli5cao470tn6" path="res://ui/milk-bar.png" id="1_rbyyf"]
-[ext_resource type="FontFile" uid="uid://ct68h1075wr1b" path="res://assets/fonts/Logic_Loop.ttf" id="2_546lt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pv4sj"]
 atlas = ExtResource("1_rbyyf")
-region = Rect2(0, 16, 203, 12)
+region = Rect2(0, 16, 403, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_276te"]
 atlas = ExtResource("1_rbyyf")
-region = Rect2(0, 0, 203, 12)
+region = Rect2(0, 0, 403, 12)
 
 [node name="HUD" type="Control" unique_id=2085557247]
 process_mode = 1
@@ -21,19 +21,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_546lt")
 script = ExtResource("1_276te")
 
 [node name="ExpBar" type="TextureProgressBar" parent="." unique_id=332021824]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.321
-anchor_top = 0.037
-anchor_right = 0.744
-anchor_bottom = 0.08148148
-offset_left = -0.32000732
-offset_top = 0.040000916
-offset_right = -609.48
-offset_bottom = -36.0
+anchor_left = 0.08402084
+anchor_top = 0.033296295
+anchor_right = 0.9230417
+anchor_bottom = 0.0772963
+offset_left = -7.3200073
+offset_top = -19.96
+offset_right = -1215.2401
+offset_bottom = -55.480003
 grow_horizontal = 2
 scale = Vector2(4, 4)
 size_flags_horizontal = 4
@@ -58,15 +59,33 @@ alignment = 1
 [node name="TimeElapsed" type="Label" parent="." unique_id=59333090]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.020000001
-anchor_top = 0.037
-anchor_right = 0.102000006
-anchor_bottom = 0.081
-offset_left = -0.40000153
+anchor_left = 0.0079166675
+anchor_top = 0.022185184
+anchor_right = 0.07529167
+anchor_bottom = 0.066481486
+offset_left = 0.79999924
 offset_top = 0.040000916
-offset_right = 0.1599884
-offset_bottom = 0.51999664
+offset_right = -0.5600128
+offset_bottom = 0.19999695
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.5
-theme_override_fonts/font = ExtResource("2_546lt")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerLevel" type="Label" parent="." unique_id=2120610896]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9245833
+anchor_top = 0.022185184
+anchor_right = 0.9919584
+anchor_bottom = 0.06370371
+offset_left = 0.79999924
+offset_top = 0.040000916
+offset_right = -0.5600128
+offset_bottom = 0.19999695
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.5
+theme_override_font_sizes/font_size = 30
+text = "Lvl 5"
+metadata/_edit_use_anchors_ = true
