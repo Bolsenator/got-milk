@@ -44,11 +44,11 @@ offset_bottom = 36.875
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_m7xbl")
-region_rect = Rect2(455, 71, 34, 34)
-patch_margin_left = 7
-patch_margin_top = 7
-patch_margin_right = 7
-patch_margin_bottom = 7
+region_rect = Rect2(566, 358, 52, 52)
+patch_margin_left = 21
+patch_margin_top = 20
+patch_margin_right = 21
+patch_margin_bottom = 20
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=748570909]
 layout_mode = 1
