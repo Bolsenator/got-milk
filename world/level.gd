@@ -36,6 +36,10 @@ var current_wave_idx = 0
 var current_wave = WAVES[current_wave_idx]
 
 var follower = preload("res://entities/follower/follower.tscn")
+var exp_small = preload("res://entities/exp/exp_small.tscn")
+var exp_large = preload("res://entities/exp/exp_large.tscn")
+
+var exp_drop_size_threshold: float = 25.0
 
 var enemy_spawn_distance_min: float = 600.0
 var enemy_spawn_distance_max: float = 900.0
@@ -68,9 +72,12 @@ func _ready():
 	spawn_timer.wait_time = current_wave.interval
 
 func _process(delta: float):
+	# Keep run time updated
 	if not get_tree().paused:
 		time_elapsed += delta
 		ui.hud_ui.update_time_elapsed(time_elapsed)
+	
+	# Spawn enemies
 	if current_wave_idx < WAVES.size() -1 and time_elapsed >= current_wave.time:
 		current_wave_idx += 1
 		current_wave = WAVES[current_wave_idx]
@@ -82,13 +89,13 @@ func spawn_boss(boss_type):
 	var boss_instance = ENEMY_SCENES[boss_type].instantiate()
 	boss_instance.global_position = get_enemy_spawn_position()
 	add_child(boss_instance)
-	
 
 func _on_spawn_timer_timeout():
 	for i in range(current_wave.count):
 		var enemy_instance = ENEMY_SCENES[current_wave.enemy_type].instantiate()
 		enemy_instance.global_position = get_enemy_spawn_position()
 		add_child(enemy_instance)
+		enemy_instance.died.connect(_on_enemy_died)
 
 func _on_level_up():
 	get_tree().paused = true
@@ -105,7 +112,7 @@ func _on_summon_follower():
 	add_child(follower_instance)
 	get_tree().paused = false
 	level_up_completed()
-	player.max_milk *= 1.3
+	player.max_exp *= 1.3
 
 func _on_heal_player(amount: int):
 	player.heal(amount)
@@ -125,6 +132,16 @@ func _on_restart():
 
 func _on_quit():
 	get_tree().quit()
+	
+func _on_enemy_died(exp_value: float, position: Vector2):
+	if exp_value < exp_drop_size_threshold:
+		var exp_instance = exp_small.instantiate()
+		add_child(exp_instance)
+		exp_instance.initialize(exp_value, position)
+	else:
+		var exp_instance = exp_large.instantiate()
+		add_child(exp_instance)
+		exp_instance.initialize(exp_value, position)
 
 func toggle_pause():
 	get_tree().paused = !get_tree().paused

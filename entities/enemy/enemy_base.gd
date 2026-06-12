@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var navigation_agent = $NavigationAgent2D
 
-signal died(exp: int)
+signal died(exp: int, position: Vector2)
 
 var max_health: float = 5.0
 var health: float
@@ -22,7 +22,7 @@ func _ready():
 	health = max_health
 	player = get_tree().get_first_node_in_group("player")
 	animated_sprite.play("idle")
-	died.connect(player._on_enemy_died)
+	#died.connect(player._on_enemy_died)
 	# Wait for navigation map to be ready
 	await get_tree().physics_frame
 	
@@ -49,7 +49,7 @@ func take_damage(amount: float):
 		die()
 
 func die():
-	died.emit(exp_reward)
+	died.emit(exp_reward,global_position)
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D):

@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var level_up_sound = $LevelUpSound
 @onready var died_sound = $DiedSound
 
-signal milk_changed(new_milk, max_milk)
+signal exp_changed(new_exp, max_exp)
 signal level_up()
 signal player_died()
 
@@ -20,11 +20,11 @@ var current_health = 100 :
 		current_health = clamp (new_value, 0, max_health)
 		health_bar.value = current_health
 var max_health = 100
-var current_milk : float = 0.0 :
+var current_exp : float = 0.0 :
 	set(new_value):
-		current_milk = new_value
-		milk_changed.emit(current_milk, max_milk)
-var max_milk : float = 100.0
+		current_exp = new_value
+		exp_changed.emit(current_exp, max_exp)
+var max_exp : float = 100.0
 
 func _ready():
 	animated_sprite.play("idle")
@@ -40,20 +40,17 @@ func _physics_process(delta: float):
 	if direction.x !=0:
 		animated_sprite.flip_h = direction.x < 0
 
-func collect_milk_item():
-	gain_milk(max_milk)
+func collect_exp_item():
+	gain_exp(max_exp)
 
-func gain_milk(milk_gain : int):
-	current_milk += milk_gain
+func gain_exp(exp_gain : float):
+	current_exp += exp_gain
 
-	while current_milk >= max_milk:
+	while current_exp >= max_exp:
 		level_up_sound.play()
 		level_up.emit()
 		await level.level_up_reward_chosen
-		current_milk -= max_milk
-
-func _on_enemy_died(exp):
-	gain_milk(exp)
+		current_exp -= max_exp
 
 func heal(amount: int):
 	current_health += amount

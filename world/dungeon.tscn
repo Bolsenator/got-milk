@@ -7,10 +7,10 @@
 [node name="Dungeon" type="Node2D" unique_id=1684005168]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1312405686]
-offset_left = -54726.0
-offset_top = -29659.0
-offset_right = 56895.0
-offset_bottom = 37555.0
+offset_left = -54575.0
+offset_top = -29755.0
+offset_right = 57046.0
+offset_bottom = 37459.0
 color = Color(0.08627451, 0.050980393, 0.07450981, 1)
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1870731952]
@@ -28,52 +28,52 @@ tile_set = ExtResource("2_t7djt")
 [node name="Objects" type="TileMapLayer" parent="." unique_id=256786939]
 
 [node name="Milk" parent="." unique_id=687941712 instance=ExtResource("3_06gaa")]
-position = Vector2(609, 298)
+position = Vector2(197, 34)
 
 [node name="Milk2" parent="." unique_id=812381396 instance=ExtResource("3_06gaa")]
-position = Vector2(1399, 281)
+position = Vector2(95, 103)
 
 [node name="Milk4" parent="." unique_id=1035444487 instance=ExtResource("3_06gaa")]
-position = Vector2(4180, -173)
+position = Vector2(-1, 124)
 
 [node name="Milk5" parent="." unique_id=690091061 instance=ExtResource("3_06gaa")]
-position = Vector2(3187, -2029)
+position = Vector2(-80, 106)
 
 [node name="Milk9" parent="." unique_id=612954698 instance=ExtResource("3_06gaa")]
-position = Vector2(3609, 2358)
+position = Vector2(-180, 84)
 
 [node name="Milk11" parent="." unique_id=1267862395 instance=ExtResource("3_06gaa")]
-position = Vector2(-1073, 2042)
+position = Vector2(-236, -122)
 
 [node name="Milk14" parent="." unique_id=1364394487 instance=ExtResource("3_06gaa")]
-position = Vector2(-2634, 1618)
+position = Vector2(136, -126)
 
 [node name="Milk15" parent="." unique_id=1963255768 instance=ExtResource("3_06gaa")]
-position = Vector2(-3838, 2553)
+position = Vector2(-7, -171)
 
 [node name="Milk16" parent="." unique_id=1767107836 instance=ExtResource("3_06gaa")]
-position = Vector2(-3004, 932)
+position = Vector2(124, -16)
 
 [node name="Milk18" parent="." unique_id=1885046348 instance=ExtResource("3_06gaa")]
-position = Vector2(-878, -629)
+position = Vector2(74, 28)
 
 [node name="Milk23" parent="." unique_id=1697853750 instance=ExtResource("3_06gaa")]
-position = Vector2(3100, -525)
+position = Vector2(34, 66)
 
 [node name="Milk24" parent="." unique_id=835209638 instance=ExtResource("3_06gaa")]
-position = Vector2(1712, -2274)
+position = Vector2(-28, 59)
 
 [node name="Milk25" parent="." unique_id=91093830 instance=ExtResource("3_06gaa")]
-position = Vector2(-404, -2121)
+position = Vector2(-77, 28)
 
 [node name="Milk26" parent="." unique_id=483765063 instance=ExtResource("3_06gaa")]
-position = Vector2(-2361, -2366)
+position = Vector2(-66, 7)
 
 [node name="Milk27" parent="." unique_id=134636723 instance=ExtResource("3_06gaa")]
-position = Vector2(-3346, -924)
+position = Vector2(-51, -56)
 
 [node name="Milk29" parent="." unique_id=1424108284 instance=ExtResource("3_06gaa")]
-position = Vector2(1722, 2031)
+position = Vector2(3, -57)
 
 [node name="Milk30" parent="." unique_id=1066908968 instance=ExtResource("3_06gaa")]
-position = Vector2(3835, 1135)
+position = Vector2(45, -69)
