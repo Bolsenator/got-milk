@@ -11,7 +11,6 @@ script = ExtResource("1_wl5ax")
 
 [node name="LevelUp" parent="." unique_id=88389703 instance=ExtResource("2_ks8t7")]
 visible = false
-anchors_preset = 8
 
 [node name="HUD" parent="." unique_id=2085557247 instance=ExtResource("1_nb4k0")]
 anchors_preset = -1
@@ -28,5 +27,5 @@ anchors_preset = 8
 
 [node name="Pause" parent="." unique_id=1586437350 instance=ExtResource("5_tf0e0")]
 visible = false
-size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
