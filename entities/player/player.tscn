@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bncc0esttelux"]
 
-[ext_resource type="Texture2D" uid="uid://dvdm2frwbnnc5" path="res://entities/player/Heroes.png" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://b1rtmc126svd2" path="res://entities/player/player_idle.png" id="2_26q78"]
 [ext_resource type="Script" uid="uid://dl3536cnej1u4" path="res://entities/player/player.gd" id="2_abrql"]
 [ext_resource type="Texture2D" uid="uid://dqmtw21bbmlqk" path="res://ui/Bars-Sliders-Scrollbars.png" id="3_sglur"]
 [ext_resource type="AudioStream" uid="uid://dh8haccxb24ug" path="res://assets/sfx/player_heal.wav" id="5_fkugw"]
@@ -8,29 +8,29 @@
 [ext_resource type="AudioStream" uid="uid://ccj7k7rjvnso4" path="res://assets/sfx/level_up.wav" id="6_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://y83l883e3wwn" path="res://assets/sfx/player_died.wav" id="7_qiwj3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_abrql"]
-atlas = ExtResource("1_symyc")
-region = Rect2(16, 1232, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_26q78"]
+atlas = ExtResource("2_26q78")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sglur"]
-atlas = ExtResource("1_symyc")
-region = Rect2(32, 1232, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bectd"]
+atlas = ExtResource("2_26q78")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bls4j"]
-atlas = ExtResource("1_symyc")
-region = Rect2(48, 1232, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvtmh"]
+atlas = ExtResource("2_26q78")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fkugw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_abrql")
+"texture": SubResource("AtlasTexture_26q78")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sglur")
+"texture": SubResource("AtlasTexture_bectd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bls4j")
+"texture": SubResource("AtlasTexture_wvtmh")
 }],
 "loop": true,
 "name": &"idle",
@@ -58,7 +58,6 @@ script = ExtResource("2_abrql")
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_fkugw")
 animation = &"idle"
-frame_progress = 0.8749897
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=779432917]
 position = Vector2(-3, 3)
