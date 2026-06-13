@@ -33,6 +33,7 @@ window/stretch/aspect="expand"
 player=""
 follower=""
 enemy=""
+follower_to_follower_hitbox=""
 
 [input]
 
@@ -69,6 +70,7 @@ esc={
 2d_physics/layer_3="Pickups"
 2d_physics/layer_4="Followers"
 2d_physics/layer_5="Enemies"
+2d_physics/layer_6="FollowerToFollower"
 
 [physics]
 
