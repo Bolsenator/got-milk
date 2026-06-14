@@ -25,6 +25,10 @@ var current_exp : float = 0.0 :
 		current_exp = new_value
 		exp_changed.emit(current_exp, max_exp)
 var max_exp : float = 100.0
+var player_level: int = 1 :
+	set(new_value):
+		player_level = new_value
+		level_up.emit(player_level)
 
 func _ready():
 	animated_sprite.play("idle")
@@ -47,8 +51,9 @@ func gain_exp(exp_gain : float):
 	current_exp += exp_gain
 
 	while current_exp >= max_exp:
+		player_level += 1
 		level_up_sound.play()
-		level_up.emit()
+		level_up.emit(player_level)
 		await level.level_up_reward_chosen
 		current_exp -= max_exp
 

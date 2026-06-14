@@ -93,7 +93,7 @@ func _on_spawn_timer_timeout():
 		add_child(enemy_instance)
 		enemy_instance.died.connect(_on_enemy_died)
 
-func _on_level_up():
+func _on_level_up(player_level):
 	get_tree().paused = true
 	ui.show_level_up_ui()
 
