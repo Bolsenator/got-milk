@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://dfebm1gli58ce"]
 
 [ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/ui_theme.tres" id="1_mu8pm"]
-[ext_resource type="Texture2D" uid="uid://dmftfqyp3dhhn" path="res://ui/title_screen.png" id="1_uhj5c"]
 [ext_resource type="Script" uid="uid://b20kprhxam1mf" path="res://ui/main_menu/main_menu.gd" id="2_omy8q"]
+[ext_resource type="Texture2D" uid="uid://geigxbgft0yw" path="res://ui/main_menu/title_screen_non_glitch_parts.png" id="3_3c04x"]
+[ext_resource type="Shader" uid="uid://bq6nt8blopmcy" path="res://shaders/pixel_glitch.gdshader" id="3_joh67"]
+[ext_resource type="Texture2D" uid="uid://cbpuu5ieod1rt" path="res://ui/main_menu/title_screen_glitch_parts.png" id="5_joh67"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3c04x"]
+shader = ExtResource("3_joh67")
+shader_parameter/pixel_size = 1.0
+shader_parameter/glow_color = Color(1, 0.9411765, 0.85882354, 1)
+shader_parameter/glow_intensity = 0.8
+shader_parameter/glow_pulse_speed = 1.0
 
 [node name="MainMenu" type="Control" unique_id=751677809]
 layout_mode = 3
@@ -13,21 +22,32 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_mu8pm")
 script = ExtResource("2_omy8q")
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=917790193]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -1.751
-anchor_top = -1.243
-anchor_right = 2.897
-anchor_bottom = 2.604
-offset_left = 0.920166
-offset_top = 0.44006348
-offset_right = 0.7597656
-offset_bottom = -0.32006836
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.003921569, 0.019607844, 0.09803922, 1)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=676198976]
+[node name="TitleScreenGlitch" type="TextureRect" parent="." unique_id=186061891]
+material = SubResource("ShaderMaterial_3c04x")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 760.0
+offset_top = 168.0
+offset_right = -372.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_joh67")
+
+[node name="TitleScreenStatic" type="TextureRect" parent="." unique_id=676198976]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -40,7 +60,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_uhj5c")
+texture = ExtResource("3_3c04x")
 stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=617893156]
