@@ -4,6 +4,9 @@ signal resume()
 signal restart()
 signal quit()
 
+func _ready():
+	GameManager.register_pause_ui(self)
+
 func _on_resume_pressed() -> void:
 	resume.emit()
 

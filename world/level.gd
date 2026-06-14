@@ -62,12 +62,8 @@ func _ready():
 	player.level_up.connect(_on_level_up)
 	player.player_died.connect(_on_game_over)
 	ui.level_up_ui.summon_follower.connect(_on_summon_follower)
-	ui.level_up_ui.heal_player.connect(_on_heal_player) 
-	ui.game_over_ui.restart.connect(_on_restart)
-	ui.game_over_ui.quit.connect(_on_quit)
+	ui.level_up_ui.heal_player.connect(_on_heal_player)
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
-	ui.pause_ui.restart.connect(_on_restart)
-	ui.pause_ui.quit.connect(_on_quit)
 	
 	spawn_timer.wait_time = current_wave.interval
 
@@ -126,12 +122,12 @@ func _on_game_over():
 	get_tree().paused = true
 	ui.show_game_over_ui()
 	
-func _on_restart():
-	get_tree().paused = false
-	get_tree().reload_current_scene()
+#func _on_restart():
+#	get_tree().paused = false
+#	get_tree().reload_current_scene()
 
-func _on_quit():
-	get_tree().quit()
+#func _on_quit():
+#	get_tree().quit()
 	
 func _on_enemy_died(exp_value: float, position: Vector2):
 	if exp_value < exp_drop_size_threshold:
