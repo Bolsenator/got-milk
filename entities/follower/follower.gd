@@ -107,20 +107,19 @@ func get_closest_enemy() -> CharacterBody2D:
 	
 	return closest
 
-func _on_aggro_range_body_entered(body: Node2D):
-	if body.is_in_group("enemy") and target_enemy == null:
-		target_enemy = get_closest_enemy()
-		target_enemy.tree_exited.connect(_on_target_died)
+#func _on_aggro_range_body_entered(body: Node2D):
+#	if body.is_in_group("enemy") and target_enemy == null:
+#		target_enemy = get_closest_enemy()
+#		target_enemy.tree_exited.connect(_on_target_died)
 
 func _on_aggro_range_body_exited(body: Node2D):
 	if body == target_enemy:
-		#enemy_in_range = false
 		target_enemy = null
 
 func _on_target_died():
 	enemy_in_range = false
 	target_enemy = null
-	var closest = get_closest_enemy()
-	if closest:
-		target_enemy = closest
-		target_enemy.tree_exited.connect(_on_target_died)
+	#var closest = get_closest_enemy()
+	#if closest:
+	#	target_enemy = closest
+	#	target_enemy.tree_exited.connect(_on_target_died)

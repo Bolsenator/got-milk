@@ -44,7 +44,7 @@ var exp_drop_size_threshold: float = 25.0
 var enemy_spawn_distance_min: float = 600.0
 var enemy_spawn_distance_max: float = 900.0
 const ENEMY_SCENES = {
-	"slime" 	: preload("res://entities/enemy/enemy_slime.tscn"),
+	"slime" 	: preload("res://entities/enemy/green_slime/green_slime.tscn"),
 	"snake" 	: preload("res://entities/enemy/enemy_snake.tscn"),
 	"bat" 		: preload("res://entities/enemy/enemy_bat.tscn"),
 	"spider" 	: preload("res://entities/enemy/enemy_spider.tscn"),
