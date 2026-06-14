@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dli5cao470tn6"
-path="res://.godot/imported/milk-bar.png-196ad569f91c3474a4935cf3e279e903.ctex"
+uid="uid://drq4xvakr0taq"
+path="res://.godot/imported/exp_bar_full.png-995a6ddcfeb486f251c71cd677c88d80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/milk-bar.png"
-dest_files=["res://.godot/imported/milk-bar.png-196ad569f91c3474a4935cf3e279e903.ctex"]
+source_file="res://ui/hud/exp_bar_full.png"
+dest_files=["res://.godot/imported/exp_bar_full.png-995a6ddcfeb486f251c71cd677c88d80.ctex"]
 
 [params]
 

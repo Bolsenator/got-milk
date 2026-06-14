@@ -1,16 +1,9 @@
 [gd_scene format=3 uid="uid://c1r2h22ghceck"]
 
-[ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud.gd" id="1_276te"]
+[ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud/hud.gd" id="1_276te"]
 [ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/ui_theme.tres" id="1_546lt"]
-[ext_resource type="Texture2D" uid="uid://dli5cao470tn6" path="res://ui/milk-bar.png" id="1_rbyyf"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pv4sj"]
-atlas = ExtResource("1_rbyyf")
-region = Rect2(0, 16, 403, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_276te"]
-atlas = ExtResource("1_rbyyf")
-region = Rect2(0, 0, 403, 12)
+[ext_resource type="Texture2D" uid="uid://dntis3wxx5rtk" path="res://ui/hud/exp_bar_empty.png" id="3_w75iv"]
+[ext_resource type="Texture2D" uid="uid://drq4xvakr0taq" path="res://ui/hud/exp_bar_full.png" id="4_imuuq"]
 
 [node name="HUD" type="Control" unique_id=2085557247]
 process_mode = 1
@@ -40,8 +33,8 @@ scale = Vector2(4, 4)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-texture_under = SubResource("AtlasTexture_pv4sj")
-texture_progress = SubResource("AtlasTexture_276te")
+texture_under = ExtResource("3_w75iv")
+texture_progress = ExtResource("4_imuuq")
 metadata/_edit_use_anchors_ = true
 
 [node name="TopHUD" type="HBoxContainer" parent="." unique_id=1712956337]

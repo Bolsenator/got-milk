@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2j1gr2vdc3or"]
 
-[ext_resource type="PackedScene" uid="uid://c1r2h22ghceck" path="res://ui/hud.tscn" id="1_nb4k0"]
+[ext_resource type="PackedScene" uid="uid://c1r2h22ghceck" path="res://ui/hud/hud.tscn" id="1_nb4k0"]
 [ext_resource type="Script" uid="uid://crstyy6ij5ra3" path="res://ui/ui.gd" id="1_wl5ax"]
 [ext_resource type="PackedScene" uid="uid://dtfl23jo5g75q" path="res://ui/level_up.tscn" id="2_ks8t7"]
 [ext_resource type="PackedScene" uid="uid://c3o2cquf8ly2k" path="res://ui/game_over.tscn" id="4_vkava"]
@@ -8,9 +8,6 @@
 
 [node name="UI" type="CanvasLayer" unique_id=95054969]
 script = ExtResource("1_wl5ax")
-
-[node name="LevelUp" parent="." unique_id=88389703 instance=ExtResource("2_ks8t7")]
-visible = false
 
 [node name="HUD" parent="." unique_id=2085557247 instance=ExtResource("1_nb4k0")]
 anchors_preset = -1
@@ -21,13 +18,12 @@ offset_left = -960.0
 offset_right = 960.0
 offset_bottom = 1007.64
 
+[node name="LevelUp" parent="." unique_id=88389703 instance=ExtResource("2_ks8t7")]
+visible = false
+
 [node name="GameOver" parent="." unique_id=1045062818 instance=ExtResource("4_vkava")]
 visible = false
 anchors_preset = 8
-offset_left = -240.0
-offset_top = -135.0
-offset_right = 240.0
-offset_bottom = 135.0
 
 [node name="Pause" parent="." unique_id=1586437350 instance=ExtResource("5_tf0e0")]
 visible = false
