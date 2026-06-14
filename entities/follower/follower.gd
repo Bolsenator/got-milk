@@ -51,7 +51,8 @@ func _physics_process(delta: float):
 		var closest = get_closest_enemy()
 		if closest:
 			target_enemy = closest
-			target_enemy.tree_exited.connect(_on_target_died)
+			if !target_enemy.tree_exited.is_connected(_on_target_died):
+				target_enemy.tree_exited.connect(_on_target_died)
 	
 	# Set targetting state
 	if target_enemy != null:
