@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt7csvme2gmb2"
-path="res://.godot/imported/Monsters.png-17e4f18e345cf974f1ef53a3e5457b45.ctex"
+uid="uid://de6dwhqnykc0n"
+path="res://.godot/imported/devil.png-5d4bcc7cf7bbf51f67fde1fce95d53e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemy/Monsters.png"
-dest_files=["res://.godot/imported/Monsters.png-17e4f18e345cf974f1ef53a3e5457b45.ctex"]
+source_file="res://entities/enemy/devil/devil.png"
+dest_files=["res://.godot/imported/devil.png-5d4bcc7cf7bbf51f67fde1fce95d53e8.ctex"]
 
 [params]
 

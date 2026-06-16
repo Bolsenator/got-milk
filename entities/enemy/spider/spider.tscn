@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cmjjwsl5heb3m"]
+
+[ext_resource type="PackedScene" uid="uid://bh5e8htrtsyur" path="res://entities/enemy/enemy_base.tscn" id="1_cfw0v"]
+[ext_resource type="Script" uid="uid://dpco3upqvl2e8" path="res://entities/enemy/spider/spider.gd" id="2_lljdh"]
+[ext_resource type="Texture2D" uid="uid://bkeuaujtsqj0e" path="res://entities/enemy/spider/spider.png" id="3_u1kii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndiru"]
+atlas = ExtResource("3_u1kii")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8vqb"]
+atlas = ExtResource("3_u1kii")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08joe"]
+atlas = ExtResource("3_u1kii")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnm2f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndiru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8vqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08joe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Spider" unique_id=1000233962 instance=ExtResource("1_cfw0v")]
+script = ExtResource("2_lljdh")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]
+sprite_frames = SubResource("SpriteFrames_hnm2f")
+animation = &"idle"
+frame_progress = 0.8639901

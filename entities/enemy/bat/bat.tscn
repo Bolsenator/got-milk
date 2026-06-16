@@ -1,39 +1,39 @@
 [gd_scene format=3 uid="uid://b435axgxym66m"]
 
 [ext_resource type="PackedScene" uid="uid://bh5e8htrtsyur" path="res://entities/enemy/enemy_base.tscn" id="1_xm8cs"]
-[ext_resource type="Script" uid="uid://dcmgkb8xwpv6j" path="res://entities/enemy/enemy_bat.gd" id="2_046rg"]
-[ext_resource type="Texture2D" uid="uid://dt7csvme2gmb2" path="res://entities/enemy/Monsters.png" id="2_u5vhx"]
+[ext_resource type="Script" uid="uid://dcmgkb8xwpv6j" path="res://entities/enemy/bat/bat.gd" id="2_046rg"]
+[ext_resource type="Texture2D" uid="uid://blik6b2cjfmk0" path="res://entities/enemy/bat/bat.png" id="3_hqd63"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_046rg"]
-atlas = ExtResource("2_u5vhx")
-region = Rect2(144, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g6rw"]
+atlas = ExtResource("3_hqd63")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bj5pt"]
-atlas = ExtResource("2_u5vhx")
-region = Rect2(160, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc5hl"]
+atlas = ExtResource("3_hqd63")
+region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xjiqb"]
-atlas = ExtResource("2_u5vhx")
-region = Rect2(176, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6spi8"]
+atlas = ExtResource("3_hqd63")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qhdhx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_046rg")
+"texture": SubResource("AtlasTexture_8g6rw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bj5pt")
+"texture": SubResource("AtlasTexture_jc5hl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xjiqb")
+"texture": SubResource("AtlasTexture_6spi8")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
 }]
 
-[node name="EnemyBat" unique_id=1000233962 instance=ExtResource("1_xm8cs")]
+[node name="Bat" unique_id=1000233962 instance=ExtResource("1_xm8cs")]
 script = ExtResource("2_046rg")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]

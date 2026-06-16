@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2svyojkxia74"
-path="res://.godot/imported/green_slime_animation.png-b2d78f51ada4a9d4113665f0e7b3f078.ctex"
+uid="uid://bahvpoyjko0mw"
+path="res://.godot/imported/snake.png-af6a9601a778b39c7b94d184ebe23df8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemy/green_slime/green_slime_animation.png"
-dest_files=["res://.godot/imported/green_slime_animation.png-b2d78f51ada4a9d4113665f0e7b3f078.ctex"]
+source_file="res://entities/enemy/snake/snake.png"
+dest_files=["res://.godot/imported/snake.png-af6a9601a778b39c7b94d184ebe23df8.ctex"]
 
 [params]
 

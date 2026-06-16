@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ccpep2gp05x06"]
+
+[ext_resource type="PackedScene" uid="uid://bh5e8htrtsyur" path="res://entities/enemy/enemy_base.tscn" id="1_6ewax"]
+[ext_resource type="Script" uid="uid://b5gpox0s2s6k4" path="res://entities/enemy/beholder/beholder.gd" id="2_85xol"]
+[ext_resource type="Texture2D" uid="uid://b6r16o36m3f1x" path="res://entities/enemy/beholder/beholder.png" id="3_tnor4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22gw8"]
+atlas = ExtResource("3_tnor4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej4uw"]
+atlas = ExtResource("3_tnor4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybrqt"]
+atlas = ExtResource("3_tnor4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1f6x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22gw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej4uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybrqt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Beholder" unique_id=1000233962 instance=ExtResource("1_6ewax")]
+script = ExtResource("2_85xol")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]
+sprite_frames = SubResource("SpriteFrames_h1f6x")
+animation = &"idle"
+frame = 1
+frame_progress = 0.73486197
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=166876237]
+position = Vector2(0, 3)
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(1455277756) index="0" unique_id=1203879583]
+position = Vector2(0, 3)

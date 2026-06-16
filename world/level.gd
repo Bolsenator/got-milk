@@ -7,13 +7,13 @@ const WAVES = [
 	{"time": 80.0,  "enemy_type": "spider",  "count": 6, "interval": 4.0, "boss": null},
 	{"time": 100.0, "enemy_type": "spider",  "count": 8, "interval": 3.0, "boss": "wasps"},
 	{"time": 120.0, "enemy_type": "bat",  "count": 12, "interval": 2.5, "boss": null},
-	{"time": 140.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": "skeleton"},
+	{"time": 140.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": "demon"},
 	{"time": 160.0, "enemy_type": "wasps",  "count": 8, "interval": 4.0, "boss": null},
 	{"time": 180.0, "enemy_type": "spider",  "count": 14, "interval": 2.5, "boss": "demon"},
-	{"time": 200.0, "enemy_type": "skeleton",  "count": 12, "interval": 3.0, "boss": null},
-	{"time": 220.0, "enemy_type": "skeleton",  "count": 12, "interval": 2.5, "boss": "golem"},
+	{"time": 200.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": null},
+	{"time": 220.0, "enemy_type": "spider",  "count": 12, "interval": 2.5, "boss": "golem"},
 	{"time": 240.0, "enemy_type": "wasps",  "count": 20, "interval": 2.5, "boss": null},
-	{"time": 260.0, "enemy_type": "skeleton",  "count": 16, "interval": 2.5, "boss": "beholder"},
+	{"time": 260.0, "enemy_type": "spider",  "count": 16, "interval": 2.5, "boss": "beholder"},
 	{"time": 280.0, "enemy_type": "demon",  "count": 8, "interval": 3.0, "boss": null},
 	{"time": 300.0, "enemy_type": "demon",  "count": 12, "interval": 2.5, "boss": null},
 	{"time": 320.0, "enemy_type": "wasps",  "count": 30, "interval": 1.0, "boss": "beholder"},
@@ -45,15 +45,14 @@ var enemy_spawn_distance_min: float = 600.0
 var enemy_spawn_distance_max: float = 900.0
 const ENEMY_SCENES = {
 	"slime" 	: preload("res://entities/enemy/green_slime/green_slime.tscn"),
-	"snake" 	: preload("res://entities/enemy/enemy_snake.tscn"),
-	"bat" 		: preload("res://entities/enemy/enemy_bat.tscn"),
-	"spider" 	: preload("res://entities/enemy/enemy_spider.tscn"),
-	"skeleton" 	: preload("res://entities/enemy/enemy_skeleton.tscn"),
-	"wasps" 	: preload("res://entities/enemy/enemy_wasps.tscn"),
-	"demon" 	: preload("res://entities/enemy/enemy_demon.tscn"),
-	"golem" 	: preload("res://entities/enemy/enemy_golem.tscn"),
-	"beholder" 	: preload("res://entities/enemy/enemy_beholder.tscn"),
-	"devil" 	: preload("res://entities/enemy/enemy_devil.tscn")
+	"snake" 	: preload("res://entities/enemy/snake/snake.tscn"),
+	"bat" 		: preload("res://entities/enemy/bat/bat.tscn"),
+	"spider" 	: preload("res://entities/enemy/spider/spider.tscn"),
+	"wasps" 	: preload("res://entities/enemy/wasps/wasps.tscn"),
+	"demon" 	: preload("res://entities/enemy/demon/demon.tscn"),
+	"golem" 	: preload("res://entities/enemy/golem/golem.tscn"),
+	"beholder" 	: preload("res://entities/enemy/beholder/beholder.tscn"),
+	"devil" 	: preload("res://entities/enemy/devil/devil.tscn")
 }
 
 signal level_up_reward_chosen

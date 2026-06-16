@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://kkplnisfycfg"]
+
+[ext_resource type="PackedScene" uid="uid://bh5e8htrtsyur" path="res://entities/enemy/enemy_base.tscn" id="1_aeoy0"]
+[ext_resource type="Script" uid="uid://oy30h2k4mxv" path="res://entities/enemy/snake/snake.gd" id="2_yeovi"]
+[ext_resource type="Texture2D" uid="uid://bahvpoyjko0mw" path="res://entities/enemy/snake/snake.png" id="3_wond0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nleuk"]
+atlas = ExtResource("3_wond0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nurx"]
+atlas = ExtResource("3_wond0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruyw3"]
+atlas = ExtResource("3_wond0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3lvfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nleuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nurx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruyw3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Snake" unique_id=1000233962 instance=ExtResource("1_aeoy0")]
+script = ExtResource("2_yeovi")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]
+sprite_frames = SubResource("SpriteFrames_3lvfe")
+animation = &"idle"
+frame_progress = 0.6114686
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=166876237]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(1455277756) index="0" unique_id=1203879583]
+position = Vector2(-1, 0)
