@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 /* ================= SETTINGS ================= */
 // Pixel size to match your art scale
-uniform float pixel_size = 1.0;
+uniform float pixel_size = 0.25;
 // Edge glow color
 uniform vec4 glow_color : source_color = vec4(0.5, 0.0, 1.0, 1.0);
 // Brightness of the glow
