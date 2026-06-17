@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bdywnhq5qx8iv"]
 
-[ext_resource type="Script" uid="uid://d17udyp7iu3rt" path="res://ui/pause.gd" id="1_foqgb"]
-[ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/ui_theme.tres" id="1_iri2v"]
-[ext_resource type="Texture2D" uid="uid://c1jl0bsowo1p0" path="res://ui/Frames.png" id="2_iri2v"]
+[ext_resource type="Script" uid="uid://d17udyp7iu3rt" path="res://ui/pause/pause.gd" id="1_foqgb"]
+[ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_iri2v"]
+[ext_resource type="Texture2D" uid="uid://c1jl0bsowo1p0" path="res://ui/theme/Frames.png" id="2_iri2v"]
 
 [node name="Pause" type="Control" unique_id=88389703]
 process_mode = 3

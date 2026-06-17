@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://ctuqai7nsociw"]
 
-[ext_resource type="Texture2D" uid="uid://cpps5ss715rqp" path="res://world/floor_tiles.png" id="1_06gaa"]
-[ext_resource type="TileSet" uid="uid://b6hcnvn60l41h" path="res://world/walls_tile_set.tres" id="2_t7djt"]
+[ext_resource type="Texture2D" uid="uid://cpps5ss715rqp" path="res://world/dungeon/floor_tiles.png" id="1_06gaa"]
+[ext_resource type="TileSet" uid="uid://b6hcnvn60l41h" path="res://world/dungeon/walls_tile_set.tres" id="2_t7djt"]
 [ext_resource type="PackedScene" uid="uid://banuednph6by8" path="res://entities/milk/milk.tscn" id="3_06gaa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_06gaa"]

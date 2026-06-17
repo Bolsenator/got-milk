@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ylq8gol41i0"
-path="res://.godot/imported/Icons.png-98a4e7144cfa5fc5f8ab837ce38837d8.ctex"
+uid="uid://biofxc36vpvov"
+path="res://.godot/imported/Cave.png-e51ae6536ba1b64dcd327e9f3595c2b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/Icons.png"
-dest_files=["res://.godot/imported/Icons.png-98a4e7144cfa5fc5f8ab837ce38837d8.ctex"]
+source_file="res://world/dungeon/Cave.png"
+dest_files=["res://.godot/imported/Cave.png-e51ae6536ba1b64dcd327e9f3595c2b0.ctex"]
 
 [params]
 

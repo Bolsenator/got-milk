@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://bkeh78fptsoaf"]
 
-[ext_resource type="Texture2D" uid="uid://xh7od4rpks8e" path="res://ui/Inputs.png" id="1_4mq11"]
+[ext_resource type="Texture2D" uid="uid://xh7od4rpks8e" path="res://ui/theme/Inputs.png" id="1_4mq11"]
 [ext_resource type="FontFile" uid="uid://dajcr630xeyno" path="res://assets/fonts/Fabled_Font.ttf" id="1_udl1o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udl1o"]
