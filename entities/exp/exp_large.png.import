@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0mny1oenq8pv"
-path="res://.godot/imported/exp_jewels.png-a1f54e86caf7baa77db056d0d65456d6.ctex"
+uid="uid://cok5efknm3thr"
+path="res://.godot/imported/exp_large.png-b90527b4dc10c3668bbff8dbf30c4480.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/exp/exp_jewels.png"
-dest_files=["res://.godot/imported/exp_jewels.png-a1f54e86caf7baa77db056d0d65456d6.ctex"]
+source_file="res://entities/exp/exp_large.png"
+dest_files=["res://.godot/imported/exp_large.png-b90527b4dc10c3668bbff8dbf30c4480.ctex"]
 
 [params]
 

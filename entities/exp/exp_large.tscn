@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ckv0wqh4o17fh"]
 
 [ext_resource type="PackedScene" uid="uid://c73pa1fmjhpnn" path="res://entities/exp/exp.tscn" id="1_s5l5f"]
-[ext_resource type="Texture2D" uid="uid://c0mny1oenq8pv" path="res://entities/exp/exp_jewels.png" id="2_0iecx"]
+[ext_resource type="Texture2D" uid="uid://cok5efknm3thr" path="res://entities/exp/exp_large.png" id="2_0iecx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfnsc"]
 atlas = ExtResource("2_0iecx")
@@ -47,8 +47,7 @@ scale = Vector2(4, 4)
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=2127984579]
 sprite_frames = SubResource("SpriteFrames_dgcuf")
-frame = 2
-frame_progress = 0.13767695
+frame_progress = 0.108585015
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=58808963]
 position = Vector2(1.1920929e-07, 8.940697e-08)
