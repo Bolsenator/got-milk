@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biofxc36vpvov"
-path="res://.godot/imported/Cave.png-e51ae6536ba1b64dcd327e9f3595c2b0.ctex"
+uid="uid://biln6a43k6s7"
+path="res://.godot/imported/wall_tiles.png-e52ce54d6f958e636ed851e6745be3aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/dungeon/Cave.png"
-dest_files=["res://.godot/imported/Cave.png-e51ae6536ba1b64dcd327e9f3595c2b0.ctex"]
+source_file="res://world/dungeon/wall_tiles.png"
+dest_files=["res://.godot/imported/wall_tiles.png-e52ce54d6f958e636ed851e6745be3aa.ctex"]
 
 [params]
 
