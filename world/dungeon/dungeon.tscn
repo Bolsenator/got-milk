@@ -76,6 +76,10 @@ texture = ExtResource("1_06gaa")
 2:24/0 = 0
 3:24/0 = 0
 9:15/0 = 0
+8:15/0 = 0
+8:15/0/terrain_set = 0
+8:14/0 = 0
+9:14/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_avs0c"]
 terrain_set_0/mode = 0
@@ -220,7 +224,7 @@ offset_left = -54575.0
 offset_top = -29755.0
 offset_right = 57046.0
 offset_bottom = 37459.0
-color = Color(0.003921569, 0.019607844, 0.09803922, 1)
+color = Color(0.42352942, 0.40392157, 0.46666667, 1)
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1870731952]
 scale = Vector2(4, 4)
