@@ -8,9 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://cymk6h23x8i7m" path="res://assets/music/8bit Dungeon Boss.mp3" id="6_oh72w"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jjmkw"]
-vertices = PackedVector2Array(4658, -2866, 4659.992, 2868.9922, -4337, 2867, -4340.992, -2866.9922)
+vertices = PackedVector2Array(19430.68, -9033.078, 18877.297, 8792.008, -17302.063, 8846.977, -17419.93, -9341.906)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-4351, -2877, -4347, 2877, 4670, 2879, 4668, -2876)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-17430, -9352, -17312, 8857, 18887, 8802, 19441, -9043)])
 
 [node name="Level" type="Node" unique_id=1882998417]
 process_mode = 3
