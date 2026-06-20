@@ -3,6 +3,33 @@
 [ext_resource type="Script" uid="uid://d17udyp7iu3rt" path="res://ui/pause/pause.gd" id="1_foqgb"]
 [ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_iri2v"]
 [ext_resource type="Texture2D" uid="uid://bko6du74afear" path="res://ui/theme/basic_menu.png" id="3_moj0k"]
+[ext_resource type="Texture2D" uid="uid://bv1x60htg1bek" path="res://ui/buttons/exit_button.png" id="4_fuq3x"]
+[ext_resource type="Texture2D" uid="uid://beh7tm8f4r47c" path="res://ui/buttons/quit_button.png" id="4_ve8qa"]
+[ext_resource type="Texture2D" uid="uid://beu383x1nl0gp" path="res://ui/buttons/restart_button.png" id="5_7i4wi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3fb8"]
+atlas = ExtResource("4_fuq3x")
+region = Rect2(4, 3, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25a3s"]
+atlas = ExtResource("4_fuq3x")
+region = Rect2(20, 3, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixyhc"]
+atlas = ExtResource("5_7i4wi")
+region = Rect2(0, 0, 82, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn5ha"]
+atlas = ExtResource("5_7i4wi")
+region = Rect2(94, 0, 82, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuq3x"]
+atlas = ExtResource("4_ve8qa")
+region = Rect2(0, 0, 48, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i4wi"]
+atlas = ExtResource("4_ve8qa")
+region = Rect2(64, 0, 47, 21)
 
 [node name="Pause" type="Control" unique_id=88389703]
 process_mode = 3
@@ -31,24 +58,42 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.6875
-offset_top = -36.875
-offset_right = 114.6875
-offset_bottom = 36.875
+offset_left = -114.0
+offset_top = -37.0
+offset_right = 112.0
+offset_bottom = 36.75
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_moj0k")
-region_rect = Rect2(7, 49, 40, 40)
-patch_margin_left = 18
-patch_margin_top = 32
-patch_margin_right = 32
-patch_margin_bottom = 18
+region_rect = Rect2(1, 49, 46, 46)
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="CloseMenu" type="TextureButton" parent="NinePatchRect" unique_id=975230803]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.94200003
+anchor_top = 0.054
+anchor_right = 0.97800004
+anchor_bottom = 0.19000001
+offset_left = 0.10798645
+offset_top = 0.017499924
+offset_right = -0.028015137
+offset_bottom = -0.012500763
+texture_normal = SubResource("AtlasTexture_t3fb8")
+texture_pressed = SubResource("AtlasTexture_25a3s")
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=748570909]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.6875
+offset_top = 0.125
+offset_right = -2.6875
+offset_bottom = 0.125
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -64,20 +109,20 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="Resume" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=163155492]
+[node name="Restart" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1276311643]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Resume"
+texture_normal = SubResource("AtlasTexture_ixyhc")
+texture_pressed = SubResource("AtlasTexture_cn5ha")
 
-[node name="Restart" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=2002229705]
+[node name="Quit" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1568380066]
 layout_mode = 2
-text = "Restart"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_fuq3x")
+texture_pressed = SubResource("AtlasTexture_7i4wi")
 
-[node name="Quit" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=983513600]
-layout_mode = 2
-text = "Quit"
-
-[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="NinePatchRect/CloseMenu" to="." method="_on_close_menu_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

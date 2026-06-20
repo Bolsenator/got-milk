@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://geigxbgft0yw" path="res://ui/main_menu/title_screen_non_glitch_parts.png" id="3_3c04x"]
 [ext_resource type="Shader" uid="uid://bq6nt8blopmcy" path="res://shaders/pixel_glitch.gdshader" id="3_joh67"]
 [ext_resource type="Texture2D" uid="uid://cbpuu5ieod1rt" path="res://ui/main_menu/title_screen_glitch_parts.png" id="5_joh67"]
+[ext_resource type="Texture2D" uid="uid://beh7tm8f4r47c" path="res://ui/buttons/quit_button.png" id="6_joh67"]
+[ext_resource type="Texture2D" uid="uid://bv8haj3giiqgc" path="res://ui/buttons/play_button.png" id="6_u184e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3c04x"]
 shader = ExtResource("3_joh67")
@@ -12,6 +14,22 @@ shader_parameter/pixel_size = 1.0
 shader_parameter/glow_color = Color(1, 0.9411765, 0.85882354, 1)
 shader_parameter/glow_intensity = 0.8
 shader_parameter/glow_pulse_speed = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2r0d"]
+atlas = ExtResource("6_u184e")
+region = Rect2(0, 0, 52, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4e78x"]
+atlas = ExtResource("6_u184e")
+region = Rect2(64, 0, 52, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u184e"]
+atlas = ExtResource("6_joh67")
+region = Rect2(0, 0, 47, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mijq"]
+atlas = ExtResource("6_joh67")
+region = Rect2(64, 0, 47, 21)
 
 [node name="MainMenu" type="Control" unique_id=751677809]
 layout_mode = 3
@@ -78,16 +96,17 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 
-[node name="Play" type="Button" parent="VBoxContainer" unique_id=1418978276]
+[node name="Play" type="TextureButton" parent="VBoxContainer" unique_id=513813542]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Play"
+texture_normal = SubResource("AtlasTexture_w2r0d")
+texture_pressed = SubResource("AtlasTexture_4e78x")
 
-[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1401751342]
+[node name="Quit" type="TextureButton" parent="VBoxContainer" unique_id=2135707295]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Quit
-"
+texture_normal = SubResource("AtlasTexture_u184e")
+texture_pressed = SubResource("AtlasTexture_6mijq")
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

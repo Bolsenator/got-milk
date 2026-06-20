@@ -23,13 +23,6 @@ visible = false
 
 [node name="GameOver" parent="." unique_id=1045062818 instance=ExtResource("4_vkava")]
 visible = false
-anchors_preset = 8
-offset_left = -240.0
-offset_top = -135.0
-offset_right = 240.0
-offset_bottom = 135.0
 
 [node name="Pause" parent="." unique_id=1586437350 instance=ExtResource("5_tf0e0")]
 visible = false
-size_flags_horizontal = 4
-size_flags_vertical = 4

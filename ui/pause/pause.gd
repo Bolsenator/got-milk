@@ -15,3 +15,6 @@ func _on_restart_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	quit.emit()
+
+func _on_close_menu_pressed() -> void:
+	resume.emit()
