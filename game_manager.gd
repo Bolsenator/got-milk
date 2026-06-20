@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	get_tree().change_scene_to_file("res://ui/main_menu/main_menu.tscn")
+	get_tree().change_scene_to_file.call_deferred("res://ui/main_menu/main_menu.tscn")
 
 func load_level():
 	get_tree().paused = false
