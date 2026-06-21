@@ -42,7 +42,8 @@ var exp_large = preload("res://entities/exp/exp_large.tscn")
 var exp_drop_size_threshold: float = 25.0
 
 var enemy_spawn_distance_min: float = 600.0
-var enemy_spawn_distance_max: float = 900.0
+var enemy_spawn_distance_max: float = 1200.0
+var enemy_collision_layers = [1] # list of collision layers to check against when spawning enemy
 const ENEMY_SCENES = {
 	"slime" 	: preload("res://entities/enemy/green_slime/green_slime.tscn"),
 	"snake" 	: preload("res://entities/enemy/snake/snake.tscn"),
@@ -120,14 +121,7 @@ func _on_resume_from_pause():
 func _on_game_over():
 	get_tree().paused = true
 	ui.show_game_over_ui()
-	
-#func _on_restart():
-#	get_tree().paused = false
-#	get_tree().reload_current_scene()
 
-#func _on_quit():
-#	get_tree().quit()
-	
 func _on_enemy_died(exp_value: float, position: Vector2):
 	if exp_value < exp_drop_size_threshold:
 		var exp_instance = exp_small.instantiate()
@@ -148,6 +142,31 @@ func level_up_completed():
 	level_up_reward_chosen.emit()
 
 func get_enemy_spawn_position() -> Vector2:
-	var angle = randf() * TAU
-	var distance = randf_range(enemy_spawn_distance_min,enemy_spawn_distance_max)
-	return player.global_position + Vector2(cos(angle), sin(angle)) * distance
+	var angle
+	var distance
+	var enemy_spawn_position
+	
+	# Generate random location until valid
+	while true:
+		angle = randf() * TAU
+		distance = randf_range(enemy_spawn_distance_min,enemy_spawn_distance_max)
+		enemy_spawn_position = player.global_position + ( Vector2(cos(angle), sin(angle)) * distance )
+		if(is_valid_spawn_location(enemy_spawn_position)):
+			break
+	
+	return enemy_spawn_position
+
+func is_valid_spawn_location(spawn_position: Vector2) -> bool:
+	var collision_query_point = PhysicsPointQueryParameters2D.new()
+	collision_query_point.position = spawn_position
+	
+	for layer_number in enemy_collision_layers:
+		collision_query_point.collision_mask = 1 << (layer_number - 1)
+	
+	var space_state = get_viewport().get_world_2d().direct_space_state
+	var collision_array = space_state.intersect_point(collision_query_point)
+	
+	if collision_array.size() == 0:
+		return true
+	else:
+		return false
