@@ -146,8 +146,12 @@ func get_enemy_spawn_position() -> Vector2:
 	var distance
 	var enemy_spawn_position
 	
+	var max_spawn_attempts = 100 # Prevents too many failed spawn attempts, quietly stops attempting
+	var current_spawn_attempts = 0
+	
 	# Generate random location until valid
-	while true:
+	while current_spawn_attempts < max_spawn_attempts:
+		current_spawn_attempts += 1
 		angle = randf() * TAU
 		distance = randf_range(enemy_spawn_distance_min,enemy_spawn_distance_max)
 		enemy_spawn_position = player.global_position + ( Vector2(cos(angle), sin(angle)) * distance )

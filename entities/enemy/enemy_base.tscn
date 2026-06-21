@@ -1,6 +1,18 @@
 [gd_scene format=3 uid="uid://bh5e8htrtsyur"]
 
 [ext_resource type="Script" uid="uid://cduwsai3luqmo" path="res://entities/enemy/enemy_base.gd" id="1_6gc6p"]
+[ext_resource type="Texture2D" uid="uid://opi1v33mi233" path="res://entities/enemy/placeholder_enemy_sprite.png" id="2_x2vhn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6gc6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x2vhn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0oyo"]
 radius = 17.0
@@ -18,13 +30,13 @@ script = ExtResource("1_6gc6p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=833127862]
 scale = Vector2(4, 4)
-animation = &""
+sprite_frames = SubResource("SpriteFrames_6gc6p")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166876237]
 shape = SubResource("CapsuleShape2D_s0oyo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1281531770]
-avoidance_enabled = true
 radius = 16.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1455277756]

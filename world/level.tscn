@@ -7,17 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://c7h2bw03q2tu0" path="res://entities/follower/follower.tscn" id="5_ype84"]
 [ext_resource type="AudioStream" uid="uid://cymk6h23x8i7m" path="res://assets/music/8bit Dungeon Boss.mp3" id="6_oh72w"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ype84"]
-
 [node name="Level" type="Node" unique_id=1882998417]
 process_mode = 3
 script = ExtResource("1_ype84")
 
 [node name="Dungeon" parent="." unique_id=1684005168 instance=ExtResource("1_0u2o0")]
 process_mode = 1
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2050715963]
-navigation_polygon = SubResource("NavigationPolygon_ype84")
 
 [node name="Follower" parent="." unique_id=1000233962 instance=ExtResource("5_ype84")]
 
