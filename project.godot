@@ -65,11 +65,13 @@ esc={
 [layer_names]
 
 2d_physics/layer_1="Walls"
+2d_navigation/layer_1="WalkableTiles"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Pickups"
 2d_physics/layer_4="Followers"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="FollowerToFollower"
+avoidance/layer_1="Enemy"
 
 [physics]
 

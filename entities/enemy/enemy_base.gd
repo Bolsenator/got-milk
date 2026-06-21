@@ -11,7 +11,7 @@ var health: float
 var speed: float = 100.0
 var damage: float = 5.0
 var exp_reward: int = 5
-var attack_cushion: float = 4 # Prevents sprite from going crazy when right on player
+#var attack_cushion: float = 4 # Prevents sprite from going crazy when right on player
 var player_in_range: bool = false
 var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
@@ -31,17 +31,24 @@ func _physics_process(delta: float):
 	if player == null:
 		return
 	
+	# Attack player
 	if player_in_range and cooldown_timer <= 0.0:
 		player.take_damage(damage)
 		cooldown_timer = attack_cooldown
 	
-	var distance = global_position.distance_to(player.global_position)
-	if distance > attack_cushion:
-		navigation_agent.target_position = player.global_position
-		var dir = to_local(navigation_agent.get_next_path_position()).normalized()
-		velocity = dir * speed
-		move_and_slide()
-		animated_sprite.flip_h = velocity.x < 0
+	# Chase player
+	navigation_agent.target_position = player.global_position
+	var current_agent_position = global_position
+	var next_path_position = navigation_agent.get_next_path_position()
+	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
+	
+	if navigation_agent.avoidance_enabled:
+		navigation_agent.set_velocity(new_velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(new_velocity)
+	
+	move_and_slide()
+	animated_sprite.flip_h = velocity.x < 0
 
 func take_damage(amount: float):
 	health -= amount
@@ -59,3 +66,6 @@ func _on_area_2d_body_entered(body: Node2D):
 func _on_area_2d_body_exited(body: Node2D):
 	if body.is_in_group("player"):
 		player_in_range = false
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity

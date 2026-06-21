@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpps5ss715rqp"
-path="res://.godot/imported/floor_tiles.png-abc5b4f1efbe831e06bdfe57d6e7699d.ctex"
+uid="uid://bf3bflwj8l7k"
+path="res://.godot/imported/base_floor_tile.png-e23397c3dbc21c1dbaf20f22f33d5abc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/dungeon/floor_tiles.png"
-dest_files=["res://.godot/imported/floor_tiles.png-abc5b4f1efbe831e06bdfe57d6e7699d.ctex"]
+source_file="res://world/dungeon/base_floor_tile.png"
+dest_files=["res://.godot/imported/base_floor_tile.png-e23397c3dbc21c1dbaf20f22f33d5abc.ctex"]
 
 [params]
 

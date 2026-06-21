@@ -7,10 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7h2bw03q2tu0" path="res://entities/follower/follower.tscn" id="5_ype84"]
 [ext_resource type="AudioStream" uid="uid://cymk6h23x8i7m" path="res://assets/music/8bit Dungeon Boss.mp3" id="6_oh72w"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jjmkw"]
-vertices = PackedVector2Array(19430.68, -9033.078, 18877.297, 8792.008, -17302.063, 8846.977, -17419.93, -9341.906)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-17430, -9352, -17312, 8857, 18887, 8802, 19441, -9043)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ype84"]
 
 [node name="Level" type="Node" unique_id=1882998417]
 process_mode = 3
@@ -19,6 +16,11 @@ script = ExtResource("1_ype84")
 [node name="Dungeon" parent="." unique_id=1684005168 instance=ExtResource("1_0u2o0")]
 process_mode = 1
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2050715963]
+navigation_polygon = SubResource("NavigationPolygon_ype84")
+
+[node name="Follower" parent="." unique_id=1000233962 instance=ExtResource("5_ype84")]
+
 [node name="Player" parent="." unique_id=772233312 instance=ExtResource("2_jjmkw")]
 process_mode = 1
 
@@ -26,18 +28,11 @@ process_mode = 1
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2050715963]
-visible = false
-navigation_polygon = SubResource("NavigationPolygon_jjmkw")
-
 [node name="UI" parent="." unique_id=95054969 instance=ExtResource("4_s5sgh")]
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=2085828705]
 process_mode = 1
 autostart = true
-
-[node name="Follower" parent="." unique_id=1000233962 instance=ExtResource("5_ype84")]
-position = Vector2(333, 169)
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=706112399]
 process_mode = 3

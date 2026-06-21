@@ -61,6 +61,10 @@ position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_s0oyo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1281531770]
+avoidance_enabled = true
+avoidance_layers = 0
+avoidance_mask = 0
+debug_enabled = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=625364885]
 collision_layer = 8
