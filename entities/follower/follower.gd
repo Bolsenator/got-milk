@@ -32,6 +32,7 @@ func _ready():
 	animated_sprite.play("idle")
 	player = get_tree().get_first_node_in_group("player")
 	summon_sound.play(2.0)
+	navigation_agent.max_speed = speed
 	# Wait for navigation map to be ready
 	await get_tree().physics_frame
 
@@ -43,8 +44,8 @@ func _physics_process(delta: float):
 	# Keep within hard leash distance
 	player_distance = global_position.distance_to(player.global_position)
 	if player_distance > hard_leash_radius:
-			target_enemy = null
-			state = State.FOLLOW
+		target_enemy = null
+		state = State.FOLLOW
 	
 	# Find nearest enemy within range
 	if target_enemy == null:
@@ -65,26 +66,40 @@ func _physics_process(delta: float):
 	else:
 		state = State.FOLLOW
 	
+	
+	navigation_agent.target_position = player.global_position
+	var current_agent_position = global_position
+	var next_path_position = navigation_agent.get_next_path_position()
+	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
+	
 	# Act on state
 	match state:
 		State.ATTACK:
-			# Attack if close
+			navigation_agent.target_desired_distance = attack_cushion
+			
+			# Attack enemy
 			if enemy_in_range and cooldown_timer <= 0.0:
 				target_enemy.take_damage(damage)
 				cooldown_timer = attack_cooldown
 				attack_sound.play()
-			# Chase if fard
-			if target_enemy_distance > attack_cushion:
-				navigation_agent.target_position = target_enemy.global_position
-				var direction = to_local(navigation_agent.get_next_path_position()).normalized()
-				velocity = direction * speed
+			
+			# Chase enemy
+			navigation_agent.target_position = target_enemy.global_position
+			current_agent_position = global_position
+			next_path_position = navigation_agent.get_next_path_position()
+			new_velocity = current_agent_position.direction_to(next_path_position) * speed
+		
 		State.FOLLOW:
-			if player_distance > soft_leash_radius:
-				navigation_agent.target_position = player.global_position
-				var direction = to_local(navigation_agent.get_next_path_position()).normalized()
-				velocity = direction * speed
-			else:
-				velocity = velocity.lerp(Vector2.ZERO, deceleration * delta)
+			navigation_agent.target_desired_distance = soft_leash_radius
+			navigation_agent.target_position = player.global_position
+			current_agent_position = global_position
+			next_path_position = navigation_agent.get_next_path_position()
+			new_velocity = current_agent_position.direction_to(next_path_position) * speed
+	
+	if navigation_agent.avoidance_enabled:
+		navigation_agent.set_velocity(new_velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(new_velocity)
 	
 	# Add follower to follower nudge to prevent grouping
 	for area in follower_to_follower_hitbox.get_overlapping_areas():
@@ -112,6 +127,9 @@ func get_closest_enemy() -> CharacterBody2D:
 #	if body.is_in_group("enemy") and target_enemy == null:
 #		target_enemy = get_closest_enemy()
 #		target_enemy.tree_exited.connect(_on_target_died)
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
 
 func _on_aggro_range_body_exited(body: Node2D):
 	if body == target_enemy:

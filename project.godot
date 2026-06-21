@@ -72,6 +72,7 @@ esc={
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="FollowerToFollower"
 avoidance/layer_1="Enemy"
+avoidance/layer_2="Follower"
 
 [physics]
 

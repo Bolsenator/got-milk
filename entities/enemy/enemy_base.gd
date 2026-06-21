@@ -22,7 +22,7 @@ func _ready():
 	health = max_health
 	player = get_tree().get_first_node_in_group("player")
 	animated_sprite.play("idle")
-	#died.connect(player._on_enemy_died)
+	navigation_agent.max_speed = speed
 	# Wait for navigation map to be ready
 	await get_tree().physics_frame
 	

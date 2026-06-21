@@ -62,9 +62,9 @@ shape = SubResource("CapsuleShape2D_s0oyo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1281531770]
 avoidance_enabled = true
-avoidance_layers = 0
-avoidance_mask = 0
-debug_enabled = true
+radius = 32.0
+avoidance_layers = 2
+avoidance_mask = 2
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=625364885]
 collision_layer = 8
@@ -99,6 +99,7 @@ process_mode = 3
 stream = ExtResource("4_rdpfw")
 volume_db = -35.0
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="body_entered" from="AggroRange" to="." method="_on_aggro_range_body_entered"]
