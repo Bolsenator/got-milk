@@ -12,6 +12,9 @@ extends CharacterBody2D
 var player: CharacterBody2D
 var target_enemy: CharacterBody2D = null
 
+var current_target_position: Vector2
+var max_distance_squared_to_target: float = 256.0 # Squared in advance for distance_to calculations
+
 var speed: float = 425.0
 var soft_leash_radius = 300.0
 var hard_leash_radius = 900.0
@@ -35,6 +38,9 @@ func _ready():
 	navigation_agent.max_speed = speed
 	# Wait for navigation map to be ready
 	await get_tree().physics_frame
+	current_target_position = player.global_position
+	navigation_agent.target_position = current_target_position
+	
 
 func _physics_process(delta: float):
 	cooldown_timer -= delta
@@ -66,40 +72,18 @@ func _physics_process(delta: float):
 	else:
 		state = State.FOLLOW
 	
-	
-	navigation_agent.target_position = player.global_position
-	var current_agent_position = global_position
-	var next_path_position = navigation_agent.get_next_path_position()
-	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
-	
 	# Act on state
 	match state:
 		State.ATTACK:
-			navigation_agent.target_desired_distance = attack_cushion
-			
 			# Attack enemy
 			if enemy_in_range and cooldown_timer <= 0.0:
 				target_enemy.take_damage(damage)
 				cooldown_timer = attack_cooldown
 				attack_sound.play()
-			
 			# Chase enemy
-			navigation_agent.target_position = target_enemy.global_position
-			current_agent_position = global_position
-			next_path_position = navigation_agent.get_next_path_position()
-			new_velocity = current_agent_position.direction_to(next_path_position) * speed
-		
+			set_target_position(target_enemy, attack_cushion)
 		State.FOLLOW:
-			navigation_agent.target_desired_distance = soft_leash_radius
-			navigation_agent.target_position = player.global_position
-			current_agent_position = global_position
-			next_path_position = navigation_agent.get_next_path_position()
-			new_velocity = current_agent_position.direction_to(next_path_position) * speed
-	
-	if navigation_agent.avoidance_enabled:
-		navigation_agent.set_velocity(new_velocity)
-	else:
-		_on_navigation_agent_2d_velocity_computed(new_velocity)
+			set_target_position(player, soft_leash_radius)
 	
 	# Add follower to follower nudge to prevent grouping
 	for area in follower_to_follower_hitbox.get_overlapping_areas():
@@ -109,6 +93,20 @@ func _physics_process(delta: float):
 	
 	move_and_slide()
 	animated_sprite.flip_h = velocity.x < 0
+
+func set_target_position(target: CharacterBody2D, target_desired_distance: float):
+	navigation_agent.target_desired_distance = target_desired_distance
+	if current_target_position.distance_squared_to(target.global_position) > max_distance_squared_to_target:
+		current_target_position = target.global_position 
+		navigation_agent.target_position = current_target_position
+	var current_agent_position = global_position
+	var next_path_position = navigation_agent.get_next_path_position()
+	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
+	
+	if navigation_agent.avoidance_enabled:
+		navigation_agent.set_velocity(new_velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(new_velocity)
 
 func get_closest_enemy() -> CharacterBody2D:
 	var closest: CharacterBody2D = null

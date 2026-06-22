@@ -17,7 +17,7 @@ var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
 
 var current_target_position: Vector2
-var max_distance_squared_to_player: float = 256.0
+var max_distance_squared_to_player: float = 256.0 # Squared in advance for distance_to calculations
 
 var player: CharacterBody2D
 
