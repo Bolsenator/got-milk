@@ -8,7 +8,7 @@ signal died(exp: int, position: Vector2)
 
 var max_health: float = 5.0
 var health: float
-var speed: float = 100.0
+var speed: float = 50.0
 var damage: float = 5.0
 var exp_reward: int = 5
 #var attack_cushion: float = 4 # Prevents sprite from going crazy when right on player

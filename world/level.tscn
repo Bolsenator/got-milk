@@ -14,7 +14,7 @@ script = ExtResource("1_ype84")
 [node name="Dungeon" parent="." unique_id=1684005168 instance=ExtResource("1_0u2o0")]
 process_mode = 1
 
-[node name="Follower" parent="." unique_id=1000233962 groups=["minion"] instance=ExtResource("5_ype84")]
+[node name="Follower" parent="." unique_id=1000233962 instance=ExtResource("5_ype84")]
 
 [node name="Player" parent="." unique_id=772233312 instance=ExtResource("2_jjmkw")]
 process_mode = 1

@@ -3,11 +3,6 @@
 [ext_resource type="Script" uid="uid://c674xd42urld3" path="res://ui/level_up/level_up.gd" id="1_anw3t"]
 [ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_w8hue"]
 [ext_resource type="Texture2D" uid="uid://bko6du74afear" path="res://ui/theme/basic_menu.png" id="3_wlfol"]
-[ext_resource type="Texture2D" uid="uid://d1ylq8gol41i0" path="res://ui/theme/Icons.png" id="4_w8hue"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kef8f"]
-atlas = ExtResource("4_w8hue")
-region = Rect2(146, 178, 13, 14)
 
 [node name="LevelUp" type="Control" unique_id=88389703]
 process_mode = 3
@@ -36,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.6875
-offset_top = -36.875
-offset_right = 114.6875
-offset_bottom = 36.875
+offset_left = -55.3125
+offset_top = -82.375
+offset_right = 55.3125
+offset_bottom = 82.375
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_wlfol")
@@ -62,44 +57,32 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1096589109]
+[node name="UpgradeButtons" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=987486858]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_constants/separation = 32
+alignment = 1
 
-[node name="SummonMinion" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1741274740]
-custom_minimum_size = Vector2(40, 40)
+[node name="Upgrade1" type="Button" parent="NinePatchRect/MarginContainer/UpgradeButtons" unique_id=1741274740]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+text = "Upgrade 1"
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/SummonMinion" unique_id=809583193]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-stretch_mode = 3
-
-[node name="HealPlayer" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=2063159970]
-custom_minimum_size = Vector2(40, 40)
+[node name="Upgrade2" type="Button" parent="NinePatchRect/MarginContainer/UpgradeButtons" unique_id=2063159970]
 layout_mode = 2
+text = "Upgrade 2"
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/HealPlayer" unique_id=209945009]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("AtlasTexture_kef8f")
-expand_mode = 2
-stretch_mode = 3
+[node name="Upgrade3" type="Button" parent="NinePatchRect/MarginContainer/UpgradeButtons" unique_id=499754570]
+layout_mode = 2
+text = "Upgrade 3"
 
-[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/SummonMinion" to="." method="_on_summon_minion_pressed"]
-[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/HealPlayer" to="." method="_on_heal_player_pressed"]
+[node name="Upgrade4" type="Button" parent="NinePatchRect/MarginContainer/UpgradeButtons" unique_id=175250722]
+layout_mode = 2
+text = "Upgrade 4
+"
+
+[node name="Upgrade5" type="Button" parent="NinePatchRect/MarginContainer/UpgradeButtons" unique_id=1543966007]
+layout_mode = 2
+text = "Upgrade 5"

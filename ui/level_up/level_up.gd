@@ -2,11 +2,17 @@ extends Control
 
 var heal_amount: int = 50
 
-signal summon_minion()
-signal heal_player(heal_amount: int)
+@onready var upgrade_buttons = $NinePatchRect/MarginContainer/UpgradeButtons
 
-func _on_summon_minion_pressed() -> void:
-	summon_minion.emit()
+signal apply_upgrade(upgrade)
 
-func _on_heal_player_pressed() -> void:
-	heal_player.emit(heal_amount)
+func populate_upgrade_buttons(upgrades: Array):
+	for button in upgrade_buttons.get_children():
+		var upgrade = upgrades.pop_back()
+		if button.pressed.is_connected(_on_upgrade_selected):
+			button.pressed.disconnect(_on_upgrade_selected)
+		button.pressed.connect(_on_upgrade_selected.bind(upgrade))
+		button.text = upgrade["name"]
+
+func _on_upgrade_selected(upgrade: Dictionary):
+	apply_upgrade.emit(upgrade)

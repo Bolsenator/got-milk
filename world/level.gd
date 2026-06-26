@@ -1,6 +1,6 @@
 extends Node
 
-const WAVES = [
+const WAVES: Array = [
 	{"time": 20.0,  "enemy_type": "slime",  "count": 5, "interval": 5.0, "boss": null},
 	{"time": 40.0,  "enemy_type": "snake",  "count": 6, "interval": 4.0, "boss": "bat"},
 	{"time": 60.0,  "enemy_type": "slime",  "count": 12, "interval": 3.0, "boss": "bat"},
@@ -31,20 +31,21 @@ const WAVES = [
 @onready var ui = $UI
 @onready var spawn_timer = $SpawnTimer
 
-var time_elapsed = 0.0
-var current_wave_idx = 0
-var current_wave = WAVES[current_wave_idx]
+var time_elapsed: float = 0.0
+var current_wave_idx: int = 0
+var current_wave: Dictionary = WAVES[current_wave_idx]
 
 var minion = preload("res://entities/minion/minion.tscn")
 var exp_small = preload("res://entities/exp/exp_small.tscn")
 var exp_large = preload("res://entities/exp/exp_large.tscn")
 
 var exp_drop_size_threshold: float = 25.0
+var exp_increase_per_level: float = 1.3
 
-var enemy_spawn_distance_min: float = 600.0
+var enemy_spawn_distance_min: float = 900.0
 var enemy_spawn_distance_max: float = 1200.0
-var enemy_collision_layers = [1] # list of collision layers to check against when spawning enemy
-const ENEMY_SCENES = {
+var enemy_collision_layers: Array = [1] # list of collision layers to check against when spawning enemy
+const ENEMY_SCENES: Dictionary = {
 	"slime" 	: preload("res://entities/enemy/green_slime/green_slime.tscn"),
 	"snake" 	: preload("res://entities/enemy/snake/snake.tscn"),
 	"bat" 		: preload("res://entities/enemy/bat/bat.tscn"),
@@ -56,13 +57,105 @@ const ENEMY_SCENES = {
 	"devil" 	: preload("res://entities/enemy/devil/devil.tscn")
 }
 
+var number_of_upgrade_choices: int = 5
+var upgrades_pool: Array = [
+	{
+		"name": "Summon Minion",
+		"description": "Summon an additional skeleton minion",
+		"target": "summon_minion",
+		"stat": null,
+		"bonus": null,
+		"type:": null
+	},
+	{
+		"name": "Max Health",
+		"description": "Increase max health by 5%",
+		"target": "player",
+		"stat": "max_health_modifier",
+		"bonus": 0.05,
+		"type:": "multiplicative"
+	},
+	{
+		"name": "Health Regen",
+		"description": "Increase % of health regenerated per second by 1%",
+		"target": "player",
+		"stat": "health_regen_per_sec_modifier",
+		"bonus": 0.01,
+		"type:": "additive"
+	},
+	{
+		"name": "Damage Reduction",
+		"description": "Decrease damage taken by 2%",
+		"target": "player",
+		"stat": "damage_reduction_modifier",
+		"bonus": 0.02,
+		"type:": "additive"
+	},
+	{
+		"name": "Player Movement Speed",
+		"description": "Increase player movement speed by 5%",
+		"target": "player",
+		"stat": "player_movement_speed_modifier",
+		"bonus": 0.05,
+		"type:": "multiplicative"
+	},
+	{
+		"name": "Exp Gained",
+		"description": "Increase exp gained by 10%",
+		"target": "player",
+		"stat": "exp_gain_modifier",
+		"bonus": 0.10,
+		"type:": "additive"
+	},
+	{
+		"name": "Minion Damage",
+		"description": "Increase minion damage by 50%",
+		"target": "minion",
+		"stat": "damage",
+		"bonus": 0.50,
+		"type:": "multiplicative"
+	},
+	{
+		"name": "Minion Movement Speed",
+		"description": "Increase minion movement speed by 5%",
+		"target": "minion",
+		"stat": "movement_speed",
+		"bonus": 0.05,
+		"type:": "multiplicative"
+	},
+	{
+		"name": "Minion Attack Speed",
+		"description": "Increase minion attack speed by 10%",
+		"target": "minion",
+		"stat": "attack_speed",
+		"bonus": 0.10,
+		"type:": "additive"
+	},
+	{
+		"name": "Minion Crit Chance",
+		"description": "Increase the chance that minions attacks crit by 5%",
+		"target": "minion",
+		"stat": "crit_chance",
+		"bonus": 0.05,
+		"type:": "additive"
+	},
+	{
+		"name": "Minion Crit Damage",
+		"description": "Increase the damage of minion crits by 10%",
+		"target": "minion",
+		"stat": "crit_damage",
+		"bonus": 0.10,
+		"type:": "multiplicative"
+	}
+]
+var upgrades_state: Array = []
+
 signal level_up_reward_chosen
 
 func _ready():
 	player.level_up.connect(_on_level_up)
 	player.player_died.connect(_on_game_over)
-	ui.level_up_ui.summon_minion.connect(_on_summon_minion)
-	ui.level_up_ui.heal_player.connect(_on_heal_player)
+	ui.level_up_ui.apply_upgrade.connect(_on_apply_upgrade)
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
 	
 	spawn_timer.wait_time = current_wave.interval
@@ -85,6 +178,7 @@ func spawn_boss(boss_type):
 	var boss_instance = ENEMY_SCENES[boss_type].instantiate()
 	boss_instance.global_position = get_enemy_spawn_position()
 	add_child(boss_instance)
+	boss_instance.died.connect(_on_enemy_died)
 
 func _on_spawn_timer_timeout():
 	for i in range(current_wave.count):
@@ -95,25 +189,34 @@ func _on_spawn_timer_timeout():
 
 func _on_level_up(_player_level):
 	get_tree().paused = true
+	upgrades_pool.shuffle()
+	var current_upgrade_options = upgrades_pool.slice(0,number_of_upgrade_choices)
+	ui.level_up_ui.populate_upgrade_buttons(current_upgrade_options)
 	ui.show_level_up_ui()
+
+func _on_apply_upgrade(upgrade: Dictionary):
+	match upgrade["target"]:
+		"summon_minion":
+			summon_minion()
+		"player":
+			player.apply_upgrade(upgrade)
+		"minion":
+			print("Applying upgrade to minion")
+	
+	get_tree().paused = false
+	ui.hide_level_up_ui()
+	level_up_reward_chosen.emit() # Signal to reset exp bar after choosing upgrade
+	player.max_exp *= exp_increase_per_level
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):
 		toggle_pause()
 		get_viewport().set_input_as_handled()
 
-func _on_summon_minion():
+func summon_minion():
 	var minion_instance = minion.instantiate()
 	minion_instance.global_position = player.global_position
 	add_child(minion_instance)
-	get_tree().paused = false
-	level_up_completed()
-	player.max_exp *= 1.3
-
-func _on_heal_player(amount: int):
-	player.heal(amount)
-	get_tree().paused = false
-	level_up_completed()
 
 func _on_resume_from_pause():
 	toggle_pause()
@@ -135,11 +238,6 @@ func _on_enemy_died(exp_value: float, position: Vector2):
 func toggle_pause():
 	get_tree().paused = !get_tree().paused
 	ui.toggle_pause_ui()
-
-func level_up_completed():
-	ui.hide_level_up_ui()
-	# Using this signal so the var and UI only updates after the user makes the selection
-	level_up_reward_chosen.emit()
 
 func get_enemy_spawn_position() -> Vector2:
 	var angle

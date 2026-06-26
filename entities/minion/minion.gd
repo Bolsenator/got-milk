@@ -15,13 +15,13 @@ var target_enemy: CharacterBody2D = null
 var current_target_position: Vector2
 var max_distance_squared_to_target: float = 256.0 # Squared in advance for distance_to calculations
 
-var speed: float = 425.0
+var speed: float = 325.0
 var soft_leash_radius = 300.0
 var hard_leash_radius = 900.0
 var deceleration = 2.0
 var minion_to_minion_repulsion_speed = 25.0
 var attack_cushion: float = 16 # Prevents sprite from going crazy when right on enemy
-var attack_cooldown: float = 0.1
+var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
 var damage: float = 5.0
 var enemy_in_range: bool = false # Range for attack to proc
