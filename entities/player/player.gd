@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var take_damage_sound = $TakeDamageSound
 @onready var level_up_sound = $LevelUpSound
 @onready var died_sound = $DiedSound
+@onready var health_regen_timer = $HealthRegenTimer
 
 signal exp_changed(new_exp, max_exp)
 signal level_up()
@@ -60,6 +61,7 @@ var exp_gain: float = exp_gain_start * exp_gain_modifier
 
 #############################################
 
+var health_regen_cooldown_sec = 1.0
 var rotation_speed : float = 1.5
 var current_health = 100 :
 	set(new_value):
@@ -79,6 +81,7 @@ func _ready():
 	health_bar.max_value = max_health
 	health_bar.min_value = 0
 	health_bar.value = current_health
+	health_regen_timer.start(health_regen_cooldown_sec)
 
 func _physics_process(delta: float):
 	var direction = Input.get_vector("left","right","up","down")
@@ -92,7 +95,7 @@ func collect_exp_item():
 	gain_exp(max_exp)
 
 func gain_exp(exp_amount : float):
-	current_exp += exp_amount
+	current_exp += exp_amount * exp_gain
 
 	while current_exp >= max_exp:
 		player_level += 1
@@ -111,7 +114,7 @@ func heal(amount: int):
 	heal_sound.play()
 
 func take_damage(damage):
-	current_health -= damage
+	current_health -= damage * (1.00 - damage_reduction)
 	take_damage_sound.play()
 	if current_health <= 0:
 		die()
@@ -119,3 +122,7 @@ func take_damage(damage):
 func die():
 	died_sound.play()
 	player_died.emit()
+
+
+func _on_health_regen_timer_timeout() -> void:
+	current_health += health_regen_per_sec * max_health

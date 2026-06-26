@@ -43,6 +43,7 @@ radius = 13.0
 height = 56.0
 
 [node name="Player" type="CharacterBody2D" unique_id=772233312 groups=["player"]]
+process_mode = 1
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_abrql")
@@ -84,3 +85,8 @@ volume_db = -30.0
 process_mode = 3
 stream = ExtResource("7_qiwj3")
 volume_db = -30.0
+
+[node name="HealthRegenTimer" type="Timer" parent="." unique_id=330318706]
+process_callback = 0
+
+[connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
