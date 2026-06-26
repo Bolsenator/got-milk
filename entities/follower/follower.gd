@@ -55,22 +55,9 @@ func _physics_process(delta: float):
 	
 	# Find nearest enemy within range
 	if target_enemy == null:
-		var closest = get_closest_enemy()
-		if closest:
-			target_enemy = closest
-			if !target_enemy.tree_exited.is_connected(_on_target_died):
-				target_enemy.tree_exited.connect(_on_target_died)
+		acquire_target()
 	
-	# Set targetting state
-	if target_enemy != null:
-		enemy_in_range = target_enemy in hitbox.get_overlapping_bodies()
-		target_enemy_distance = global_position.distance_to(target_enemy.global_position)
-		if target_enemy_distance < hard_leash_radius:
-			state = State.ATTACK
-		else:
-			state = State.FOLLOW
-	else:
-		state = State.FOLLOW
+	set_targeting_state()
 	
 	# Act on state
 	match state:
@@ -83,6 +70,7 @@ func _physics_process(delta: float):
 			# Chase enemy
 			set_target_position(target_enemy, attack_cushion)
 		State.FOLLOW:
+			# Follow player
 			set_target_position(player, soft_leash_radius)
 	
 	# Add follower to follower nudge to prevent grouping
@@ -108,7 +96,7 @@ func set_target_position(target: CharacterBody2D, target_desired_distance: float
 	else:
 		_on_navigation_agent_2d_velocity_computed(new_velocity)
 
-func get_closest_enemy() -> CharacterBody2D:
+func acquire_target() -> void:
 	var closest: CharacterBody2D = null
 	var closest_distance: float = INF
 	
@@ -119,12 +107,21 @@ func get_closest_enemy() -> CharacterBody2D:
 				closest = body
 				closest_distance = distance
 	
-	return closest
+	if closest:
+		target_enemy = closest
+		if !target_enemy.tree_exited.is_connected(_on_target_died):
+			target_enemy.tree_exited.connect(_on_target_died)
 
-#func _on_aggro_range_body_entered(body: Node2D):
-#	if body.is_in_group("enemy") and target_enemy == null:
-#		target_enemy = get_closest_enemy()
-#		target_enemy.tree_exited.connect(_on_target_died)
+func set_targeting_state() -> void:
+	if target_enemy == null:
+		state = State.FOLLOW
+	else:
+		enemy_in_range = target_enemy in hitbox.get_overlapping_bodies()
+		target_enemy_distance = global_position.distance_to(target_enemy.global_position)
+		if target_enemy_distance < hard_leash_radius:
+			state = State.ATTACK
+		else:
+			state = State.FOLLOW
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
@@ -136,7 +133,4 @@ func _on_aggro_range_body_exited(body: Node2D):
 func _on_target_died():
 	enemy_in_range = false
 	target_enemy = null
-	#var closest = get_closest_enemy()
-	#if closest:
-	#	target_enemy = closest
-	#	target_enemy.tree_exited.connect(_on_target_died)
+	acquire_target()
