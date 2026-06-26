@@ -35,7 +35,7 @@ var time_elapsed = 0.0
 var current_wave_idx = 0
 var current_wave = WAVES[current_wave_idx]
 
-var follower = preload("res://entities/follower/follower.tscn")
+var minion = preload("res://entities/minion/minion.tscn")
 var exp_small = preload("res://entities/exp/exp_small.tscn")
 var exp_large = preload("res://entities/exp/exp_large.tscn")
 
@@ -61,7 +61,7 @@ signal level_up_reward_chosen
 func _ready():
 	player.level_up.connect(_on_level_up)
 	player.player_died.connect(_on_game_over)
-	ui.level_up_ui.summon_follower.connect(_on_summon_follower)
+	ui.level_up_ui.summon_minion.connect(_on_summon_minion)
 	ui.level_up_ui.heal_player.connect(_on_heal_player)
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
 	
@@ -102,10 +102,10 @@ func _input(event: InputEvent) -> void:
 		toggle_pause()
 		get_viewport().set_input_as_handled()
 
-func _on_summon_follower():
-	var follower_instance = follower.instantiate()
-	follower_instance.global_position = player.global_position
-	add_child(follower_instance)
+func _on_summon_minion():
+	var minion_instance = minion.instantiate()
+	minion_instance.global_position = player.global_position
+	add_child(minion_instance)
 	get_tree().paused = false
 	level_up_completed()
 	player.max_exp *= 1.3

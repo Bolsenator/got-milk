@@ -69,13 +69,13 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme_override_constants/separation = 32
 
-[node name="SummonFollower" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1741274740]
+[node name="SummonMinion" type="Button" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1741274740]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/SummonFollower" unique_id=809583193]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer/SummonMinion" unique_id=809583193]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,5 +101,5 @@ texture = SubResource("AtlasTexture_kef8f")
 expand_mode = 2
 stretch_mode = 3
 
-[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/SummonFollower" to="." method="_on_summon_follower_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/SummonMinion" to="." method="_on_summon_minion_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/HealPlayer" to="." method="_on_heal_player_pressed"]

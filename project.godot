@@ -30,9 +30,9 @@ window/stretch/mode="viewport"
 [global_group]
 
 player=""
-follower=""
 enemy=""
-follower_to_follower_hitbox=""
+minion=""
+minion_to_minion_hitbox=""
 
 [input]
 

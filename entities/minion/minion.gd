@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var navigation_agent = $NavigationAgent2D
 @onready var aggro_range = $AggroRange
 @onready var hitbox = $Hitbox
-@onready var follower_to_follower_hitbox = $FollowerToFollowerHitbox
+@onready var minion_to_minion_hitbox = $MinionToMinionHitbox
 
 @onready var attack_sound = $AttackSound
 @onready var summon_sound = $SummonSound
@@ -19,7 +19,7 @@ var speed: float = 425.0
 var soft_leash_radius = 300.0
 var hard_leash_radius = 900.0
 var deceleration = 2.0
-var follower_to_follower_repulsion_speed = 25.0
+var minion_to_minion_repulsion_speed = 25.0
 var attack_cushion: float = 16 # Prevents sprite from going crazy when right on enemy
 var attack_cooldown: float = 0.1
 var cooldown_timer: float = 0.0
@@ -73,11 +73,11 @@ func _physics_process(delta: float):
 			# Follow player
 			set_target_position(player, soft_leash_radius)
 	
-	# Add follower to follower nudge to prevent grouping
-	for area in follower_to_follower_hitbox.get_overlapping_areas():
-		if area.is_in_group("follower_to_follower_hitbox"):
+	# Add minion to minion nudge to prevent grouping
+	for area in minion_to_minion_hitbox.get_overlapping_areas():
+		if area.is_in_group("minion_to_minion_hitbox"):
 			var direction = (global_position - area.global_position).normalized()
-			velocity += direction * follower_to_follower_repulsion_speed
+			velocity += direction * minion_to_minion_repulsion_speed
 	
 	move_and_slide()
 	animated_sprite.flip_h = velocity.x < 0
