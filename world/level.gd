@@ -148,6 +148,7 @@ func _ready():
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
 	
 	spawn_timer.wait_time = current_wave.interval
+	summon_minion()
 
 func _process(delta: float):
 	# Keep run time updated
