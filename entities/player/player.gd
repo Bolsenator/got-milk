@@ -71,7 +71,7 @@ var current_exp : float = 0.0 :
 	set(new_value):
 		current_exp = new_value
 		exp_changed.emit(current_exp, max_exp)
-var max_exp : float = 100.0
+var max_exp : float = 30.0
 var player_level: int = 1
 
 #############################################
@@ -107,7 +107,6 @@ func gain_exp(exp_amount : float):
 func apply_upgrade(upgrade):
 	var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
 	set(upgrade["stat"], new_modifier)
-	print(get(upgrade["stat"]))
 
 func heal(amount: int):
 	current_health += amount

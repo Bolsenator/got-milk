@@ -64,88 +64,77 @@ var upgrades_pool: Array = [
 		"description": "Summon an additional skeleton minion",
 		"target": "summon_minion",
 		"stat": null,
-		"bonus": null,
-		"type:": null
+		"bonus": null
 	},
 	{
 		"name": "Max Health",
 		"description": "Increase max health by 5%",
 		"target": "player",
 		"stat": "max_health_modifier",
-		"bonus": 0.05,
-		"type:": "multiplicative"
+		"bonus": 0.05
 	},
 	{
 		"name": "Health Regen",
 		"description": "Increase % of health regenerated per second by 1%",
 		"target": "player",
 		"stat": "health_regen_per_sec_modifier",
-		"bonus": 0.01,
-		"type:": "additive"
+		"bonus": 0.01
 	},
 	{
 		"name": "Damage Reduction",
 		"description": "Decrease damage taken by 2%",
 		"target": "player",
 		"stat": "damage_reduction_modifier",
-		"bonus": 0.02,
-		"type:": "additive"
+		"bonus": 0.02
 	},
 	{
 		"name": "Player Movement Speed",
 		"description": "Increase player movement speed by 5%",
 		"target": "player",
 		"stat": "player_movement_speed_modifier",
-		"bonus": 0.05,
-		"type:": "multiplicative"
+		"bonus": 0.05
 	},
 	{
 		"name": "Exp Gained",
 		"description": "Increase exp gained by 10%",
 		"target": "player",
 		"stat": "exp_gain_modifier",
-		"bonus": 0.10,
-		"type:": "additive"
+		"bonus": 0.10
 	},
 	{
 		"name": "Minion Damage",
 		"description": "Increase minion damage by 50%",
 		"target": "minion",
-		"stat": "damage",
-		"bonus": 0.50,
-		"type:": "multiplicative"
+		"stat": "damage_modifier",
+		"bonus": 0.50
+	},
+		{
+		"name": "Minion Attack Cooldown",
+		"description": "Decrease minion attack cooldown by 10%",
+		"target": "minion",
+		"stat": "attack_cooldown_modifier",
+		"bonus": -0.10
 	},
 	{
 		"name": "Minion Movement Speed",
 		"description": "Increase minion movement speed by 5%",
 		"target": "minion",
-		"stat": "movement_speed",
-		"bonus": 0.05,
-		"type:": "multiplicative"
-	},
-	{
-		"name": "Minion Attack Speed",
-		"description": "Increase minion attack speed by 10%",
-		"target": "minion",
-		"stat": "attack_speed",
-		"bonus": 0.10,
-		"type:": "additive"
+		"stat": "minion_movement_speed_modifier",
+		"bonus": 0.05
 	},
 	{
 		"name": "Minion Crit Chance",
 		"description": "Increase the chance that minions attacks crit by 5%",
 		"target": "minion",
-		"stat": "crit_chance",
-		"bonus": 0.05,
-		"type:": "additive"
+		"stat": "crit_chance_modifier",
+		"bonus": 0.05
 	},
 	{
 		"name": "Minion Crit Damage",
-		"description": "Increase the damage of minion crits by 10%",
+		"description": "Increase the damage of minion crits by 50%",
 		"target": "minion",
-		"stat": "crit_damage",
-		"bonus": 0.10,
-		"type:": "multiplicative"
+		"stat": "crit_damage_modifier",
+		"bonus": 0.50
 	}
 ]
 var upgrades_state: Array = []
@@ -201,7 +190,8 @@ func _on_apply_upgrade(upgrade: Dictionary):
 		"player":
 			player.apply_upgrade(upgrade)
 		"minion":
-			print("Applying upgrade to minion")
+			for current_minion in get_tree().get_nodes_in_group("minion"):
+				current_minion.apply_upgrade(upgrade)
 	
 	get_tree().paused = false
 	ui.hide_level_up_ui()
