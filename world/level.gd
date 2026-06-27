@@ -193,6 +193,8 @@ func _on_apply_upgrade(upgrade: Dictionary):
 			for current_minion in get_tree().get_nodes_in_group("minion"):
 				current_minion.apply_upgrade(upgrade)
 	
+	upgrades_state.append(upgrade)
+	
 	get_tree().paused = false
 	ui.hide_level_up_ui()
 	level_up_reward_chosen.emit() # Signal to reset exp bar after choosing upgrade
@@ -206,6 +208,9 @@ func _input(event: InputEvent) -> void:
 func summon_minion():
 	var minion_instance = minion.instantiate()
 	minion_instance.global_position = player.global_position
+	for upgrade in upgrades_state:
+		if upgrade["target"] == "minion":
+			minion_instance.apply_upgrade(upgrade)
 	add_child(minion_instance)
 
 func _on_resume_from_pause():
