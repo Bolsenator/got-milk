@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cdhw58vnuqg7j"]
+
+[ext_resource type="PackedScene" uid="uid://n2d0gi6ngryu" path="res://ui/upgrades/base_upgrade.tscn" id="1_djh8t"]
+[ext_resource type="Texture2D" uid="uid://dsh8ek8w2q0bk" path="res://ui/upgrades/exp_gained.png" id="2_2b6kc"]
+
+[node name="ExpGained" unique_id=665901954 instance=ExtResource("1_djh8t")]
+
+[node name="TextureRect" parent="." index="0" unique_id=380375803]
+texture = ExtResource("2_2b6kc")

@@ -176,7 +176,6 @@ func apply_upgrade(upgrade):
 	var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
 	set(upgrade["stat"], new_modifier)
 
-
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 

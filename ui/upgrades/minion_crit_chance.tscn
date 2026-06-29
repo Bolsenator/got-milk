@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bo4ppb88xp1qc"]
+
+[ext_resource type="PackedScene" uid="uid://n2d0gi6ngryu" path="res://ui/upgrades/base_upgrade.tscn" id="1_evth2"]
+[ext_resource type="Texture2D" uid="uid://c33qq3ucqrlxh" path="res://ui/upgrades/minion_crit_chance.png" id="2_3csmf"]
+
+[node name="MinionCritChance" unique_id=665901954 instance=ExtResource("1_evth2")]
+
+[node name="TextureRect" parent="." index="0" unique_id=380375803]
+texture = ExtResource("2_3csmf")

@@ -1,30 +1,30 @@
 extends Node
 
 const WAVES: Array = [
-	{"time": 20.0,  "enemy_type": "slime",  "count": 5, "interval": 5.0, "boss": null},
-	{"time": 40.0,  "enemy_type": "snake",  "count": 6, "interval": 4.0, "boss": "bat"},
-	{"time": 60.0,  "enemy_type": "slime",  "count": 12, "interval": 3.0, "boss": "bat"},
-	{"time": 80.0,  "enemy_type": "spider",  "count": 6, "interval": 4.0, "boss": null},
-	{"time": 100.0, "enemy_type": "spider",  "count": 8, "interval": 3.0, "boss": "wasps"},
-	{"time": 120.0, "enemy_type": "bat",  "count": 12, "interval": 2.5, "boss": null},
-	{"time": 140.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": "demon"},
-	{"time": 160.0, "enemy_type": "wasps",  "count": 8, "interval": 4.0, "boss": null},
-	{"time": 180.0, "enemy_type": "spider",  "count": 14, "interval": 2.5, "boss": "demon"},
-	{"time": 200.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": null},
-	{"time": 220.0, "enemy_type": "spider",  "count": 12, "interval": 2.5, "boss": "golem"},
-	{"time": 240.0, "enemy_type": "wasps",  "count": 20, "interval": 2.5, "boss": null},
-	{"time": 260.0, "enemy_type": "spider",  "count": 16, "interval": 2.5, "boss": "beholder"},
-	{"time": 280.0, "enemy_type": "demon",  "count": 8, "interval": 3.0, "boss": null},
-	{"time": 300.0, "enemy_type": "demon",  "count": 12, "interval": 2.5, "boss": null},
-	{"time": 320.0, "enemy_type": "wasps",  "count": 30, "interval": 1.0, "boss": "beholder"},
-	{"time": 340.0, "enemy_type": "demon",  "count": 12, "interval": 2.5, "boss": "beholder"},
-	{"time": 360.0, "enemy_type": "golem",  "count": 8, "interval": 3.0, "boss": null},
-	{"time": 380.0, "enemy_type": "golem",  "count": 12, "interval": 2.5, "boss": null},
-	{"time": 400.0, "enemy_type": "wasps",  "count": 40, "interval": 1.0, "boss": "beholder"},
-	{"time": 420.0, "enemy_type": "golem",  "count": 16, "interval": 2.0, "boss": null},
-	{"time": 440.0, "enemy_type": "beholder",  "count": 8, "interval": 2.5, "boss": null},
-	{"time": 460.0, "enemy_type": "wasps",  "count": 60, "interval": 1.0, "boss": "beholder"},
-	{"time": 480.0, "enemy_type": "beholder",  "count": 12, "interval": 2.5, "boss": "devil"},
+	{"time": 60.0,  "enemy_type": "slime",  "count": 5, "interval": 5.0, "boss": null},
+	{"time": 120.0,  "enemy_type": "snake",  "count": 6, "interval": 4.0, "boss": "bat"},
+	{"time": 180.0,  "enemy_type": "slime",  "count": 12, "interval": 3.0, "boss": "bat"},
+	{"time": 240.0,  "enemy_type": "spider",  "count": 6, "interval": 4.0, "boss": null},
+	{"time": 300.0, "enemy_type": "spider",  "count": 8, "interval": 3.0, "boss": "wasps"},
+	{"time": 360.0, "enemy_type": "bat",  "count": 12, "interval": 2.5, "boss": null},
+	{"time": 420.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": "demon"},
+	{"time": 480.0, "enemy_type": "wasps",  "count": 8, "interval": 4.0, "boss": null},
+	{"time": 540.0, "enemy_type": "spider",  "count": 14, "interval": 2.5, "boss": "demon"},
+	{"time": 600.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": null},
+	{"time": 660.0, "enemy_type": "spider",  "count": 12, "interval": 2.5, "boss": "golem"},
+	{"time": 720.0, "enemy_type": "wasps",  "count": 20, "interval": 2.5, "boss": null},
+	{"time": 780.0, "enemy_type": "spider",  "count": 16, "interval": 2.5, "boss": "beholder"},
+	{"time": 840.0, "enemy_type": "demon",  "count": 8, "interval": 3.0, "boss": null},
+	{"time": 900.0, "enemy_type": "demon",  "count": 12, "interval": 2.5, "boss": null},
+	{"time": 960.0, "enemy_type": "wasps",  "count": 30, "interval": 1.0, "boss": "beholder"},
+	{"time": 1020.0, "enemy_type": "demon",  "count": 12, "interval": 2.5, "boss": "beholder"},
+	{"time": 1080.0, "enemy_type": "golem",  "count": 8, "interval": 3.0, "boss": null},
+	{"time": 1140.0, "enemy_type": "golem",  "count": 12, "interval": 2.5, "boss": null},
+	{"time": 1200.0, "enemy_type": "wasps",  "count": 40, "interval": 1.0, "boss": "beholder"},
+	{"time": 1260.0, "enemy_type": "golem",  "count": 16, "interval": 2.0, "boss": null},
+	{"time": 1320.0, "enemy_type": "beholder",  "count": 8, "interval": 2.5, "boss": null},
+	{"time": 1380.0, "enemy_type": "wasps",  "count": 60, "interval": 1.0, "boss": "beholder"},
+	{"time": 1440.0, "enemy_type": "beholder",  "count": 12, "interval": 2.5, "boss": "devil"},
 ]
 
 @onready var player = $Player
@@ -63,7 +63,7 @@ var upgrades_pool: Array = [
 		"name": "Summon Minion",
 		"description": "Summon an additional skeleton minion",
 		"target": "summon_minion",
-		"stat": null,
+		"stat": "summon_minion",
 		"bonus": null
 	},
 	{
@@ -195,6 +195,7 @@ func _on_apply_upgrade(upgrade: Dictionary):
 				current_minion.apply_upgrade(upgrade)
 	
 	upgrades_state.append(upgrade)
+	ui.hud_ui.update_upgrades_display(upgrade)
 	
 	get_tree().paused = false
 	ui.hide_level_up_ui()

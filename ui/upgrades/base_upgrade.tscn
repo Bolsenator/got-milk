@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://n2d0gi6ngryu"]
+
+[ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_dhkhp"]
+[ext_resource type="Script" uid="uid://dgv0ye6feiu4n" path="res://ui/upgrades/base_upgrade.gd" id="2_dhkhp"]
+
+[node name="BaseUpgrade" type="Control" unique_id=665901954]
+custom_minimum_size = Vector2(96, 64)
+layout_mode = 3
+anchor_right = 0.2
+anchor_bottom = 0.23700002
+offset_right = -288.0
+offset_bottom = -191.96002
+scale = Vector2(4, 4)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_dhkhp")
+script = ExtResource("2_dhkhp")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=380375803]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.66700006
+anchor_bottom = 1.0
+offset_right = -48.032005
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=268967308]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.66700006
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.03200531
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+vertical_alignment = 1

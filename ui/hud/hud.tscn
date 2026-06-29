@@ -2,8 +2,19 @@
 
 [ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud/hud.gd" id="1_276te"]
 [ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_546lt"]
+[ext_resource type="PackedScene" uid="uid://dw2ycadystmey" path="res://ui/upgrades/summon_minion.tscn" id="3_3mxrk"]
 [ext_resource type="Texture2D" uid="uid://dntis3wxx5rtk" path="res://ui/hud/exp_bar_empty.png" id="3_w75iv"]
+[ext_resource type="PackedScene" uid="uid://bih8hd365p1f7" path="res://ui/upgrades/max_health.tscn" id="4_6gxmt"]
 [ext_resource type="Texture2D" uid="uid://drq4xvakr0taq" path="res://ui/hud/exp_bar_full.png" id="4_imuuq"]
+[ext_resource type="PackedScene" uid="uid://by6ghdcb0etlm" path="res://ui/upgrades/health_regen.tscn" id="5_olkg6"]
+[ext_resource type="PackedScene" uid="uid://dosevbpwyis8x" path="res://ui/upgrades/damage_reduction.tscn" id="6_hk13k"]
+[ext_resource type="PackedScene" uid="uid://wt5ree5kt1mb" path="res://ui/upgrades/player_movement_speed.tscn" id="7_uyo40"]
+[ext_resource type="PackedScene" uid="uid://cdhw58vnuqg7j" path="res://ui/upgrades/exp_gained.tscn" id="8_m6r7j"]
+[ext_resource type="PackedScene" uid="uid://b8u6t4akp26gl" path="res://ui/upgrades/minion_damage.tscn" id="9_3rj2y"]
+[ext_resource type="PackedScene" uid="uid://c7lu4uuaif8y6" path="res://ui/upgrades/minion_attack_cooldown.tscn" id="10_sm7np"]
+[ext_resource type="PackedScene" uid="uid://c1d6cifsilc3w" path="res://ui/upgrades/minion_movement_speed.tscn" id="11_wkyli"]
+[ext_resource type="PackedScene" uid="uid://bo4ppb88xp1qc" path="res://ui/upgrades/minion_crit_chance.tscn" id="12_fs87q"]
+[ext_resource type="PackedScene" uid="uid://b108kl8g766gy" path="res://ui/upgrades/minion_crit_damage.tscn" id="13_3i4ml"]
 
 [node name="HUD" type="Control" unique_id=2085557247]
 process_mode = 1
@@ -16,14 +27,25 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_546lt")
 script = ExtResource("1_276te")
+summon_minion_scene = ExtResource("3_3mxrk")
+max_health_scene = ExtResource("4_6gxmt")
+health_regen_per_sec_scene = ExtResource("5_olkg6")
+damage_reduction_scene = ExtResource("6_hk13k")
+player_movement_speed_scene = ExtResource("7_uyo40")
+exp_gain_scene = ExtResource("8_m6r7j")
+damage_scene = ExtResource("9_3rj2y")
+attack_cooldown_scene = ExtResource("10_sm7np")
+minion_movement_speed_scene = ExtResource("11_wkyli")
+crit_chance_scene = ExtResource("12_fs87q")
+crit_damage_scene = ExtResource("13_3i4ml")
 
 [node name="ExpBar" type="TextureProgressBar" parent="." unique_id=332021824]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.015000001
+anchor_top = 0.0075925933
 anchor_right = 0.5
-anchor_bottom = 0.059000004
+anchor_bottom = 0.051592596
 offset_left = -806.0
 offset_top = -0.20000076
 offset_right = -403.0
@@ -37,25 +59,13 @@ texture_under = ExtResource("3_w75iv")
 texture_progress = ExtResource("4_imuuq")
 metadata/_edit_use_anchors_ = true
 
-[node name="TopHUD" type="HBoxContainer" parent="." unique_id=1712956337]
-visible = false
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_right = -1080.0
-offset_bottom = 18.0
-grow_horizontal = 2
-scale = Vector2(4, 4)
-mouse_filter = 2
-alignment = 1
-
 [node name="TimeElapsed" type="Label" parent="." unique_id=59333090]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.008
-anchor_top = 0.022185184
-anchor_right = 0.49166667
-anchor_bottom = 0.067
+anchor_left = 0.0038333337
+anchor_top = 0.0073703695
+anchor_right = 0.4875
+anchor_bottom = 0.059592593
 offset_left = 0.6399994
 offset_top = 0.040000916
 offset_right = -816.0
@@ -64,20 +74,35 @@ size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.5
 theme_override_font_sizes/font_size = 30
 horizontal_alignment = 2
+vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayerLevel" type="Label" parent="." unique_id=2120610896]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5083333
-anchor_top = 0.022185184
-anchor_right = 0.99200004
-anchor_bottom = 0.059000004
+anchor_left = 0.5125
+anchor_top = 0.0073703695
+anchor_right = 0.99600005
+anchor_bottom = 0.05918519
 offset_left = 816.0
 offset_top = 0.040000916
-offset_right = -0.6401367
-offset_bottom = 5.279995
+offset_right = -0.32006836
+offset_bottom = 0.07999802
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.5
 theme_override_font_sizes/font_size = 30
+vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="UpgradesDisplay" type="HBoxContainer" parent="." unique_id=1070166868]
+custom_minimum_size = Vector2(96, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.059000004
+anchor_right = 0.117000006
+anchor_bottom = 0.119
+offset_left = -0.6399994
+offset_top = 0.27999496
+offset_right = -0.64001465
+offset_bottom = -0.5200043

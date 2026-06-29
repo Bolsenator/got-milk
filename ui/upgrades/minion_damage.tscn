@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b8u6t4akp26gl"]
+
+[ext_resource type="PackedScene" uid="uid://n2d0gi6ngryu" path="res://ui/upgrades/base_upgrade.tscn" id="1_nto74"]
+[ext_resource type="Texture2D" uid="uid://cbiwig855imvj" path="res://ui/upgrades/minion_damage.png" id="2_n08mr"]
+
+[node name="MinionDamage" unique_id=665901954 instance=ExtResource("1_nto74")]
+
+[node name="TextureRect" parent="." index="0" unique_id=380375803]
+texture = ExtResource("2_n08mr")
