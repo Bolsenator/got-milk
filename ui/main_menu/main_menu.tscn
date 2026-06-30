@@ -64,6 +64,7 @@ offset_bottom = -112.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_joh67")
+stretch_mode = 4
 
 [node name="TitleScreenStatic" type="TextureRect" parent="." unique_id=676198976]
 layout_mode = 1

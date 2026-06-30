@@ -138,6 +138,15 @@ var upgrades_pool: Array = [
 	}
 ]
 var upgrades_state: Array = []
+var starting_minions: Array = [
+	{
+		"name": "Summon Minion",
+		"description": "Summon an additional skeleton minion",
+		"target": "summon_minion",
+		"stat": "summon_minion",
+		"bonus": null
+	}
+]
 
 signal level_up_reward_chosen
 
@@ -148,7 +157,8 @@ func _ready():
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
 	
 	spawn_timer.wait_time = current_wave.interval
-	summon_minion()
+	spawn_starting_minions()
+	
 
 func _process(delta: float):
 	# Keep run time updated
@@ -169,6 +179,12 @@ func spawn_boss(boss_type):
 	boss_instance.global_position = get_enemy_spawn_position()
 	add_child(boss_instance)
 	boss_instance.died.connect(_on_enemy_died)
+
+func spawn_starting_minions():
+	for starting_minion in starting_minions:
+		summon_minion()
+		upgrades_state.append(starting_minion)
+		ui.hud_ui.update_upgrades_display(starting_minion)
 
 func _on_spawn_timer_timeout():
 	for i in range(current_wave.count):
