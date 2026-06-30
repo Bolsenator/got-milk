@@ -64,77 +64,88 @@ var upgrades_pool: Array = [
 		"description": "Summon an additional skeleton minion",
 		"target": "summon_minion",
 		"stat": "summon_minion",
-		"bonus": null
+		"bonus": null,
+		"icon": preload("res://ui/upgrades/summon_minion.png")
 	},
 	{
 		"name": "Max Health",
 		"description": "Increase max health by 5%",
 		"target": "player",
 		"stat": "max_health_modifier",
-		"bonus": 0.05
+		"bonus": 0.05,
+		"icon": preload("res://ui/upgrades/max_health.png")
 	},
 	{
 		"name": "Health Regen",
 		"description": "Increase % of health regenerated per second by 1%",
 		"target": "player",
 		"stat": "health_regen_per_sec_modifier",
-		"bonus": 0.01
+		"bonus": 0.01,
+		"icon": preload("res://ui/upgrades/health_regen.png")
 	},
 	{
 		"name": "Damage Reduction",
 		"description": "Decrease damage taken by 2%",
 		"target": "player",
 		"stat": "damage_reduction_modifier",
-		"bonus": 0.02
+		"bonus": 0.02,
+		"icon": preload("res://ui/upgrades/damage_reduction.png")
 	},
 	{
 		"name": "Player Movement Speed",
 		"description": "Increase player movement speed by 5%",
 		"target": "player",
 		"stat": "player_movement_speed_modifier",
-		"bonus": 0.05
+		"bonus": 0.05,
+		"icon": preload("res://ui/upgrades/player_movement_speed.png")
 	},
 	{
 		"name": "Exp Gained",
 		"description": "Increase exp gained by 10%",
 		"target": "player",
 		"stat": "exp_gain_modifier",
-		"bonus": 0.10
+		"bonus": 0.10,
+		"icon": preload("res://ui/upgrades/exp_gained.png")
 	},
 	{
 		"name": "Minion Damage",
 		"description": "Increase minion damage by 50%",
 		"target": "minion",
 		"stat": "damage_modifier",
-		"bonus": 0.50
+		"bonus": 0.50,
+		"icon": preload("res://ui/upgrades/minion_damage.png")
 	},
 		{
 		"name": "Minion Attack Cooldown",
 		"description": "Decrease minion attack cooldown by 10%",
 		"target": "minion",
 		"stat": "attack_cooldown_modifier",
-		"bonus": -0.10
+		"bonus": -0.10,
+		"icon": preload("res://ui/upgrades/minion_attack_cooldown.png")
 	},
 	{
 		"name": "Minion Movement Speed",
 		"description": "Increase minion movement speed by 5%",
 		"target": "minion",
 		"stat": "minion_movement_speed_modifier",
-		"bonus": 0.05
+		"bonus": 0.05,
+		"icon": preload("res://ui/upgrades/minion_movement_speed.png")
 	},
 	{
 		"name": "Minion Crit Chance",
 		"description": "Increase the chance that minions attacks crit by 5%",
 		"target": "minion",
 		"stat": "crit_chance_modifier",
-		"bonus": 0.05
+		"bonus": 0.05,
+		"icon": preload("res://ui/upgrades/minion_crit_chance.png")
 	},
 	{
 		"name": "Minion Crit Damage",
 		"description": "Increase the damage of minion crits by 50%",
 		"target": "minion",
 		"stat": "crit_damage_modifier",
-		"bonus": 0.50
+		"bonus": 0.50,
+		"icon": preload("res://ui/upgrades/minion_crit_damage.png")
 	}
 ]
 var upgrades_state: Array = []

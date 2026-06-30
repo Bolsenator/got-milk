@@ -83,7 +83,7 @@ func _ready():
 	health_bar.value = current_health
 	health_regen_timer.start(health_regen_cooldown_sec)
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	var direction = Input.get_vector("left","right","up","down")
 	velocity = direction * player_movement_speed
 	move_and_slide()
