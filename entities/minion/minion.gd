@@ -63,13 +63,13 @@ var max_distance_squared_to_target: float = 256.0 # Squared in advance for dista
 
 
 var soft_leash_radius = 300.0
-var hard_leash_radius = 600.0
+var hard_leash_radius = 800.0
 var deceleration = 2.0
 var minion_to_minion_repulsion_speed = 25.0
 var attack_cushion: float = 16 # Prevents sprite from going crazy when right on enemy
 var cooldown_timer: float = 0.0
 var enemy_in_range: bool = false # Range for attack to proc
-var target_enemy_distance: float
+var target_enemy_distance_to_player: float
 var player_distance: float
 
 enum State { ATTACK, FOLLOW }
@@ -91,16 +91,14 @@ func _physics_process(delta: float):
 	if player == null:
 		return
 	
-	# Keep within hard leash distance
+	# Update to stay within hard leash radius
 	player_distance = global_position.distance_to(player.global_position)
-	if player_distance > hard_leash_radius:
-		target_enemy = null
-		state = State.FOLLOW
 	
 	# Find nearest enemy within range
 	if target_enemy == null:
 		acquire_target()
 	
+	# Set state
 	set_targeting_state()
 	
 	# Act on state
@@ -153,15 +151,25 @@ func acquire_target() -> void:
 			target_enemy.tree_exited.connect(_on_target_died)
 
 func set_targeting_state() -> void:
+	# Outside of leash distance
+	if player_distance > hard_leash_radius:
+		target_enemy = null
+		state = State.FOLLOW
+		return
+	
+	# No nearby enemies
 	if target_enemy == null:
 		state = State.FOLLOW
+		return
+	
+	# Within leash and nearby enemies
+	enemy_in_range = target_enemy in hitbox.get_overlapping_bodies()
+	target_enemy_distance_to_player = player.global_position.distance_to(target_enemy.global_position)
+	if target_enemy_distance_to_player < hard_leash_radius:
+		state = State.ATTACK
 	else:
-		enemy_in_range = target_enemy in hitbox.get_overlapping_bodies()
-		target_enemy_distance = global_position.distance_to(target_enemy.global_position)
-		if target_enemy_distance < hard_leash_radius:
-			state = State.ATTACK
-		else:
-			state = State.FOLLOW
+		state = State.FOLLOW
+	
 
 func attack_enemy():
 	var final_damage: float = damage
