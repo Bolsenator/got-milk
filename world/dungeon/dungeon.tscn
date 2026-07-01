@@ -157,7 +157,7 @@ offset_left = -47985.0
 offset_top = -26063.0
 offset_right = 63636.0
 offset_bottom = 41151.0
-color = Color(0.42352942, 0.40392157, 0.46666667, 1)
+color = Color(0.16470589, 0.15294118, 0.1882353, 1)
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1870731952]
 scale = Vector2(4, 4)

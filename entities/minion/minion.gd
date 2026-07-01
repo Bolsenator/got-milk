@@ -63,7 +63,7 @@ var max_distance_squared_to_target: float = 256.0 # Squared in advance for dista
 
 
 var soft_leash_radius = 300.0
-var hard_leash_radius = 900.0
+var hard_leash_radius = 600.0
 var deceleration = 2.0
 var minion_to_minion_repulsion_speed = 25.0
 var attack_cushion: float = 16 # Prevents sprite from going crazy when right on enemy
