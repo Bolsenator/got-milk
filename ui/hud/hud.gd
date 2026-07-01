@@ -56,10 +56,12 @@ func update_time_elapsed(time_elapsed: float):
 
 func update_upgrades_display(upgrade: Dictionary) -> void:
 	var stat = upgrade["stat"]
-	if active_upgrade_widgets.has(stat):
-		active_upgrade_widgets[stat].increment(1)
-	else:
+
+	if !active_upgrade_widgets.has(stat):
 		var new_widget = upgrade_scenes[stat].instantiate()
 		upgrades_display.add_child(new_widget)
-		new_widget.increment(1)
 		active_upgrade_widgets[stat] = new_widget
+	
+	active_upgrade_widgets[stat].increment(1)
+	if upgrade["target"] != "summon_minion":
+		active_upgrade_widgets[stat].update_tooltip(upgrade)

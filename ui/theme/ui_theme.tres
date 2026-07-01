@@ -95,3 +95,7 @@ Label/constants/shadow_outline_size = 2
 Label/font_sizes/font_size = 15
 Label/styles/focus = SubResource("StyleBoxFlat_vuqvt")
 Label/styles/normal = SubResource("StyleBoxEmpty_bp0j3")
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipLabel/constants/shadow_outline_size = 1
+TooltipLabel/font_sizes/font_size = 20

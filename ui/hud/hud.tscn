@@ -95,6 +95,7 @@ vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="UpgradesDisplay" type="HBoxContainer" parent="." unique_id=1070166868]
+process_mode = 3
 custom_minimum_size = Vector2(96, 64)
 layout_mode = 1
 anchors_preset = -1
