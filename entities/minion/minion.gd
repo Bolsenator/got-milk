@@ -177,7 +177,9 @@ func attack_enemy():
 	randomize()
 	if randf() < crit_chance:
 		final_damage = damage * crit_damage
-	target_enemy.take_damage(final_damage)
+	for body in hitbox.get_overlapping_bodies():
+		if body.is_in_group("enemy"):
+			body.take_damage(final_damage)
 	cooldown_timer = attack_cooldown
 	attack_sound.play()
 
