@@ -172,6 +172,7 @@ func set_targeting_state() -> void:
 	
 
 func attack_enemy():
+	animated_sprite.play("attack")
 	var final_damage: float = damage
 	randomize()
 	if randf() < crit_chance:
@@ -195,3 +196,8 @@ func _on_target_died():
 	enemy_in_range = false
 	target_enemy = null
 	acquire_target()
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite.animation == "attack":
+		animated_sprite.play("idle")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7x3ghr46v6sf"
-path="res://.godot/imported/minion_basic.png-decca557d0c0b930ad30bc333c8c2114.ctex"
+uid="uid://bj4ytbdijrpsb"
+path="res://.godot/imported/minion_basic_attack.png-e0380eda5535a7fdc09ffb417a94d193.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/minion/minion_basic.png"
-dest_files=["res://.godot/imported/minion_basic.png-decca557d0c0b930ad30bc333c8c2114.ctex"]
+source_file="res://entities/minion/minion_basic_attack.png"
+dest_files=["res://.godot/imported/minion_basic_attack.png-e0380eda5535a7fdc09ffb417a94d193.ctex"]
 
 [params]
 
