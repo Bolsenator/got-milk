@@ -25,6 +25,9 @@ drag_vertical_enabled = true
 process_mode = 1
 autostart = true
 
+[node name="DespawnTimer" type="Timer" parent="." unique_id=120258139]
+autostart = true
+
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=706112399]
 process_mode = 3
 stream = ExtResource("6_oh72w")
@@ -33,3 +36,4 @@ autoplay = true
 parameters/looping = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

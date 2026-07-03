@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c1d6cifsilc3w" path="res://ui/upgrades/minion_movement_speed.tscn" id="11_wkyli"]
 [ext_resource type="PackedScene" uid="uid://bo4ppb88xp1qc" path="res://ui/upgrades/minion_crit_chance.tscn" id="12_fs87q"]
 [ext_resource type="PackedScene" uid="uid://b108kl8g766gy" path="res://ui/upgrades/minion_crit_damage.tscn" id="13_3i4ml"]
+[ext_resource type="PackedScene" uid="uid://bumdh84xp1cce" path="res://ui/upgrades/multi_attack.tscn" id="14_6gxmt"]
 
 [node name="HUD" type="Control" unique_id=2085557247]
 process_mode = 1
@@ -38,6 +39,7 @@ attack_cooldown_scene = ExtResource("10_sm7np")
 minion_movement_speed_scene = ExtResource("11_wkyli")
 crit_chance_scene = ExtResource("12_fs87q")
 crit_damage_scene = ExtResource("13_3i4ml")
+multi_attack_scene = ExtResource("14_6gxmt")
 
 [node name="ExpBar" type="TextureProgressBar" parent="." unique_id=332021824]
 layout_mode = 1

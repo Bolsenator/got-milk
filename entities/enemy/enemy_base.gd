@@ -3,9 +3,11 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var navigation_agent = $NavigationAgent2D
+@onready var on_screen_notifier = $VisibleOnScreenNotifier2D
 
 signal died(exp: int, position: Vector2)
 
+var spawn_time_ms: int
 var max_health: float = 5.0
 var health: float
 var speed: float = 50.0
@@ -22,6 +24,7 @@ var max_distance_squared_to_player: float = 256.0 # Squared in advance for dista
 var player: CharacterBody2D
 
 func _ready():
+	spawn_time_ms = Time.get_ticks_msec()
 	health = max_health
 	player = get_tree().get_first_node_in_group("player")
 	animated_sprite.play("idle")

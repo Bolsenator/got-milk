@@ -34,6 +34,8 @@ const WAVES: Array = [
 var time_elapsed: float = 0.0
 var current_wave_idx: int = 0
 var current_wave: Dictionary = WAVES[current_wave_idx]
+var despawn_threshold_ms: int = 30000
+var despawn_timer_s: float = 1.0
 
 var minion = preload("res://entities/minion/minion.tscn")
 var exp_small = preload("res://entities/exp/exp_small.tscn")
@@ -146,6 +148,14 @@ var upgrades_pool: Array = [
 		"stat": "crit_damage_modifier",
 		"bonus": 0.50,
 		"icon": preload("res://ui/upgrades/minion_crit_damage.png")
+	},
+	{
+		"name": "Multi-Attack",
+		"description": "Increase minion hits per attack by 1",
+		"target": "minion",
+		"stat": "multi_attack_modifier",
+		"bonus": 1,
+		"icon": preload("res://ui/upgrades/multi_attack.png")
 	}
 ]
 var upgrades_state: Array = []
@@ -296,3 +306,9 @@ func is_valid_spawn_location(spawn_position: Vector2) -> bool:
 		return true
 	else:
 		return false
+
+func _on_despawn_timer_timeout() -> void:
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen():
+			enemy.queue_free()
+			print("enemy despawned")

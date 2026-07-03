@@ -22,7 +22,7 @@ var damage_modifier: float = 1.0 :
 var damage: float = damage_start * damage_modifier
 
 # Attack Speed
-var attack_cooldown_start: float = 1.0
+var attack_cooldown_start: float = 2.0
 var attack_cooldown_modifier: float = 1.0 : 
 	set(new_value):
 		attack_cooldown_modifier = new_value
@@ -52,6 +52,14 @@ var crit_damage_modifier: float = 1.5 :
 		crit_damage_modifier = new_value
 		crit_damage = crit_damage_start * crit_damage_modifier
 var crit_damage = crit_damage_start * crit_damage_modifier
+
+# Multi-Attack
+var multi_attack_start: int = 1
+var multi_attack_modifier: int = 0 :
+	set(new_value):
+		multi_attack_modifier = new_value
+		multi_attack = multi_attack_start + multi_attack_modifier
+var multi_attack = multi_attack_start + multi_attack_modifier
 
 #############################################
 
@@ -105,7 +113,8 @@ func _physics_process(delta: float):
 	match state:
 		State.ATTACK:
 			if enemy_in_range and cooldown_timer <= 0.0:
-				attack_enemy()
+				for attack in multi_attack:
+					await attack_enemy()
 			else:
 				set_target_position(target_enemy, attack_cushion)
 		State.FOLLOW:
@@ -171,8 +180,7 @@ func set_targeting_state() -> void:
 		state = State.FOLLOW
 	
 
-func attack_enemy():
-	animated_sprite.play("attack")
+func attack_enemy() -> void:
 	var final_damage: float = damage
 	randomize()
 	if randf() < crit_chance:
@@ -182,6 +190,9 @@ func attack_enemy():
 			body.take_damage(final_damage)
 	cooldown_timer = attack_cooldown
 	attack_sound.play()
+	animated_sprite.play("attack")
+	await animated_sprite.animation_finished
+	return
 
 func apply_upgrade(upgrade):
 	var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]

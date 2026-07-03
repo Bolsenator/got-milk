@@ -16,6 +16,7 @@ extends Control
 @export var minion_movement_speed_scene: PackedScene
 @export var crit_chance_scene: PackedScene
 @export var crit_damage_scene: PackedScene
+@export var multi_attack_scene: PackedScene
 
 var upgrade_scenes: Dictionary
 var active_upgrade_widgets: Dictionary
@@ -39,7 +40,8 @@ func _ready():
 		"attack_cooldown_modifier": attack_cooldown_scene,
 		"minion_movement_speed_modifier": minion_movement_speed_scene,
 		"crit_chance_modifier": crit_chance_scene,
-		"crit_damage_modifier": crit_damage_scene
+		"crit_damage_modifier": crit_damage_scene,
+		"multi_attack_modifier": multi_attack_scene
 	}
 
 func _on_exp_changed(new_exp, max_exp):
