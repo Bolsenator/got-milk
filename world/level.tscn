@@ -26,6 +26,7 @@ process_mode = 1
 autostart = true
 
 [node name="DespawnTimer" type="Timer" parent="." unique_id=120258139]
+process_mode = 1
 autostart = true
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=706112399]

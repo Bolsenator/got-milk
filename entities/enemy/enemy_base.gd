@@ -19,7 +19,7 @@ var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
 
 var current_target_position: Vector2
-var max_distance_squared_to_player: float = 256.0 # Squared in advance for distance_to calculations
+var max_distance_squared_to_player: float = 4096.0 # Squared in advance for distance_to calculations
 
 var player: CharacterBody2D
 
@@ -31,8 +31,7 @@ func _ready():
 	navigation_agent.max_speed = speed
 	# Wait for navigation map to be ready
 	await get_tree().physics_frame
-	current_target_position = player.global_position
-	navigation_agent.target_position = current_target_position
+	set_target_position()
 	
 func _physics_process(delta: float):
 	cooldown_timer -= delta
@@ -45,20 +44,25 @@ func _physics_process(delta: float):
 		cooldown_timer = attack_cooldown
 	
 	# Chase player
-	if current_target_position.distance_squared_to(player.global_position) > max_distance_squared_to_player:
-		current_target_position = player.global_position 
-		navigation_agent.target_position = current_target_position
+	if has_target_moved_past_threshold():
+		set_target_position()
+	
+	move_and_slide()
+	animated_sprite.flip_h = velocity.x < 0
+
+func set_target_position():
+	current_target_position = player.global_position 
+	navigation_agent.target_position = current_target_position
 	var current_agent_position = global_position
 	var next_path_position = navigation_agent.get_next_path_position()
 	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
-	
 	if navigation_agent.avoidance_enabled:
 		navigation_agent.set_velocity(new_velocity)
 	else:
 		_on_navigation_agent_2d_velocity_computed(new_velocity)
-	
-	move_and_slide()
-	animated_sprite.flip_h = velocity.x < 0
+
+func has_target_moved_past_threshold():
+	return current_target_position.distance_squared_to(player.global_position) > max_distance_squared_to_player
 
 func take_damage(amount: float):
 	health -= amount

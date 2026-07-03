@@ -80,7 +80,6 @@ sprite_frames = SubResource("SpriteFrames_rdpfw")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166876237]
-visible = false
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_s0oyo")
 
@@ -104,7 +103,6 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinionToMinionHitbox" unique_id=297053201]
-visible = false
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_6srdf")
 
@@ -113,7 +111,6 @@ collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange" unique_id=1720110078]
-visible = false
 shape = SubResource("CircleShape2D_18omj")
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=920829732]

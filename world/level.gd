@@ -1,7 +1,7 @@
 extends Node
 
 const WAVES: Array = [
-	{"time": 60.0,  "enemy_type": "slime",  "count": 5, "interval": 5.0, "boss": null},
+	{"time": 60.0,  "enemy_type": "slime",  "count": 3, "interval": 5.0, "boss": null},
 	{"time": 120.0,  "enemy_type": "snake",  "count": 6, "interval": 4.0, "boss": "bat"},
 	{"time": 180.0,  "enemy_type": "slime",  "count": 12, "interval": 3.0, "boss": "bat"},
 	{"time": 240.0,  "enemy_type": "spider",  "count": 6, "interval": 4.0, "boss": null},
