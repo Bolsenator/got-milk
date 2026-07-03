@@ -311,4 +311,3 @@ func _on_despawn_timer_timeout() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen():
 			enemy.queue_free()
-			print("enemy despawned")

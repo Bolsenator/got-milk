@@ -52,6 +52,7 @@ func _on_level_up(new_player_level):
 	player_level.text = "Lvl " + str(new_player_level)
 
 func update_time_elapsed(time_elapsed: float):
+	@warning_ignore("integer_division") # Integer division intentional to get minutes and drop the decimal
 	var minutes = int(time_elapsed) / 60
 	var seconds = int(time_elapsed) % 60
 	time_elapsed_ui.text = str("%02d:%02d" % [minutes, seconds])
