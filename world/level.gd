@@ -259,7 +259,6 @@ func _on_minion_crit_landed(enemy_position: Vector2):
 	var crit_indicator = crit_indicator_scene.instantiate()
 	crit_indicator.global_position = enemy_position
 	add_child(crit_indicator)
-	print("crit")
 
 func _on_resume_from_pause():
 	toggle_pause()

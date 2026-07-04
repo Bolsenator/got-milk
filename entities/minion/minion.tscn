@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bj4ytbdijrpsb" path="res://entities/minion/minion_basic_attack.png" id="2_sy8s3"]
 [ext_resource type="AudioStream" uid="uid://ca734tmp2e7ej" path="res://assets/sfx/follower_attack.wav" id="3_sy8s3"]
 [ext_resource type="AudioStream" uid="uid://i7l2ht3vbxas" path="res://assets/sfx/summon_follower.wav" id="4_bnrvb"]
+[ext_resource type="Texture2D" uid="uid://dhi115g8m50n3" path="res://entities/minion/attack_cooldown_empty.png" id="6_bnrvb"]
+[ext_resource type="Texture2D" uid="uid://k1gwfw1fftpy" path="res://entities/minion/attack_cooldown_full.png" id="7_ai3kx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awkh2"]
 atlas = ExtResource("2_sy8s3")
@@ -69,6 +71,60 @@ height = 150.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_18omj"]
 radius = 502.0249
 
+[sub_resource type="Animation" id="Animation_bnrvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.9677419)]
+}
+
+[sub_resource type="Animation" id="Animation_ai3kx"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bomce"]
+resource_name = "pop_in"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.9677419)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bomce"]
+_data = {
+&"RESET": SubResource("Animation_bnrvb"),
+&"fade_out": SubResource("Animation_ai3kx"),
+&"pop_in": SubResource("Animation_bomce")
+}
+
 [node name="Minion" type="CharacterBody2D" unique_id=1000233962 groups=["minion"]]
 process_mode = 1
 collision_layer = 8
@@ -80,6 +136,7 @@ sprite_frames = SubResource("SpriteFrames_rdpfw")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166876237]
+visible = false
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_s0oyo")
 
@@ -94,6 +151,7 @@ collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1411372292]
+visible = false
 position = Vector2(16, -4)
 rotation = -0.4712389
 shape = SubResource("CapsuleShape2D_awkh2")
@@ -103,6 +161,7 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinionToMinionHitbox" unique_id=297053201]
+visible = false
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_6srdf")
 
@@ -111,6 +170,7 @@ collision_layer = 8
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AggroRange" unique_id=1720110078]
+visible = false
 shape = SubResource("CircleShape2D_18omj")
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=920829732]
@@ -122,6 +182,20 @@ volume_db = -35.0
 process_mode = 3
 stream = ExtResource("4_bnrvb")
 volume_db = -35.0
+
+[node name="AttackCooldownBar" type="TextureProgressBar" parent="." unique_id=585256459]
+self_modulate = Color(1, 1, 1, 0.9677419)
+offset_left = -24.0
+offset_top = 38.0
+offset_right = -12.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+step = 0.0
+texture_under = ExtResource("6_bnrvb")
+texture_progress = ExtResource("7_ai3kx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AttackCooldownBar" unique_id=994838169]
+libraries/ = SubResource("AnimationLibrary_bomce")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

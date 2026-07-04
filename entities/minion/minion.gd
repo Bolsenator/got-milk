@@ -9,6 +9,9 @@ extends CharacterBody2D
 @onready var attack_sound = $AttackSound
 @onready var summon_sound = $SummonSound
 
+@onready var attack_cooldown_bar = $AttackCooldownBar
+@onready var attack_cooldown_bar_animation = $AttackCooldownBar/AnimationPlayer
+
 #############################################
 # Minion Upgradable Stats
 #############################################
@@ -21,12 +24,13 @@ var damage_modifier: float = 1.0 :
 		damage = damage_start * damage_modifier
 var damage: float = damage_start * damage_modifier
 
-# Attack Speed
+# Attack Cooldown
 var attack_cooldown_start: float = 2.0
 var attack_cooldown_modifier: float = 1.0 : 
 	set(new_value):
 		attack_cooldown_modifier = new_value
 		attack_cooldown = attack_cooldown_start * attack_cooldown_modifier
+		attack_cooldown_bar.max_value = attack_cooldown
 var attack_cooldown: float = attack_cooldown_start * attack_cooldown_modifier
 
 # Movement Speed
@@ -76,6 +80,7 @@ var deceleration = 2.0
 var minion_to_minion_repulsion_speed = 25.0
 var attack_cushion: float = 16 # Prevents sprite from going crazy when right on enemy
 var cooldown_timer: float = 0.0
+var is_on_cooldown: bool = false
 var enemy_in_range: bool = false # Range for attack to proc
 var target_enemy_distance_to_player: float
 var player_distance: float
@@ -89,17 +94,27 @@ func _ready():
 	animated_sprite.play("idle")
 	player = get_tree().get_first_node_in_group("player")
 	summon_sound.play(2.0)
-	navigation_agent.max_speed = minion_movement_speed
+	
 	# Wait for navigation map to be ready
 	await get_tree().physics_frame
+	
+	# Setup initial navigation
+	navigation_agent.max_speed = minion_movement_speed
 	current_target_position = player.global_position
 	navigation_agent.target_position = current_target_position
 	
+	# Setup cooldown bar
+	attack_cooldown_bar.max_value = attack_cooldown
+	attack_cooldown_bar.self_modulate.a = 0.0
 
 func _physics_process(delta: float):
+	# Handle attack cooldown
 	cooldown_timer -= delta
-	if player == null:
-		return
+	if is_on_cooldown:
+		attack_cooldown_bar.value = cooldown_timer
+		if cooldown_timer <= 0.0:
+			fade_out_attack_cooldown_bar()
+			is_on_cooldown = false
 	
 	# Update to stay within hard leash radius
 	player_distance = global_position.distance_to(player.global_position)
@@ -114,7 +129,7 @@ func _physics_process(delta: float):
 	# Act on state
 	match state:
 		State.ATTACK:
-			if enemy_in_range and cooldown_timer <= 0.0:
+			if enemy_in_range and !is_on_cooldown:
 				for attack in multi_attack:
 					await attack_enemy()
 			else:
@@ -180,7 +195,6 @@ func set_targeting_state() -> void:
 		state = State.ATTACK
 	else:
 		state = State.FOLLOW
-	
 
 func attack_enemy() -> void:
 	var final_damage: float = damage
@@ -192,6 +206,8 @@ func attack_enemy() -> void:
 				crit_landed.emit(body.global_position)
 			body.take_damage(final_damage)
 	cooldown_timer = attack_cooldown
+	is_on_cooldown = true
+	pop_in_attack_cooldown_bar()
 	attack_sound.play()
 	animated_sprite.play("attack")
 	await animated_sprite.animation_finished
@@ -200,6 +216,12 @@ func attack_enemy() -> void:
 func apply_upgrade(upgrade):
 	var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
 	set(upgrade["stat"], new_modifier)
+
+func pop_in_attack_cooldown_bar() -> void:
+	attack_cooldown_bar_animation.play("pop_in")
+
+func fade_out_attack_cooldown_bar() -> void:
+	attack_cooldown_bar_animation.play("fade_out")
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
@@ -212,7 +234,6 @@ func _on_target_died():
 	enemy_in_range = false
 	target_enemy = null
 	acquire_target()
-
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
