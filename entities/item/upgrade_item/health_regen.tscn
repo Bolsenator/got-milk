@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dfopc747kx4d8"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_qx32v"]
+[ext_resource type="Script" uid="uid://cb5hfkv0n66jd" path="res://entities/item/upgrade_item/health_regen.gd" id="2_5yo6a"]
+[ext_resource type="Texture2D" uid="uid://c1hu46qawhibd" path="res://ui/upgrades/health_regen.png" id="3_xaakp"]
+
+[node name="HealthRegen" unique_id=1840333002 instance=ExtResource("1_qx32v")]
+script = ExtResource("2_5yo6a")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_xaakp")

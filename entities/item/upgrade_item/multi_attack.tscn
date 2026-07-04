@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bljr8qhk88myq"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_nmhfy"]
+[ext_resource type="Script" uid="uid://b7nuphplqnui1" path="res://entities/item/upgrade_item/multi_attack.gd" id="2_l7n3t"]
+[ext_resource type="Texture2D" uid="uid://cngymjn25if61" path="res://ui/upgrades/multi_attack.png" id="3_vbb7d"]
+
+[node name="MultiAttack" unique_id=1840333002 instance=ExtResource("1_nmhfy")]
+script = ExtResource("2_l7n3t")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_vbb7d")

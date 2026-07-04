@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d3kkdqmfqx20t"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_lcaho"]
+[ext_resource type="Script" uid="uid://x3lg3ikeek7d" path="res://entities/item/upgrade_item/attack_cooldown.gd" id="2_x2d80"]
+[ext_resource type="Texture2D" uid="uid://20y37yn57sr1" path="res://ui/upgrades/minion_attack_cooldown.png" id="3_m8vtn"]
+
+[node name="AttackCooldown" unique_id=1840333002 instance=ExtResource("1_lcaho")]
+script = ExtResource("2_x2d80")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_m8vtn")

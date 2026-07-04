@@ -178,7 +178,8 @@ func _ready():
 	player.player_died.connect(_on_game_over)
 	ui.level_up_ui.apply_upgrade.connect(_on_apply_upgrade)
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
-	
+	for upgrade_item in get_tree().get_nodes_in_group("upgrade_item"):
+		upgrade_item.apply_upgrade_item.connect(_on_apply_upgrade_item)
 	
 	spawn_timer.wait_time = current_wave.interval
 	spawn_starting_minions()
@@ -209,6 +210,19 @@ func spawn_starting_minions():
 		upgrades_state.append(starting_minion)
 		ui.hud_ui.update_upgrades_display(starting_minion)
 
+func apply_upgrade(upgrade: Dictionary):
+	match upgrade["target"]:
+		"summon_minion":
+			summon_minion()
+		"player":
+			player.apply_upgrade(upgrade)
+		"minion":
+			for current_minion in get_tree().get_nodes_in_group("minion"):
+				current_minion.apply_upgrade(upgrade)
+	
+	upgrades_state.append(upgrade)
+	ui.hud_ui.update_upgrades_display(upgrade)
+
 func _on_spawn_timer_timeout():
 	for i in range(current_wave.count):
 		var enemy_instance = ENEMY_SCENES[current_wave.enemy_type].instantiate()
@@ -224,22 +238,19 @@ func _on_level_up(_player_level):
 	ui.show_level_up_ui()
 
 func _on_apply_upgrade(upgrade: Dictionary):
-	match upgrade["target"]:
-		"summon_minion":
-			summon_minion()
-		"player":
-			player.apply_upgrade(upgrade)
-		"minion":
-			for current_minion in get_tree().get_nodes_in_group("minion"):
-				current_minion.apply_upgrade(upgrade)
+	apply_upgrade(upgrade)
 	
-	upgrades_state.append(upgrade)
-	ui.hud_ui.update_upgrades_display(upgrade)
-	
+	# Handle UI updates
 	get_tree().paused = false
 	ui.hide_level_up_ui()
 	level_up_reward_chosen.emit() # Signal to reset exp bar after choosing upgrade
 	player.max_exp *= exp_increase_per_level
+
+func _on_apply_upgrade_item(stat: String):
+	for upgrade in upgrades_pool:
+		if upgrade["stat"] == stat:
+			apply_upgrade(upgrade)
+			return
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):

@@ -30,7 +30,8 @@ var attack_cooldown_modifier: float = 1.0 :
 	set(new_value):
 		attack_cooldown_modifier = new_value
 		attack_cooldown = attack_cooldown_start * attack_cooldown_modifier
-		attack_cooldown_bar.max_value = attack_cooldown
+		if attack_cooldown_bar:
+			attack_cooldown_bar.max_value = attack_cooldown
 var attack_cooldown: float = attack_cooldown_start * attack_cooldown_modifier
 
 # Movement Speed

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://da2olmh5criav"]
+
+[ext_resource type="Script" uid="uid://qltdgi5wf14k" path="res://entities/item/upgrade_item/upgrade_item.gd" id="1_045ek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r220"]
+
+[node name="UpgradeItem" type="Area2D" unique_id=1840333002 groups=["upgrade_item"]]
+scale = Vector2(4, 4)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_045ek")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1354902156]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=638417033]
+shape = SubResource("RectangleShape2D_5r220")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

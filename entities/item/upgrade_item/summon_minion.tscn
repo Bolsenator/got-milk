@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cdk60k111mqj8"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_mg8od"]
+[ext_resource type="Script" uid="uid://qjhblwnu8hut" path="res://entities/item/upgrade_item/summon_minion.gd" id="2_dlwbe"]
+[ext_resource type="Texture2D" uid="uid://dtlx1tyskmocn" path="res://ui/upgrades/summon_minion.png" id="3_etst2"]
+
+[node name="SummonMinion" unique_id=1840333002 instance=ExtResource("1_mg8od")]
+script = ExtResource("2_dlwbe")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_etst2")

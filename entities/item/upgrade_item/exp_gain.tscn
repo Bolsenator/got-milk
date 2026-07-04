@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cntybtmr23y1w"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_fncro"]
+[ext_resource type="Script" uid="uid://dnbjo5omkp065" path="res://entities/item/upgrade_item/exp_gain.gd" id="2_2qiur"]
+[ext_resource type="Texture2D" uid="uid://dsh8ek8w2q0bk" path="res://ui/upgrades/exp_gained.png" id="3_2qiur"]
+
+[node name="ExpGain" unique_id=1840333002 instance=ExtResource("1_fncro")]
+script = ExtResource("2_2qiur")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_2qiur")

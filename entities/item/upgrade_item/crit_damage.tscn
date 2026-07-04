@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c2d2owbd1t0a7"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_uyhsj"]
+[ext_resource type="Script" uid="uid://du8lnto042ltg" path="res://entities/item/upgrade_item/crit_damage.gd" id="2_j4bou"]
+[ext_resource type="Texture2D" uid="uid://bbwwegrss371c" path="res://ui/upgrades/minion_crit_damage.png" id="3_lwj7r"]
+
+[node name="CritDamage" unique_id=1840333002 instance=ExtResource("1_uyhsj")]
+script = ExtResource("2_j4bou")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_lwj7r")

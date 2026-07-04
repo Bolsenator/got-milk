@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c8mg42lu6hylu"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_we2f6"]
+[ext_resource type="Script" uid="uid://b68uykxeg5fwu" path="res://entities/item/upgrade_item/minion_movement_speed.gd" id="2_qbj33"]
+[ext_resource type="Texture2D" uid="uid://bkwbgb4up4m1r" path="res://ui/upgrades/minion_movement_speed.png" id="3_5n4b4"]
+
+[node name="MinionMovementSpeed" unique_id=1840333002 instance=ExtResource("1_we2f6")]
+script = ExtResource("2_qbj33")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_5n4b4")

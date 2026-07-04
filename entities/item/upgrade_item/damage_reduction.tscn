@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b0enlji3vhvbw"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_vrnnm"]
+[ext_resource type="Script" uid="uid://cq1cw0r6a0ckn" path="res://entities/item/upgrade_item/damage_reduction.gd" id="2_w5n32"]
+[ext_resource type="Texture2D" uid="uid://crmeh0chutadd" path="res://ui/upgrades/damage_reduction.png" id="3_2n8h6"]
+
+[node name="DamageReduction" unique_id=1840333002 instance=ExtResource("1_vrnnm")]
+script = ExtResource("2_w5n32")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("3_2n8h6")

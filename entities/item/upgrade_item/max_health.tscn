@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cgon4e7kw22lc"]
+
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="1_l6tt6"]
+[ext_resource type="Script" uid="uid://ckw7he2lf3gur" path="res://entities/item/upgrade_item/max_health.gd" id="2_fa70j"]
+[ext_resource type="Texture2D" uid="uid://cbj8csmk5wjc1" path="res://ui/upgrades/max_health.png" id="2_svac1"]
+
+[node name="MaxHealth" unique_id=680912654 instance=ExtResource("1_l6tt6")]
+script = ExtResource("2_fa70j")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1354902156]
+texture = ExtResource("2_svac1")
