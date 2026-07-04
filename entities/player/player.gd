@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var health_bar = $TextureProgressBar
-@onready var level = $".."
+@onready var level = $"../.."
 
 @onready var heal_sound = $HealSound
 @onready var take_damage_sound = $TakeDamageSound

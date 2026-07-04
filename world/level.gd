@@ -27,7 +27,8 @@ const WAVES: Array = [
 	{"time": 1440.0, "enemy_type": "beholder",  "count": 12, "interval": 2.5, "boss": "devil"},
 ]
 
-@onready var player = $Player
+@onready var y_sort_container = $YSortContainer
+@onready var player = $YSortContainer/Player
 @onready var ui = $UI
 @onready var spawn_timer = $SpawnTimer
 
@@ -199,7 +200,7 @@ func _process(delta: float):
 func spawn_boss(boss_type):
 	var boss_instance = ENEMY_SCENES[boss_type].instantiate()
 	boss_instance.global_position = get_enemy_spawn_position()
-	add_child(boss_instance)
+	y_sort_container.add_child(boss_instance)
 	boss_instance.died.connect(_on_enemy_died)
 
 func spawn_starting_minions():
@@ -212,7 +213,7 @@ func _on_spawn_timer_timeout():
 	for i in range(current_wave.count):
 		var enemy_instance = ENEMY_SCENES[current_wave.enemy_type].instantiate()
 		enemy_instance.global_position = get_enemy_spawn_position()
-		add_child(enemy_instance)
+		y_sort_container.add_child(enemy_instance)
 		enemy_instance.died.connect(_on_enemy_died)
 
 func _on_level_up(_player_level):
@@ -252,7 +253,7 @@ func summon_minion():
 		if upgrade["target"] == "minion":
 			minion_instance.apply_upgrade(upgrade)
 	minion_instance.crit_landed.connect(_on_minion_crit_landed)
-	add_child(minion_instance)
+	y_sort_container.add_child(minion_instance)
 
 func _on_minion_crit_landed(enemy_position: Vector2):
 	var crit_indicator = crit_indicator_scene.instantiate()
@@ -270,11 +271,11 @@ func _on_game_over():
 func _on_enemy_died(exp_value: float, position: Vector2):
 	if exp_value < exp_drop_size_threshold:
 		var exp_instance = exp_small.instantiate()
-		add_child(exp_instance)
+		y_sort_container.add_child(exp_instance)
 		exp_instance.initialize(exp_value, position)
 	else:
 		var exp_instance = exp_large.instantiate()
-		add_child(exp_instance)
+		y_sort_container.add_child(exp_instance)
 		exp_instance.initialize(exp_value, position)
 
 func toggle_pause():
