@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ctuqai7nsociw" path="res://world/dungeon/dungeon.tscn" id="1_0u2o0"]
 [ext_resource type="Script" uid="uid://g2owj60c2p0g" path="res://world/level.gd" id="1_ype84"]
 [ext_resource type="PackedScene" uid="uid://bncc0esttelux" path="res://entities/player/player.tscn" id="2_jjmkw"]
-[ext_resource type="PackedScene" uid="uid://bljr8qhk88myq" path="res://entities/item/upgrade_item/multi_attack.tscn" id="4_oh72w"]
 [ext_resource type="PackedScene" uid="uid://b2j1gr2vdc3or" path="res://ui/ui.tscn" id="4_s5sgh"]
 [ext_resource type="AudioStream" uid="uid://cymk6h23x8i7m" path="res://assets/music/8bit Dungeon Boss.mp3" id="6_oh72w"]
 
@@ -22,18 +21,6 @@ y_sort_enabled = true
 [node name="Camera2D" type="Camera2D" parent="YSortContainer/Player" unique_id=975340226]
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-
-[node name="MultiAttack" parent="YSortContainer" unique_id=1840333002 instance=ExtResource("4_oh72w")]
-position = Vector2(-338, -118)
-
-[node name="MultiAttack2" parent="YSortContainer" unique_id=883709616 instance=ExtResource("4_oh72w")]
-position = Vector2(-154, -245)
-
-[node name="MultiAttack3" parent="YSortContainer" unique_id=920510345 instance=ExtResource("4_oh72w")]
-position = Vector2(126, -213)
-
-[node name="MultiAttack4" parent="YSortContainer" unique_id=12292564 instance=ExtResource("4_oh72w")]
-position = Vector2(358, -174)
 
 [node name="UI" parent="." unique_id=95054969 instance=ExtResource("4_s5sgh")]
 

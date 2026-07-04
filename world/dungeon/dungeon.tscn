@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://banuednph6by8" path="res://entities/milk/milk.tscn" id="3_06gaa"]
 [ext_resource type="PackedScene" uid="uid://ct0tf4jt1woq2" path="res://entities/item/upgrade_item/crit_chance.tscn" id="5_33x4t"]
 [ext_resource type="PackedScene" uid="uid://pt0bsrunun1u" path="res://entities/item/upgrade_item/damage.tscn" id="7_nklpf"]
+[ext_resource type="PackedScene" uid="uid://70vahs1eh6qr" path="res://entities/item/misc_item/vase.tscn" id="9_ws2wm"]
 [ext_resource type="PackedScene" uid="uid://dfopc747kx4d8" path="res://entities/item/upgrade_item/health_regen.tscn" id="10_qsgj5"]
 [ext_resource type="PackedScene" uid="uid://bljr8qhk88myq" path="res://entities/item/upgrade_item/multi_attack.tscn" id="13_3cmxv"]
 [ext_resource type="PackedScene" uid="uid://cdk60k111mqj8" path="res://entities/item/upgrade_item/summon_minion.tscn" id="15_iev1l"]
@@ -197,3 +198,6 @@ position = Vector2(10336, -3424)
 
 [node name="CritChance" parent="." unique_id=1266509450 instance=ExtResource("5_33x4t")]
 position = Vector2(-8544, -9888)
+
+[node name="Vase" parent="." unique_id=976931231 instance=ExtResource("9_ws2wm")]
+position = Vector2(-208, -72)

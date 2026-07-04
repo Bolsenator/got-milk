@@ -63,7 +63,7 @@ var exp_gain: float = exp_gain_start * exp_gain_modifier
 
 var health_regen_cooldown_sec = 1.0
 var rotation_speed : float = 1.5
-var current_health = 100 :
+var current_health = 100.0 :
 	set(new_value):
 		current_health = clamp (new_value, 0, max_health)
 		health_bar.value = current_health
@@ -109,7 +109,7 @@ func apply_upgrade(upgrade):
 	var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
 	set(upgrade["stat"], new_modifier)
 
-func heal(amount: int):
+func heal(amount: float):
 	current_health += amount
 	heal_sound.play()
 

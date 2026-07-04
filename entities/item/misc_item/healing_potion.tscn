@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ctjdo2s5ntexh"]
+
+[ext_resource type="Script" uid="uid://dk1v3sxjekrai" path="res://entities/item/misc_item/healing_potion.gd" id="1_0kox7"]
+[ext_resource type="PackedScene" uid="uid://bopqhe2yuqahi" path="res://entities/item/misc_item/base_item.tscn" id="1_raxl3"]
+[ext_resource type="Texture2D" uid="uid://cgcbq6kktuhoy" path="res://entities/item/misc_item/healing_potion.png" id="2_o8scg"]
+
+[node name="HealingPotion" unique_id=2037045122 instance=ExtResource("1_raxl3")]
+script = ExtResource("1_0kox7")
+
+[node name="Sprite2D" parent="." index="0" unique_id=248432057]
+texture = ExtResource("2_o8scg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

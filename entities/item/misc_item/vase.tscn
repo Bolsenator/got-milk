@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://70vahs1eh6qr"]
+
+[ext_resource type="Texture2D" uid="uid://cngwmdgqppjxy" path="res://entities/item/misc_item/vase_animation.png" id="1_soba8"]
+[ext_resource type="Script" uid="uid://7ufxleb2o2t" path="res://entities/item/misc_item/vase.gd" id="1_ynxd2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynxd2"]
+atlas = ExtResource("1_soba8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfc07"]
+atlas = ExtResource("1_soba8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n1fqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynxd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfc07")
+}],
+"loop": false,
+"name": &"break",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ggdhi"]
+radius = 6.0
+height = 16.5
+
+[node name="Vase" type="Area2D" unique_id=976931231]
+scale = Vector2(4, 4)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ynxd2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=874401295]
+sprite_frames = SubResource("SpriteFrames_n1fqk")
+animation = &"break"
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=495612608]
+position = Vector2(-0.5, -1)
+shape = SubResource("CapsuleShape2D_ggdhi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
