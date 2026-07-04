@@ -83,6 +83,8 @@ var player_distance: float
 enum State { ATTACK, FOLLOW }
 var state = State.FOLLOW
 
+signal crit_landed(enemy_position)
+
 func _ready():
 	animated_sprite.play("idle")
 	player = get_tree().get_first_node_in_group("player")
@@ -183,10 +185,11 @@ func set_targeting_state() -> void:
 func attack_enemy() -> void:
 	var final_damage: float = damage
 	randomize()
-	if randf() < crit_chance:
-		final_damage = damage * crit_damage
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
+			if randf() < crit_chance:
+				final_damage = damage * crit_damage
+				crit_landed.emit(body.global_position)
 			body.take_damage(final_damage)
 	cooldown_timer = attack_cooldown
 	attack_sound.play()

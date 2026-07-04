@@ -40,6 +40,7 @@ var despawn_timer_s: float = 1.0
 var minion = preload("res://entities/minion/minion.tscn")
 var exp_small = preload("res://entities/exp/exp_small.tscn")
 var exp_large = preload("res://entities/exp/exp_large.tscn")
+var crit_indicator_scene = preload("res://animations/crit.tscn")
 
 var exp_drop_size_threshold: float = 25.0
 var exp_increase_per_level: float = 1.3
@@ -177,9 +178,9 @@ func _ready():
 	ui.level_up_ui.apply_upgrade.connect(_on_apply_upgrade)
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
 	
+	
 	spawn_timer.wait_time = current_wave.interval
 	spawn_starting_minions()
-	
 
 func _process(delta: float):
 	# Keep run time updated
@@ -250,7 +251,14 @@ func summon_minion():
 	for upgrade in upgrades_state:
 		if upgrade["target"] == "minion":
 			minion_instance.apply_upgrade(upgrade)
+	minion_instance.crit_landed.connect(_on_minion_crit_landed)
 	add_child(minion_instance)
+
+func _on_minion_crit_landed(enemy_position: Vector2):
+	var crit_indicator = crit_indicator_scene.instantiate()
+	crit_indicator.global_position = enemy_position
+	add_child(crit_indicator)
+	print("crit")
 
 func _on_resume_from_pause():
 	toggle_pause()

@@ -17,6 +17,7 @@ var exp_reward: int = 5
 var player_in_range: bool = false
 var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
+var flash_tween: Tween
 
 var current_target_position: Vector2
 var max_distance_squared_to_player: float = 4096.0 # Squared in advance for distance_to calculations
@@ -66,8 +67,17 @@ func has_target_moved_past_threshold():
 
 func take_damage(amount: float):
 	health -= amount
+	flash_damage()
 	if health <= 0:
 		die()
+
+func flash_damage() -> void:
+	if flash_tween:
+		flash_tween.kill()
+	
+	flash_tween = create_tween()
+	flash_tween.tween_property(animated_sprite, "modulate", Color("cf0a0a"), 0.03)
+	flash_tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.15)
 
 func die():
 	died.emit(exp_reward,global_position)

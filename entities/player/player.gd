@@ -73,6 +73,7 @@ var current_exp : float = 0.0 :
 		exp_changed.emit(current_exp, max_exp)
 var max_exp : float = 30.0
 var player_level: int = 1
+var flash_tween: Tween
 
 #############################################
 
@@ -112,11 +113,20 @@ func heal(amount: int):
 	current_health += amount
 	heal_sound.play()
 
-func take_damage(damage):
+func take_damage(damage) -> void:
 	current_health -= damage * (1.00 - damage_reduction)
 	take_damage_sound.play()
+	flash_damage()
 	if current_health <= 0:
 		die()
+
+func flash_damage() -> void:
+	if flash_tween:
+		flash_tween.kill()
+	
+	flash_tween = create_tween()
+	flash_tween.tween_property(animated_sprite, "modulate", Color("cf0a0a"), 0.03)
+	flash_tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.15)
 
 func die():
 	died_sound.play()
