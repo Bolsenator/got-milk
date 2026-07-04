@@ -65,6 +65,4 @@ func update_upgrades_display(upgrade: Dictionary) -> void:
 		upgrades_display.add_child(new_widget)
 		active_upgrade_widgets[stat] = new_widget
 	
-	active_upgrade_widgets[stat].increment(1)
-	if upgrade["target"] != "summon_minion":
-		active_upgrade_widgets[stat].update_tooltip(upgrade)
+	active_upgrade_widgets[stat].update_display(upgrade)

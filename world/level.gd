@@ -69,6 +69,8 @@ var upgrades_pool: Array = [
 		"target": "summon_minion",
 		"stat": "summon_minion",
 		"bonus": null,
+		"starting_count": 1,
+		"count": 0,
 		"max": 5,
 		"icon": preload("res://ui/upgrades/summon_minion.png")
 	},
@@ -78,6 +80,7 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "max_health_modifier",
 		"bonus": 0.10,
+		"count": 0,
 		"max": 10,
 		"icon": preload("res://ui/upgrades/max_health.png")
 	},
@@ -87,6 +90,7 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "health_regen_per_sec_modifier",
 		"bonus": 0.01,
+		"count": 0,
 		"max": 5,
 		"icon": preload("res://ui/upgrades/health_regen.png")
 	},
@@ -96,6 +100,7 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "damage_reduction_modifier",
 		"bonus": 0.05,
+		"count": 0,
 		"max": 5,
 		"icon": preload("res://ui/upgrades/damage_reduction.png")
 	},
@@ -105,6 +110,7 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "player_movement_speed_modifier",
 		"bonus": 0.05,
+		"count": 0,
 		"max": 10,
 		"icon": preload("res://ui/upgrades/player_movement_speed.png")
 	},
@@ -114,6 +120,7 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "exp_gain_modifier",
 		"bonus": 0.10,
+		"count": 0,
 		"max": 5,
 		"icon": preload("res://ui/upgrades/exp_gained.png")
 	},
@@ -123,6 +130,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "damage_modifier",
 		"bonus": 0.50,
+		"count": 0,
 		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_damage.png")
 	},
@@ -132,6 +140,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "attack_cooldown_modifier",
 		"bonus": -0.10,
+		"count": 0,
 		"max": 5,
 		"icon": preload("res://ui/upgrades/minion_attack_cooldown.png")
 	},
@@ -141,6 +150,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "minion_movement_speed_modifier",
 		"bonus": 0.05,
+		"count": 0,
 		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_movement_speed.png")
 	},
@@ -150,6 +160,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "crit_chance_modifier",
 		"bonus": 0.05,
+		"count": 0,
 		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_crit_chance.png")
 	},
@@ -159,6 +170,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "crit_damage_modifier",
 		"bonus": 0.50,
+		"count": 0,
 		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_crit_damage.png")
 	},
@@ -168,21 +180,12 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "multi_attack_modifier",
 		"bonus": 1,
+		"count": 0,
 		"max": 2,
 		"icon": preload("res://ui/upgrades/multi_attack.png")
 	}
 ]
 var upgrades_state: Array = []
-var starting_minions: Array = [
-	{
-		"name": "Summon Minion",
-		"description": "Summon an additional skeleton minion",
-		"target": "summon_minion",
-		"stat": "summon_minion",
-		"max": 5,
-		"bonus": null
-	}
-]
 
 signal level_up_reward_chosen
 
@@ -218,10 +221,9 @@ func spawn_boss(boss_type):
 	boss_instance.died.connect(_on_enemy_died)
 
 func spawn_starting_minions():
-	for starting_minion in starting_minions:
-		summon_minion()
-		upgrades_state.append(starting_minion)
-		ui.hud_ui.update_upgrades_display(starting_minion)
+	for upgrade in upgrades_pool:
+		if upgrade["target"] == "summon_minion":
+			apply_upgrade(upgrade)
 
 func apply_upgrade(upgrade: Dictionary):
 	match upgrade["target"]:
@@ -233,8 +235,10 @@ func apply_upgrade(upgrade: Dictionary):
 			for current_minion in get_tree().get_nodes_in_group("minion"):
 				current_minion.apply_upgrade(upgrade)
 	
+	upgrade["count"] += 1
 	upgrades_state.append(upgrade)
 	ui.hud_ui.update_upgrades_display(upgrade)
+
 
 func _on_spawn_timer_timeout():
 	for i in range(current_wave.count):
@@ -246,12 +250,19 @@ func _on_spawn_timer_timeout():
 func _on_level_up(_player_level):
 	get_tree().paused = true
 	upgrades_pool.shuffle()
-	var current_upgrade_options = upgrades_pool.slice(0,number_of_upgrade_choices)
+	var current_upgrade_options: Array
+	for upgrade in upgrades_pool:
+		if upgrade["count"] < upgrade["max"]:
+			current_upgrade_options.append(upgrade)
+		if current_upgrade_options.size() >= number_of_upgrade_choices:
+			break
+	#var current_upgrade_options = upgrades_pool.slice(0,number_of_upgrade_choices)
 	ui.level_up_ui.populate_upgrade_buttons(current_upgrade_options)
 	ui.show_level_up_ui()
 
 func _on_apply_upgrade(upgrade: Dictionary):
 	apply_upgrade(upgrade)
+	
 	
 	# Handle UI updates
 	get_tree().paused = false
