@@ -263,7 +263,6 @@ func _on_level_up(_player_level):
 func _on_apply_upgrade(upgrade: Dictionary):
 	apply_upgrade(upgrade)
 	
-	
 	# Handle UI updates
 	get_tree().paused = false
 	ui.hide_level_up_ui()

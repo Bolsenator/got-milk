@@ -9,3 +9,5 @@ script = ExtResource("2_f48uy")
 
 [node name="Sprite2D" parent="." index="0" unique_id=248432057]
 texture = ExtResource("3_f48uy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

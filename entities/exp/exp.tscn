@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dept3j1owaooq" path="res://entities/exp/exp.gd" id="1_sra7k"]
 
-[node name="Exp" type="Area2D" unique_id=689848787]
+[node name="Exp" type="Area2D" unique_id=689848787 groups=["exp"]]
 process_mode = 1
 collision_layer = 4
 collision_mask = 2
