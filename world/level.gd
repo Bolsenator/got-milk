@@ -69,14 +69,16 @@ var upgrades_pool: Array = [
 		"target": "summon_minion",
 		"stat": "summon_minion",
 		"bonus": null,
+		"max": 5,
 		"icon": preload("res://ui/upgrades/summon_minion.png")
 	},
 	{
 		"name": "Max Health",
-		"description": "Increase max health by 5%",
+		"description": "Increase max health by 10%",
 		"target": "player",
 		"stat": "max_health_modifier",
-		"bonus": 0.05,
+		"bonus": 0.10,
+		"max": 10,
 		"icon": preload("res://ui/upgrades/max_health.png")
 	},
 	{
@@ -85,14 +87,16 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "health_regen_per_sec_modifier",
 		"bonus": 0.01,
+		"max": 5,
 		"icon": preload("res://ui/upgrades/health_regen.png")
 	},
 	{
 		"name": "Damage Reduction",
-		"description": "Decrease damage taken by 2%",
+		"description": "Decrease damage taken by 5%",
 		"target": "player",
 		"stat": "damage_reduction_modifier",
-		"bonus": 0.02,
+		"bonus": 0.05,
+		"max": 5,
 		"icon": preload("res://ui/upgrades/damage_reduction.png")
 	},
 	{
@@ -101,6 +105,7 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "player_movement_speed_modifier",
 		"bonus": 0.05,
+		"max": 10,
 		"icon": preload("res://ui/upgrades/player_movement_speed.png")
 	},
 	{
@@ -109,6 +114,7 @@ var upgrades_pool: Array = [
 		"target": "player",
 		"stat": "exp_gain_modifier",
 		"bonus": 0.10,
+		"max": 5,
 		"icon": preload("res://ui/upgrades/exp_gained.png")
 	},
 	{
@@ -117,6 +123,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "damage_modifier",
 		"bonus": 0.50,
+		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_damage.png")
 	},
 		{
@@ -125,6 +132,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "attack_cooldown_modifier",
 		"bonus": -0.10,
+		"max": 5,
 		"icon": preload("res://ui/upgrades/minion_attack_cooldown.png")
 	},
 	{
@@ -133,6 +141,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "minion_movement_speed_modifier",
 		"bonus": 0.05,
+		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_movement_speed.png")
 	},
 	{
@@ -141,6 +150,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "crit_chance_modifier",
 		"bonus": 0.05,
+		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_crit_chance.png")
 	},
 	{
@@ -149,6 +159,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "crit_damage_modifier",
 		"bonus": 0.50,
+		"max": 10,
 		"icon": preload("res://ui/upgrades/minion_crit_damage.png")
 	},
 	{
@@ -157,6 +168,7 @@ var upgrades_pool: Array = [
 		"target": "minion",
 		"stat": "multi_attack_modifier",
 		"bonus": 1,
+		"max": 2,
 		"icon": preload("res://ui/upgrades/multi_attack.png")
 	}
 ]
@@ -167,6 +179,7 @@ var starting_minions: Array = [
 		"description": "Summon an additional skeleton minion",
 		"target": "summon_minion",
 		"stat": "summon_minion",
+		"max": 5,
 		"bonus": null
 	}
 ]

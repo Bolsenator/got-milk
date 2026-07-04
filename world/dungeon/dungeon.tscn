@@ -3,6 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://bf3bflwj8l7k" path="res://world/dungeon/base_floor_tile.png" id="1_5cnkq"]
 [ext_resource type="Texture2D" uid="uid://biln6a43k6s7" path="res://world/dungeon/wall_tiles.png" id="2_5cnkq"]
 [ext_resource type="PackedScene" uid="uid://banuednph6by8" path="res://entities/milk/milk.tscn" id="3_06gaa"]
+[ext_resource type="PackedScene" uid="uid://ct0tf4jt1woq2" path="res://entities/item/upgrade_item/crit_chance.tscn" id="5_33x4t"]
+[ext_resource type="PackedScene" uid="uid://pt0bsrunun1u" path="res://entities/item/upgrade_item/damage.tscn" id="7_nklpf"]
+[ext_resource type="PackedScene" uid="uid://dfopc747kx4d8" path="res://entities/item/upgrade_item/health_regen.tscn" id="10_qsgj5"]
+[ext_resource type="PackedScene" uid="uid://bljr8qhk88myq" path="res://entities/item/upgrade_item/multi_attack.tscn" id="13_3cmxv"]
+[ext_resource type="PackedScene" uid="uid://cdk60k111mqj8" path="res://entities/item/upgrade_item/summon_minion.tscn" id="15_iev1l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xc0y"]
 texture = ExtResource("1_5cnkq")
@@ -153,10 +158,10 @@ agent_radius = 20.0
 [node name="Dungeon" type="Node2D" unique_id=1684005168]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1312405686]
-offset_left = -47985.0
-offset_top = -26063.0
-offset_right = 63636.0
-offset_bottom = 41151.0
+offset_left = -13496.0
+offset_top = -12608.0
+offset_right = 17280.0
+offset_bottom = 7296.0
 color = Color(0.16470589, 0.15294118, 0.1882353, 1)
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1870731952]
@@ -177,3 +182,18 @@ position = Vector2(197, 34)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1313537823]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_5cnkq")
+
+[node name="MultiAttack" parent="." unique_id=1840333002 instance=ExtResource("13_3cmxv")]
+position = Vector2(5408, -4896)
+
+[node name="Damage" parent="." unique_id=735621618 instance=ExtResource("7_nklpf")]
+position = Vector2(-7136, 3104)
+
+[node name="HealthRegen" parent="." unique_id=1685790082 instance=ExtResource("10_qsgj5")]
+position = Vector2(-32, 1760)
+
+[node name="SummonMinion" parent="." unique_id=1845336274 instance=ExtResource("15_iev1l")]
+position = Vector2(10336, -3424)
+
+[node name="CritChance" parent="." unique_id=1266509450 instance=ExtResource("5_33x4t")]
+position = Vector2(-8544, -9888)
