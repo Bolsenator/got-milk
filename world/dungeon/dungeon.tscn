@@ -258,10 +258,91 @@ position = Vector2(10776, -1056)
 position = Vector2(4872, 504)
 
 [node name="Vase21" parent="Items" unique_id=2008525727 instance=ExtResource("9_ws2wm")]
-position = Vector2(7792, -136)
+position = Vector2(7768, 520)
 
 [node name="Vase22" parent="Items" unique_id=692919871 instance=ExtResource("9_ws2wm")]
-position = Vector2(4600, 2896)
+position = Vector2(4896, 2888)
 
 [node name="Vase23" parent="Items" unique_id=1576001543 instance=ExtResource("9_ws2wm")]
 position = Vector2(10160, 2892)
+
+[node name="Vase24" parent="Items" unique_id=1409693313 instance=ExtResource("9_ws2wm")]
+position = Vector2(9048, 516)
+
+[node name="Vase25" parent="Items" unique_id=2100475537 instance=ExtResource("9_ws2wm")]
+position = Vector2(0, -1892)
+
+[node name="Vase26" parent="Items" unique_id=473840694 instance=ExtResource("9_ws2wm")]
+position = Vector2(-2, -3104)
+
+[node name="Vase27" parent="Items" unique_id=706959512 instance=ExtResource("9_ws2wm")]
+position = Vector2(-1424, -2536)
+
+[node name="Vase28" parent="Items" unique_id=12639714 instance=ExtResource("9_ws2wm")]
+position = Vector2(1368, -2536)
+
+[node name="Vase29" parent="Items" unique_id=1321134574 instance=ExtResource("9_ws2wm")]
+position = Vector2(7784, -2496)
+
+[node name="Vase30" parent="Items" unique_id=2105612727 instance=ExtResource("9_ws2wm")]
+position = Vector2(9048, -1056)
+
+[node name="Vase31" parent="Items" unique_id=306004737 instance=ExtResource("9_ws2wm")]
+position = Vector2(6424, -1056)
+
+[node name="Vase32" parent="Items" unique_id=1446156624 instance=ExtResource("9_ws2wm")]
+position = Vector2(6422, 504)
+
+[node name="Vase33" parent="Items" unique_id=622945454 instance=ExtResource("9_ws2wm")]
+position = Vector2(10776, 516)
+
+[node name="Vase34" parent="Items" unique_id=925756953 instance=ExtResource("9_ws2wm")]
+position = Vector2(12736, 2896)
+
+[node name="Vase35" parent="Items" unique_id=362710767 instance=ExtResource("9_ws2wm")]
+position = Vector2(11648, 2888)
+
+[node name="Vase36" parent="Items" unique_id=2084110323 instance=ExtResource("9_ws2wm")]
+position = Vector2(8560, 2864)
+
+[node name="Vase37" parent="Items" unique_id=359895267 instance=ExtResource("9_ws2wm")]
+position = Vector2(6720, 2880)
+
+[node name="Vase38" parent="Items" unique_id=1938258581 instance=ExtResource("9_ws2wm")]
+position = Vector2(3544, 2904)
+
+[node name="Vase39" parent="Items" unique_id=276545224 instance=ExtResource("9_ws2wm")]
+position = Vector2(2336, 2888)
+
+[node name="Vase40" parent="Items" unique_id=1485373785 instance=ExtResource("9_ws2wm")]
+position = Vector2(-16, 3288)
+
+[node name="Vase41" parent="Items" unique_id=218717809 instance=ExtResource("9_ws2wm")]
+position = Vector2(-3048, 3536)
+
+[node name="Vase42" parent="Items" unique_id=167156888 instance=ExtResource("9_ws2wm")]
+position = Vector2(7784, -8736)
+
+[node name="Vase43" parent="Items" unique_id=1147640280 instance=ExtResource("9_ws2wm")]
+position = Vector2(6232, -8464)
+
+[node name="Vase44" parent="Items" unique_id=1254654865 instance=ExtResource("9_ws2wm")]
+position = Vector2(7728, -8776)
+
+[node name="Vase45" parent="Items" unique_id=1125204049 instance=ExtResource("9_ws2wm")]
+position = Vector2(1192, -10136)
+
+[node name="Vase46" parent="Items" unique_id=300196446 instance=ExtResource("9_ws2wm")]
+position = Vector2(-8, -7920)
+
+[node name="Vase47" parent="Items" unique_id=1695871698 instance=ExtResource("9_ws2wm")]
+position = Vector2(-4904, -3120)
+
+[node name="Vase48" parent="Items" unique_id=2135143728 instance=ExtResource("9_ws2wm")]
+position = Vector2(-7320, -4760)
+
+[node name="Vase49" parent="Items" unique_id=1800515854 instance=ExtResource("9_ws2wm")]
+position = Vector2(-7192, -984)
+
+[node name="Vase50" parent="Items" unique_id=1172695340 instance=ExtResource("9_ws2wm")]
+position = Vector2(-4896, -5944)

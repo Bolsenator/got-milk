@@ -11,12 +11,10 @@ script = ExtResource("1_wl5ax")
 
 [node name="HUD" parent="." unique_id=2085557247 instance=ExtResource("1_nb4k0")]
 anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.067
-offset_left = -960.0
-offset_right = 960.0
-offset_bottom = 1007.64
+anchor_left = 0.004
+anchor_top = 0.007
+offset_left = -7.6800003
+offset_top = -7.5600004
 
 [node name="LevelUp" parent="." unique_id=88389703 instance=ExtResource("2_ks8t7")]
 visible = false

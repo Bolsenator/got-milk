@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bgq5so1jkvful"]
+
+[ext_resource type="Script" uid="uid://t7e0sxrpriru" path="res://entities/helpers/offscreen_indicator.gd" id="1_21enq"]
+[ext_resource type="Texture2D" uid="uid://cb0fyeaf0dqxy" path="res://entities/helpers/arrow.png" id="2_oyyxs"]
+[ext_resource type="Texture2D" uid="uid://dng8x11eh8f5e" path="res://entities/helpers/question_mark.png" id="3_mdryl"]
+
+[node name="OffscreenIndicator" type="Node2D" unique_id=858992675]
+scale = Vector2(4, 4)
+script = ExtResource("1_21enq")
+
+[node name="ObjectiveSprite" type="Sprite2D" parent="." unique_id=189747340]
+texture = ExtResource("3_mdryl")
+
+[node name="ArrowSprite" type="Sprite2D" parent="." unique_id=584785664]
+texture = ExtResource("2_oyyxs")
+offset = Vector2(10, 0)

@@ -61,6 +61,8 @@ texture_under = ExtResource("3_w75iv")
 texture_progress = ExtResource("4_imuuq")
 metadata/_edit_use_anchors_ = true
 
+[node name="OffscreenIndicatorsContainer" type="Node2D" parent="." unique_id=536801711]
+
 [node name="TimeElapsed" type="Label" parent="." unique_id=59333090]
 layout_mode = 1
 anchors_preset = -1

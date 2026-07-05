@@ -196,6 +196,8 @@ func _ready():
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
 	for upgrade_item in get_tree().get_nodes_in_group("upgrade_item"):
 		upgrade_item.apply_upgrade_item.connect(_on_apply_upgrade_item)
+		upgrade_item.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
+		upgrade_item._on_level_ready()
 	
 	spawn_timer.wait_time = current_wave.interval
 	spawn_starting_minions()
@@ -353,3 +355,7 @@ func _on_despawn_timer_timeout() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen():
 			enemy.queue_free()
+
+func _on_create_offscreen_indicator(objective) -> void:
+	ui.hud_ui.create_offscreen_indicator(objective)
+	

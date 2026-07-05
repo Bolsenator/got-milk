@@ -4,6 +4,7 @@ extends Control
 @onready var time_elapsed_ui = $TimeElapsed
 @onready var player_level = $PlayerLevel
 @onready var upgrades_display: HBoxContainer = $UpgradesDisplay
+@onready var offscreen_indicators_container: Node2D = $OffscreenIndicatorsContainer
 
 @export var summon_minion_scene: PackedScene
 @export var max_health_scene: PackedScene
@@ -17,6 +18,8 @@ extends Control
 @export var crit_chance_scene: PackedScene
 @export var crit_damage_scene: PackedScene
 @export var multi_attack_scene: PackedScene
+
+var offscreen_indicator_scene: PackedScene = preload("res://entities/helpers/offscreen_indicator.tscn")
 
 var upgrade_scenes: Dictionary
 var active_upgrade_widgets: Dictionary
@@ -66,3 +69,8 @@ func update_upgrades_display(upgrade: Dictionary) -> void:
 		active_upgrade_widgets[stat] = new_widget
 	
 	active_upgrade_widgets[stat].update_display(upgrade)
+
+func create_offscreen_indicator(objective):
+	var new_indicator = offscreen_indicator_scene.instantiate()
+	new_indicator.initialize(objective)
+	offscreen_indicators_container.add_child(new_indicator)
