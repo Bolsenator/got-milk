@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bf3bflwj8l7k" path="res://world/dungeon/base_floor_tile.png" id="1_5cnkq"]
 [ext_resource type="Texture2D" uid="uid://biln6a43k6s7" path="res://world/dungeon/wall_tiles.png" id="2_5cnkq"]
-[ext_resource type="PackedScene" uid="uid://banuednph6by8" path="res://entities/milk/milk.tscn" id="3_06gaa"]
 [ext_resource type="PackedScene" uid="uid://ct0tf4jt1woq2" path="res://entities/item/upgrade_item/crit_chance.tscn" id="5_33x4t"]
 [ext_resource type="PackedScene" uid="uid://pt0bsrunun1u" path="res://entities/item/upgrade_item/damage.tscn" id="7_nklpf"]
 [ext_resource type="PackedScene" uid="uid://70vahs1eh6qr" path="res://entities/item/misc_item/vase.tscn" id="9_ws2wm"]
@@ -177,27 +176,92 @@ tile_set = SubResource("TileSet_3xc0y")
 
 [node name="Objects" type="TileMapLayer" parent="." unique_id=256786939 groups=["navigation_polygon_source_geometry_group"]]
 
-[node name="Milk" parent="." unique_id=687941712 instance=ExtResource("3_06gaa")]
-position = Vector2(197, 34)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1313537823]
 visible = false
 navigation_polygon = SubResource("NavigationPolygon_5cnkq")
 
-[node name="MultiAttack" parent="." unique_id=1840333002 instance=ExtResource("13_3cmxv")]
+[node name="Items" type="Node2D" parent="." unique_id=1435524720]
+
+[node name="MultiAttack" parent="Items" unique_id=1840333002 instance=ExtResource("13_3cmxv")]
 position = Vector2(5408, -4896)
 
-[node name="Damage" parent="." unique_id=735621618 instance=ExtResource("7_nklpf")]
+[node name="Damage" parent="Items" unique_id=735621618 instance=ExtResource("7_nklpf")]
 position = Vector2(-7136, 3104)
 
-[node name="HealthRegen" parent="." unique_id=1685790082 instance=ExtResource("10_qsgj5")]
+[node name="HealthRegen" parent="Items" unique_id=1685790082 instance=ExtResource("10_qsgj5")]
 position = Vector2(-32, 1760)
 
-[node name="SummonMinion" parent="." unique_id=1845336274 instance=ExtResource("15_iev1l")]
+[node name="SummonMinion" parent="Items" unique_id=1845336274 instance=ExtResource("15_iev1l")]
 position = Vector2(10336, -3424)
 
-[node name="CritChance" parent="." unique_id=1266509450 instance=ExtResource("5_33x4t")]
+[node name="CritChance" parent="Items" unique_id=1266509450 instance=ExtResource("5_33x4t")]
 position = Vector2(-8544, -9888)
 
-[node name="Vase" parent="." unique_id=976931231 instance=ExtResource("9_ws2wm")]
-position = Vector2(-208, -72)
+[node name="Vase" parent="Items" unique_id=976931231 instance=ExtResource("9_ws2wm")]
+position = Vector2(-2560, -1888)
+
+[node name="Vase2" parent="Items" unique_id=1638645175 instance=ExtResource("9_ws2wm")]
+position = Vector2(2560, -1888)
+
+[node name="Vase3" parent="Items" unique_id=1046337590 instance=ExtResource("9_ws2wm")]
+position = Vector2(2560, -3100)
+
+[node name="Vase4" parent="Items" unique_id=996196478 instance=ExtResource("9_ws2wm")]
+position = Vector2(-2562, -3104)
+
+[node name="Vase5" parent="Items" unique_id=798431143 instance=ExtResource("9_ws2wm")]
+position = Vector2(-2304, 256)
+
+[node name="Vase6" parent="Items" unique_id=1955982974 instance=ExtResource("9_ws2wm")]
+position = Vector2(-4928, 1024)
+
+[node name="Vase7" parent="Items" unique_id=1910446490 instance=ExtResource("9_ws2wm")]
+position = Vector2(-4962, -3080)
+
+[node name="Vase8" parent="Items" unique_id=383945621 instance=ExtResource("9_ws2wm")]
+position = Vector2(-4960, -6040)
+
+[node name="Vase9" parent="Items" unique_id=798969896 instance=ExtResource("9_ws2wm")]
+position = Vector2(-7248, -1088)
+
+[node name="Vase10" parent="Items" unique_id=770599060 instance=ExtResource("9_ws2wm")]
+position = Vector2(-7248, -4704)
+
+[node name="Vase11" parent="Items" unique_id=1763794431 instance=ExtResource("9_ws2wm")]
+position = Vector2(-7248, -7688)
+
+[node name="Vase12" parent="Items" unique_id=2016427836 instance=ExtResource("9_ws2wm")]
+position = Vector2(-4528, -9800)
+
+[node name="Vase13" parent="Items" unique_id=1680961179 instance=ExtResource("9_ws2wm")]
+position = Vector2(-2120, -8192)
+
+[node name="Vase14" parent="Items" unique_id=1280213003 instance=ExtResource("9_ws2wm")]
+position = Vector2(1472, -9856)
+
+[node name="Vase15" parent="Items" unique_id=1306051469 instance=ExtResource("9_ws2wm")]
+position = Vector2(5016, -9480)
+
+[node name="Vase16" parent="Items" unique_id=103997036 instance=ExtResource("9_ws2wm")]
+position = Vector2(8928, -7256)
+
+[node name="Vase17" parent="Items" unique_id=415095248 instance=ExtResource("9_ws2wm")]
+position = Vector2(11128, -9496)
+
+[node name="Vase18" parent="Items" unique_id=314273455 instance=ExtResource("9_ws2wm")]
+position = Vector2(4872, -1056)
+
+[node name="Vase19" parent="Items" unique_id=1879789814 instance=ExtResource("9_ws2wm")]
+position = Vector2(10776, -1056)
+
+[node name="Vase20" parent="Items" unique_id=516055450 instance=ExtResource("9_ws2wm")]
+position = Vector2(4872, 504)
+
+[node name="Vase21" parent="Items" unique_id=2008525727 instance=ExtResource("9_ws2wm")]
+position = Vector2(7792, -136)
+
+[node name="Vase22" parent="Items" unique_id=692919871 instance=ExtResource("9_ws2wm")]
+position = Vector2(4600, 2896)
+
+[node name="Vase23" parent="Items" unique_id=1576001543 instance=ExtResource("9_ws2wm")]
+position = Vector2(10160, 2892)
