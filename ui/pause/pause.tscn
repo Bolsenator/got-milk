@@ -58,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.0
-offset_top = -37.0
-offset_right = 112.0
-offset_bottom = 36.75
+offset_left = -160.0
+offset_top = -55.0
+offset_right = 160.0
+offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_moj0k")
@@ -74,14 +74,13 @@ patch_margin_bottom = 24
 [node name="CloseMenu" type="TextureButton" parent="NinePatchRect" unique_id=975230803]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.94200003
-anchor_top = 0.054
-anchor_right = 0.97800004
-anchor_bottom = 0.19000001
-offset_left = 0.10798645
-offset_top = 0.017499924
-offset_right = -0.028015137
-offset_bottom = -0.012500763
+anchor_left = 0.95800006
+anchor_top = 0.036000002
+anchor_right = 0.98700005
+anchor_bottom = 0.125
+offset_left = -0.060028076
+offset_top = -0.03199911
+offset_right = 0.15997314
 texture_normal = SubResource("AtlasTexture_t3fb8")
 texture_pressed = SubResource("AtlasTexture_25a3s")
 
@@ -90,24 +89,20 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.6875
-offset_top = 0.125
+offset_left = 2.0
+offset_top = 6.0
 offset_right = -2.6875
 offset_bottom = 0.125
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1096589109]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 64
 
 [node name="Restart" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1276311643]
 layout_mode = 2
