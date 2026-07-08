@@ -2,13 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://ctuqai7nsociw" path="res://world/dungeon/dungeon.tscn" id="1_0u2o0"]
 [ext_resource type="Script" uid="uid://g2owj60c2p0g" path="res://world/level.gd" id="1_ype84"]
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="2_hx0it"]
 [ext_resource type="PackedScene" uid="uid://bncc0esttelux" path="res://entities/player/player.tscn" id="2_jjmkw"]
+[ext_resource type="Resource" uid="uid://bwgnyxs7sljed" path="res://data/upgrades/damage_reduction.tres" id="3_f48di"]
+[ext_resource type="Resource" uid="uid://hoiaj7catrna" path="res://data/upgrades/max_health.tres" id="3_i2qu6"]
+[ext_resource type="Resource" uid="uid://byyt1df62gpbb" path="res://data/upgrades/minion_attack_cooldown.tres" id="4_be3xh"]
+[ext_resource type="Resource" uid="uid://b8ry3obx01tu5" path="res://data/upgrades/exp_gained.tres" id="4_ev86w"]
 [ext_resource type="PackedScene" uid="uid://b2j1gr2vdc3or" path="res://ui/ui.tscn" id="4_s5sgh"]
+[ext_resource type="Resource" uid="uid://b8kvmjxcwtntt" path="res://data/upgrades/minion_crit_chance.tres" id="5_f48di"]
+[ext_resource type="Resource" uid="uid://b43x2teji3yyb" path="res://data/upgrades/health_regen.tres" id="5_tjwke"]
+[ext_resource type="Resource" uid="uid://cckjas3s4gors" path="res://data/upgrades/minion_crit_damage.tres" id="6_ev86w"]
 [ext_resource type="AudioStream" uid="uid://cymk6h23x8i7m" path="res://assets/music/8bit Dungeon Boss.mp3" id="6_oh72w"]
+[ext_resource type="Resource" uid="uid://cu5o87jwibkar" path="res://data/upgrades/minion_damage.tres" id="7_tjwke"]
+[ext_resource type="Resource" uid="uid://c7tv52mgd35l6" path="res://data/upgrades/minion_movement_speed.tres" id="8_0gefm"]
+[ext_resource type="Resource" uid="uid://b61qjcrtwlk7e" path="res://data/upgrades/multi_attack.tres" id="9_vw35i"]
+[ext_resource type="Resource" uid="uid://bj72kf35lam15" path="res://data/upgrades/player_movement_speed.tres" id="10_xyp4h"]
+[ext_resource type="Resource" uid="uid://vc8cqxvf8agk" path="res://data/upgrades/summon_minion.tres" id="11_ksyvv"]
 
 [node name="Level" type="Node" unique_id=1882998417]
 process_mode = 3
 script = ExtResource("1_ype84")
+upgrade_pool = Array[ExtResource("2_hx0it")]([ExtResource("3_f48di"), ExtResource("4_ev86w"), ExtResource("5_tjwke"), ExtResource("3_i2qu6"), ExtResource("4_be3xh"), ExtResource("5_f48di"), ExtResource("6_ev86w"), ExtResource("7_tjwke"), ExtResource("8_0gefm"), ExtResource("9_vw35i"), ExtResource("10_xyp4h"), ExtResource("11_ksyvv")])
 
 [node name="Dungeon" parent="." unique_id=1684005168 instance=ExtResource("1_0u2o0")]
 process_mode = 1
