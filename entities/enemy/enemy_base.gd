@@ -13,7 +13,6 @@ var health: float
 var speed: float = 50.0
 var damage: float = 5.0
 var exp_reward: int = 5
-#var attack_cushion: float = 4 # Prevents sprite from going crazy when right on player
 var player_in_range: bool = false
 var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0

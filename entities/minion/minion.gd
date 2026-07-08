@@ -12,62 +12,6 @@ extends CharacterBody2D
 @onready var attack_cooldown_bar = $AttackCooldownBar
 @onready var attack_cooldown_bar_animation = $AttackCooldownBar/AnimationPlayer
 
-#############################################
-# Minion Upgradable Stats
-#############################################
-
-## Damage
-#var damage_start: float = 5.0
-#var damage_modifier: float = 1.0 : 
-	#set(new_value):
-		#damage_modifier = new_value
-		#damage = damage_start * damage_modifier
-#var damage: float = damage_start * damage_modifier
-#
-## Attack Cooldown
-#var attack_cooldown_start: float = 2.0
-#var attack_cooldown_modifier: float = 1.0 : 
-	#set(new_value):
-		#attack_cooldown_modifier = new_value
-		#attack_cooldown = attack_cooldown_start * attack_cooldown_modifier
-		#if attack_cooldown_bar:
-			#attack_cooldown_bar.max_value = attack_cooldown
-#var attack_cooldown: float = attack_cooldown_start * attack_cooldown_modifier
-#
-## Movement Speed
-#var minion_movement_speed_start: float = 325.0
-#var minion_movement_speed_modifier: float = 1.0 : 
-	#set(new_value):
-		#minion_movement_speed_modifier = new_value
-		#minion_movement_speed = minion_movement_speed_start * minion_movement_speed_modifier
-#var minion_movement_speed: float = minion_movement_speed_start * minion_movement_speed_modifier
-#
-## Crit Chance
-#var crit_chance_start: float = 1.0
-#var crit_chance_modifier: float = 0.0 : 
-	#set(new_value):
-		#crit_chance_modifier = new_value
-		#crit_chance = crit_chance_start * crit_chance_modifier
-#var crit_chance = crit_chance_start * crit_chance_modifier
-#
-## Crit Damage
-#var crit_damage_start: float = 1.0
-#var crit_damage_modifier: float = 1.5 : 
-	#set(new_value):
-		#crit_damage_modifier = new_value
-		#crit_damage = crit_damage_start * crit_damage_modifier
-#var crit_damage = crit_damage_start * crit_damage_modifier
-#
-## Multi-Attack
-#var multi_attack_start: int = 1
-#var multi_attack_modifier: int = 0 :
-	#set(new_value):
-		#multi_attack_modifier = new_value
-		#multi_attack = multi_attack_start + multi_attack_modifier
-#var multi_attack = multi_attack_start + multi_attack_modifier
-
-#############################################
-
 var player: CharacterBody2D
 var target_enemy: CharacterBody2D = null
 
@@ -222,7 +166,6 @@ func set_targeting_state() -> void:
 
 func attack_enemy() -> void:
 	var final_damage: float = damage
-	randomize()
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
 			if randf() < crit_chance:
@@ -238,8 +181,6 @@ func attack_enemy() -> void:
 	return
 
 func apply_upgrade(upgrade: UpgradeDefinition):
-	#var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
-	#set(upgrade["stat"], new_modifier)
 	stats.apply_upgrade(upgrade)
 
 func pop_in_attack_cooldown_bar() -> void:

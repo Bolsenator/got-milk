@@ -14,53 +14,6 @@ signal exp_changed(new_exp, max_exp)
 signal level_up()
 signal player_died()
 
-#############################################
-# Player Upgradable Stats
-#############################################
-
-## Health
-#var max_health_start: float = 100.00
-#var max_health_modifier: float = 1.00 :
-	#set(new_value):
-		#max_health_modifier = new_value
-		#max_health = max_health_start * max_health_modifier
-		#health_bar.max_value = max_health
-#var max_health: float = max_health_start * max_health_modifier
-#
-## Regen Per Second
-#var health_regen_per_sec_start: float = 1.00
-#var health_regen_per_sec_modifier: float = 0.00 :
-	#set(new_value):
-		#health_regen_per_sec_modifier = new_value
-		#health_regen_per_sec = health_regen_per_sec_start * health_regen_per_sec_modifier
-#var health_regen_per_sec: float = health_regen_per_sec_start * health_regen_per_sec_modifier
-#
-## Damage Reduction
-#var damage_reduction_start: float = 1.00
-#var damage_reduction_modifier: float = 0.00 :
-	#set(new_value):
-		#damage_reduction_modifier = new_value
-		#damage_reduction = damage_reduction_start * damage_reduction_modifier
-#var damage_reduction: float = damage_reduction_start * damage_reduction_modifier
-#
-## Movement Speed
-#var player_movement_speed_start : float = 300.00
-#var player_movement_speed_modifier: float = 1.00 :
-	#set(new_value):
-		#player_movement_speed_modifier = new_value
-		#player_movement_speed = player_movement_speed_start * player_movement_speed_modifier
-#var player_movement_speed : float = player_movement_speed_start * player_movement_speed_modifier
-#
-## Exp Gain
-#var exp_gain_start: float = 1.00
-#var exp_gain_modifier: float = 1.00 : 
-	#set(new_value):
-		#exp_gain_modifier = new_value
-		#exp_gain = exp_gain_start * exp_gain_modifier
-#var exp_gain: float = exp_gain_start * exp_gain_modifier
-
-#############################################
-
 var stats:= StatBlock.new()
 
 var max_health
@@ -82,8 +35,6 @@ var current_exp : float = 0.0 :
 var max_exp : float = 30.0
 var player_level: int = 1
 var flash_tween: Tween
-
-#############################################
 
 func _ready():
 	_register_stats()
@@ -129,8 +80,6 @@ func gain_exp(exp_amount : float):
 		current_exp -= max_exp
 
 func apply_upgrade(upgrade):
-	#var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
-	#set(upgrade["stat"], new_modifier)
 	stats.apply_upgrade(upgrade)
 
 func heal(amount: float):
@@ -155,7 +104,6 @@ func flash_damage() -> void:
 func die():
 	died_sound.play()
 	player_died.emit()
-
 
 func _on_health_regen_timer_timeout() -> void:
 	current_health += health_regen_per_sec * max_health
