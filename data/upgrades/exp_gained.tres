@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://b8ry3obx01tu5"]
+
+[ext_resource type="Texture2D" uid="uid://dsh8ek8w2q0bk" path="res://ui/upgrades/exp_gained.png" id="1_babc1"]
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_rc1ug"]
+
+[resource]
+script = ExtResource("1_rc1ug")
+upgrade_name = "Exp Gained"
+description = "Increase exp gained by 10%"
+stat = "exp_gain_modifier"
+bonus = 0.1
+max_count = 5
+icon = ExtResource("1_babc1")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

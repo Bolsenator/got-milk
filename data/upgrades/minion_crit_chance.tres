@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://b8kvmjxcwtntt"]
+
+[ext_resource type="Texture2D" uid="uid://c33qq3ucqrlxh" path="res://ui/upgrades/minion_crit_chance.png" id="1_blonv"]
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_llsih"]
+
+[resource]
+script = ExtResource("1_llsih")
+upgrade_name = "Minion Crit Chance"
+description = "Increase the chance that minions attacks crit by 5%"
+target = 1
+stat = "crit_chance_modifier"
+bonus = 0.05
+max_count = 10
+icon = ExtResource("1_blonv")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

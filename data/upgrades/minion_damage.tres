@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://cu5o87jwibkar"]
+
+[ext_resource type="Texture2D" uid="uid://cbiwig855imvj" path="res://ui/upgrades/minion_damage.png" id="1_3v4xh"]
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_bnjqk"]
+
+[resource]
+script = ExtResource("1_bnjqk")
+upgrade_name = "Minion Damage"
+description = "Increase minion damage by 50%"
+target = 1
+stat = "damage_modifier"
+bonus = 0.5
+max_count = 10
+icon = ExtResource("1_3v4xh")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

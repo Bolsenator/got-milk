@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://b43x2teji3yyb"]
+
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_6mj8d"]
+[ext_resource type="Texture2D" uid="uid://c1hu46qawhibd" path="res://ui/upgrades/health_regen.png" id="1_ekt35"]
+
+[resource]
+script = ExtResource("1_6mj8d")
+upgrade_name = "Health Regen"
+description = "Increase % of health regenerated per second by 1%"
+stat = "health_regen_per_sec_modifier"
+bonus = 0.01
+max_count = 5
+icon = ExtResource("1_ekt35")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

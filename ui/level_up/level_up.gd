@@ -10,9 +10,9 @@ func populate_upgrade_buttons(upgrades: Array):
 		if button.pressed.is_connected(_on_upgrade_selected):
 			button.pressed.disconnect(_on_upgrade_selected)
 		button.pressed.connect(_on_upgrade_selected.bind(upgrade))
-		button.icon = upgrade["icon"]
-		button.text = upgrade["name"]
-		button.tooltip_text = upgrade["description"]
+		button.icon = upgrade.icon
+		button.text = upgrade.upgrade_name
+		button.tooltip_text = upgrade.description
 
-func _on_upgrade_selected(upgrade: Dictionary):
+func _on_upgrade_selected(upgrade: UpgradeDefinition):
 	apply_upgrade.emit(upgrade)

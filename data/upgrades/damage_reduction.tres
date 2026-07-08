@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://bwgnyxs7sljed"]
+
+[ext_resource type="Texture2D" uid="uid://crmeh0chutadd" path="res://ui/upgrades/damage_reduction.png" id="1_oycfr"]
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_tjyu4"]
+
+[resource]
+script = ExtResource("1_tjyu4")
+upgrade_name = "Damage Reduction"
+description = "Decrease damage taken by 5%"
+stat = "damage_reduction_modifier"
+bonus = 0.05
+max_count = 5
+icon = ExtResource("1_oycfr")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

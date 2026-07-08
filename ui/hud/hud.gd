@@ -60,15 +60,13 @@ func update_time_elapsed(time_elapsed: float):
 	var seconds = int(time_elapsed) % 60
 	time_elapsed_ui.text = str("%02d:%02d" % [minutes, seconds])
 
-func update_upgrades_display(upgrade: Dictionary) -> void:
-	var stat = upgrade["stat"]
-
+func update_upgrades_display(upgrade: UpgradeDefinition, count: int) -> void:
+	var stat = upgrade.stat
 	if !active_upgrade_widgets.has(stat):
 		var new_widget = upgrade_scenes[stat].instantiate()
 		upgrades_display.add_child(new_widget)
 		active_upgrade_widgets[stat] = new_widget
-	
-	active_upgrade_widgets[stat].update_display(upgrade)
+	active_upgrade_widgets[stat].update_display(upgrade, count)
 
 func create_offscreen_indicator(objective):
 	var new_indicator = offscreen_indicator_scene.instantiate()

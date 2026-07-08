@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://b61qjcrtwlk7e"]
+
+[ext_resource type="Texture2D" uid="uid://cngymjn25if61" path="res://ui/upgrades/multi_attack.png" id="1_25yt4"]
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_x028y"]
+
+[resource]
+script = ExtResource("1_x028y")
+upgrade_name = "Multi-Attack"
+description = "Increase minion hits per attack by 1"
+target = 1
+stat = "multi_attack_modifier"
+bonus = 1.0
+max_count = 2
+icon = ExtResource("1_25yt4")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://c7tv52mgd35l6"]
+
+[ext_resource type="Texture2D" uid="uid://bkwbgb4up4m1r" path="res://ui/upgrades/minion_movement_speed.png" id="1_7s4cd"]
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_hjuyu"]
+
+[resource]
+script = ExtResource("1_hjuyu")
+upgrade_name = "Minion Movement Speed"
+description = "Increase minion movement speed by 5%"
+target = 1
+stat = "minion_movement_speed_modifier"
+bonus = 0.05
+max_count = 10
+icon = ExtResource("1_7s4cd")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

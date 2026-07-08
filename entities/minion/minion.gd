@@ -16,55 +16,55 @@ extends CharacterBody2D
 # Minion Upgradable Stats
 #############################################
 
-# Damage
-var damage_start: float = 5.0
-var damage_modifier: float = 1.0 : 
-	set(new_value):
-		damage_modifier = new_value
-		damage = damage_start * damage_modifier
-var damage: float = damage_start * damage_modifier
-
-# Attack Cooldown
-var attack_cooldown_start: float = 2.0
-var attack_cooldown_modifier: float = 1.0 : 
-	set(new_value):
-		attack_cooldown_modifier = new_value
-		attack_cooldown = attack_cooldown_start * attack_cooldown_modifier
-		if attack_cooldown_bar:
-			attack_cooldown_bar.max_value = attack_cooldown
-var attack_cooldown: float = attack_cooldown_start * attack_cooldown_modifier
-
-# Movement Speed
-var minion_movement_speed_start: float = 325.0
-var minion_movement_speed_modifier: float = 1.0 : 
-	set(new_value):
-		minion_movement_speed_modifier = new_value
-		minion_movement_speed = minion_movement_speed_start * minion_movement_speed_modifier
-var minion_movement_speed: float = minion_movement_speed_start * minion_movement_speed_modifier
-
-# Crit Chance
-var crit_chance_start: float = 1.0
-var crit_chance_modifier: float = 0.0 : 
-	set(new_value):
-		crit_chance_modifier = new_value
-		crit_chance = crit_chance_start * crit_chance_modifier
-var crit_chance = crit_chance_start * crit_chance_modifier
-
-# Crit Damage
-var crit_damage_start: float = 1.0
-var crit_damage_modifier: float = 1.5 : 
-	set(new_value):
-		crit_damage_modifier = new_value
-		crit_damage = crit_damage_start * crit_damage_modifier
-var crit_damage = crit_damage_start * crit_damage_modifier
-
-# Multi-Attack
-var multi_attack_start: int = 1
-var multi_attack_modifier: int = 0 :
-	set(new_value):
-		multi_attack_modifier = new_value
-		multi_attack = multi_attack_start + multi_attack_modifier
-var multi_attack = multi_attack_start + multi_attack_modifier
+## Damage
+#var damage_start: float = 5.0
+#var damage_modifier: float = 1.0 : 
+	#set(new_value):
+		#damage_modifier = new_value
+		#damage = damage_start * damage_modifier
+#var damage: float = damage_start * damage_modifier
+#
+## Attack Cooldown
+#var attack_cooldown_start: float = 2.0
+#var attack_cooldown_modifier: float = 1.0 : 
+	#set(new_value):
+		#attack_cooldown_modifier = new_value
+		#attack_cooldown = attack_cooldown_start * attack_cooldown_modifier
+		#if attack_cooldown_bar:
+			#attack_cooldown_bar.max_value = attack_cooldown
+#var attack_cooldown: float = attack_cooldown_start * attack_cooldown_modifier
+#
+## Movement Speed
+#var minion_movement_speed_start: float = 325.0
+#var minion_movement_speed_modifier: float = 1.0 : 
+	#set(new_value):
+		#minion_movement_speed_modifier = new_value
+		#minion_movement_speed = minion_movement_speed_start * minion_movement_speed_modifier
+#var minion_movement_speed: float = minion_movement_speed_start * minion_movement_speed_modifier
+#
+## Crit Chance
+#var crit_chance_start: float = 1.0
+#var crit_chance_modifier: float = 0.0 : 
+	#set(new_value):
+		#crit_chance_modifier = new_value
+		#crit_chance = crit_chance_start * crit_chance_modifier
+#var crit_chance = crit_chance_start * crit_chance_modifier
+#
+## Crit Damage
+#var crit_damage_start: float = 1.0
+#var crit_damage_modifier: float = 1.5 : 
+	#set(new_value):
+		#crit_damage_modifier = new_value
+		#crit_damage = crit_damage_start * crit_damage_modifier
+#var crit_damage = crit_damage_start * crit_damage_modifier
+#
+## Multi-Attack
+#var multi_attack_start: int = 1
+#var multi_attack_modifier: int = 0 :
+	#set(new_value):
+		#multi_attack_modifier = new_value
+		#multi_attack = multi_attack_start + multi_attack_modifier
+#var multi_attack = multi_attack_start + multi_attack_modifier
 
 #############################################
 
@@ -74,6 +74,14 @@ var target_enemy: CharacterBody2D = null
 var current_target_position: Vector2
 var max_distance_squared_to_target: float = 256.0 # Squared in advance for distance_to calculations
 
+var stats:= StatBlock.new()
+
+var damage
+var attack_cooldown
+var minion_movement_speed
+var crit_chance
+var crit_damage
+var multi_attack
 
 var soft_leash_radius = 300.0
 var hard_leash_radius = 800.0
@@ -92,6 +100,9 @@ var state = State.FOLLOW
 signal crit_landed(enemy_position)
 
 func _ready():
+	_register_stats()
+	stats.stat_changed.connect(_on_stat_changed)
+	
 	animated_sprite.play("idle")
 	player = get_tree().get_first_node_in_group("player")
 	summon_sound.play(2.0)
@@ -105,7 +116,6 @@ func _ready():
 	navigation_agent.target_position = current_target_position
 	
 	# Setup cooldown bar
-	attack_cooldown_bar.max_value = attack_cooldown
 	attack_cooldown_bar.self_modulate.a = 0.0
 
 func _physics_process(delta: float):
@@ -146,6 +156,19 @@ func _physics_process(delta: float):
 	
 	move_and_slide()
 	animated_sprite.flip_h = velocity.x < 0
+
+func _register_stats() -> void:
+	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
+	_register(StatModifier.new("damage_modifier", 5.0))
+	_register(StatModifier.new("attack_cooldown_modifier", 2.0))
+	_register(StatModifier.new("minion_movement_speed_modifier", 325.0))
+	_register(StatModifier.new("crit_chance_modifier", 1.0, StatModifier.Mode.MULTIPLY, 0.0))
+	_register(StatModifier.new("crit_damage_modifier", 1.0, StatModifier.Mode.MULTIPLY, 1.5))
+	_register(StatModifier.new("multi_attack_modifier", 1.0, StatModifier.Mode.ADD, 0.0))
+
+func _register(modifier: StatModifier) -> void:
+	stats.register(modifier)
+	_on_stat_changed(modifier.stat_name, modifier.value)
 
 func set_target_position(target: CharacterBody2D, target_desired_distance: float):
 	navigation_agent.target_desired_distance = target_desired_distance
@@ -214,9 +237,10 @@ func attack_enemy() -> void:
 	await animated_sprite.animation_finished
 	return
 
-func apply_upgrade(upgrade):
-	var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
-	set(upgrade["stat"], new_modifier)
+func apply_upgrade(upgrade: UpgradeDefinition):
+	#var new_modifier = get(upgrade["stat"]) + upgrade["bonus"]
+	#set(upgrade["stat"], new_modifier)
+	stats.apply_upgrade(upgrade)
 
 func pop_in_attack_cooldown_bar() -> void:
 	attack_cooldown_bar_animation.play("pop_in")
@@ -239,3 +263,19 @@ func _on_target_died():
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		animated_sprite.play("idle")
+
+func _on_stat_changed(stat_name: String, new_value: float):
+	match stat_name:
+		"damage_modifier":
+			damage = new_value
+		"attack_cooldown_modifier":
+			attack_cooldown = new_value
+			attack_cooldown_bar.max_value = attack_cooldown
+		"minion_movement_speed_modifier":
+			minion_movement_speed = new_value
+		"crit_chance_modifier":
+			crit_chance = new_value
+		"crit_damage_modifier":
+			crit_damage = new_value
+		"multi_attack_modifier":
+			multi_attack = new_value

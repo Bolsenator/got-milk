@@ -62,134 +62,150 @@ const ENEMY_SCENES: Dictionary = {
 }
 
 var number_of_upgrade_choices: int = 5
-var upgrades_pool: Array = [
-	{
-		"name": "Summon Minion",
-		"description": "Summon an additional skeleton minion",
-		"target": "summon_minion",
-		"stat": "summon_minion",
-		"bonus": null,
-		"starting_count": 1,
-		"count": 0,
-		"max": 5,
-		"icon": preload("res://ui/upgrades/summon_minion.png")
-	},
-	{
-		"name": "Max Health",
-		"description": "Increase max health by 10%",
-		"target": "player",
-		"stat": "max_health_modifier",
-		"bonus": 0.10,
-		"count": 0,
-		"max": 10,
-		"icon": preload("res://ui/upgrades/max_health.png")
-	},
-	{
-		"name": "Health Regen",
-		"description": "Increase % of health regenerated per second by 1%",
-		"target": "player",
-		"stat": "health_regen_per_sec_modifier",
-		"bonus": 0.01,
-		"count": 0,
-		"max": 5,
-		"icon": preload("res://ui/upgrades/health_regen.png")
-	},
-	{
-		"name": "Damage Reduction",
-		"description": "Decrease damage taken by 5%",
-		"target": "player",
-		"stat": "damage_reduction_modifier",
-		"bonus": 0.05,
-		"count": 0,
-		"max": 5,
-		"icon": preload("res://ui/upgrades/damage_reduction.png")
-	},
-	{
-		"name": "Player Movement Speed",
-		"description": "Increase player movement speed by 5%",
-		"target": "player",
-		"stat": "player_movement_speed_modifier",
-		"bonus": 0.05,
-		"count": 0,
-		"max": 10,
-		"icon": preload("res://ui/upgrades/player_movement_speed.png")
-	},
-	{
-		"name": "Exp Gained",
-		"description": "Increase exp gained by 10%",
-		"target": "player",
-		"stat": "exp_gain_modifier",
-		"bonus": 0.10,
-		"count": 0,
-		"max": 5,
-		"icon": preload("res://ui/upgrades/exp_gained.png")
-	},
-	{
-		"name": "Minion Damage",
-		"description": "Increase minion damage by 50%",
-		"target": "minion",
-		"stat": "damage_modifier",
-		"bonus": 0.50,
-		"count": 0,
-		"max": 10,
-		"icon": preload("res://ui/upgrades/minion_damage.png")
-	},
-		{
-		"name": "Minion Attack Cooldown",
-		"description": "Decrease minion attack cooldown by 10%",
-		"target": "minion",
-		"stat": "attack_cooldown_modifier",
-		"bonus": -0.10,
-		"count": 0,
-		"max": 5,
-		"icon": preload("res://ui/upgrades/minion_attack_cooldown.png")
-	},
-	{
-		"name": "Minion Movement Speed",
-		"description": "Increase minion movement speed by 5%",
-		"target": "minion",
-		"stat": "minion_movement_speed_modifier",
-		"bonus": 0.05,
-		"count": 0,
-		"max": 10,
-		"icon": preload("res://ui/upgrades/minion_movement_speed.png")
-	},
-	{
-		"name": "Minion Crit Chance",
-		"description": "Increase the chance that minions attacks crit by 5%",
-		"target": "minion",
-		"stat": "crit_chance_modifier",
-		"bonus": 0.05,
-		"count": 0,
-		"max": 10,
-		"icon": preload("res://ui/upgrades/minion_crit_chance.png")
-	},
-	{
-		"name": "Minion Crit Damage",
-		"description": "Increase the damage of minion crits by 50%",
-		"target": "minion",
-		"stat": "crit_damage_modifier",
-		"bonus": 0.50,
-		"count": 0,
-		"max": 10,
-		"icon": preload("res://ui/upgrades/minion_crit_damage.png")
-	},
-	{
-		"name": "Multi-Attack",
-		"description": "Increase minion hits per attack by 1",
-		"target": "minion",
-		"stat": "multi_attack_modifier",
-		"bonus": 1,
-		"count": 0,
-		"max": 2,
-		"icon": preload("res://ui/upgrades/multi_attack.png")
-	}
+#var upgrades_pool: Array = [
+	#{
+		#"name": "Summon Minion",
+		#"description": "Summon an additional skeleton minion",
+		#"target": "summon_minion",
+		#"stat": "summon_minion",
+		#"bonus": null,
+		#"starting_count": 1,
+		#"count": 0,
+		#"max": 5,
+		#"icon": preload("res://ui/upgrades/summon_minion.png")
+	#},
+	#{
+		#"name": "Max Health",
+		#"description": "Increase max health by 10%",
+		#"target": "player",
+		#"stat": "max_health_modifier",
+		#"bonus": 0.10,
+		#"count": 0,
+		#"max": 10,
+		#"icon": preload("res://ui/upgrades/max_health.png")
+	#},
+	#{
+		#"name": "Health Regen",
+		#"description": "Increase % of health regenerated per second by 1%",
+		#"target": "player",
+		#"stat": "health_regen_per_sec_modifier",
+		#"bonus": 0.01,
+		#"count": 0,
+		#"max": 5,
+		#"icon": preload("res://ui/upgrades/health_regen.png")
+	#},
+	#{
+		#"name": "Damage Reduction",
+		#"description": "Decrease damage taken by 5%",
+		#"target": "player",
+		#"stat": "damage_reduction_modifier",
+		#"bonus": 0.05,
+		#"count": 0,
+		#"max": 5,
+		#"icon": preload("res://ui/upgrades/damage_reduction.png")
+	#},
+	#{
+		#"name": "Player Movement Speed",
+		#"description": "Increase player movement speed by 5%",
+		#"target": "player",
+		#"stat": "player_movement_speed_modifier",
+		#"bonus": 0.05,
+		#"count": 0,
+		#"max": 10,
+		#"icon": preload("res://ui/upgrades/player_movement_speed.png")
+	#},
+	#{
+		#"name": "Exp Gained",
+		#"description": "Increase exp gained by 10%",
+		#"target": "player",
+		#"stat": "exp_gain_modifier",
+		#"bonus": 0.10,
+		#"count": 0,
+		#"max": 5,
+		#"icon": preload("res://ui/upgrades/exp_gained.png")
+	#},
+	#{
+		#"name": "Minion Damage",
+		#"description": "Increase minion damage by 50%",
+		#"target": "minion",
+		#"stat": "damage_modifier",
+		#"bonus": 0.50,
+		#"count": 0,
+		#"max": 10,
+		#"icon": preload("res://ui/upgrades/minion_damage.png")
+	#},
+		#{
+		#"name": "Minion Attack Cooldown",
+		#"description": "Decrease minion attack cooldown by 10%",
+		#"target": "minion",
+		#"stat": "attack_cooldown_modifier",
+		#"bonus": -0.10,
+		#"count": 0,
+		#"max": 5,
+		#"icon": preload("res://ui/upgrades/minion_attack_cooldown.png")
+	#},
+	#{
+		#"name": "Minion Movement Speed",
+		#"description": "Increase minion movement speed by 5%",
+		#"target": "minion",
+		#"stat": "minion_movement_speed_modifier",
+		#"bonus": 0.05,
+		#"count": 0,
+		#"max": 10,
+		#"icon": preload("res://ui/upgrades/minion_movement_speed.png")
+	#},
+	#{
+		#"name": "Minion Crit Chance",
+		#"description": "Increase the chance that minions attacks crit by 5%",
+		#"target": "minion",
+		#"stat": "crit_chance_modifier",
+		#"bonus": 0.05,
+		#"count": 0,
+		#"max": 10,
+		#"icon": preload("res://ui/upgrades/minion_crit_chance.png")
+	#},
+	#{
+		#"name": "Minion Crit Damage",
+		#"description": "Increase the damage of minion crits by 50%",
+		#"target": "minion",
+		#"stat": "crit_damage_modifier",
+		#"bonus": 0.50,
+		#"count": 0,
+		#"max": 10,
+		#"icon": preload("res://ui/upgrades/minion_crit_damage.png")
+	#},
+	#{
+		#"name": "Multi-Attack",
+		#"description": "Increase minion hits per attack by 1",
+		#"target": "minion",
+		#"stat": "multi_attack_modifier",
+		#"bonus": 1,
+		#"count": 0,
+		#"max": 2,
+		#"icon": preload("res://ui/upgrades/multi_attack.png")
+	#}
+#]
+var upgrade_pool: Array[UpgradeDefinition] = [
+	preload("res://data/upgrades/damage_reduction.tres"),
+	preload("res://data/upgrades/exp_gained.tres"),
+	preload("res://data/upgrades/health_regen.tres"),
+	preload("res://data/upgrades/max_health.tres"),
+	preload("res://data/upgrades/minion_attack_cooldown.tres"),
+	preload("res://data/upgrades/minion_crit_chance.tres"),
+	preload("res://data/upgrades/minion_crit_damage.tres"),
+	preload("res://data/upgrades/minion_damage.tres"),
+	preload("res://data/upgrades/minion_movement_speed.tres"),
+	preload("res://data/upgrades/multi_attack.tres"),
+	preload("res://data/upgrades/player_movement_speed.tres"),
+	preload("res://data/upgrades/summon_minion.tres")
 ]
-var upgrades_state: Array = []
-
+#var upgrade_state: Array = []
+var upgrade_counts: Dictionary = {} # stat name -> int
 signal level_up_reward_chosen
 
 func _ready():
+	
+	# Connect signals
 	player.level_up.connect(_on_level_up)
 	player.player_died.connect(_on_game_over)
 	ui.level_up_ui.apply_upgrade.connect(_on_apply_upgrade)
@@ -198,6 +214,10 @@ func _ready():
 		upgrade_item.apply_upgrade_item.connect(_on_apply_upgrade_item)
 		upgrade_item.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
 		upgrade_item._on_level_ready()
+	
+	# Initialize upgrade count array
+	for upgrade in upgrade_pool:
+		upgrade_counts[upgrade.stat] = 0
 	
 	spawn_timer.wait_time = current_wave.interval
 	spawn_starting_minions()
@@ -223,24 +243,22 @@ func spawn_boss(boss_type):
 	boss_instance.died.connect(_on_enemy_died)
 
 func spawn_starting_minions():
-	for upgrade in upgrades_pool:
-		if upgrade["target"] == "summon_minion":
+	for upgrade in upgrade_pool:
+		if upgrade.target == UpgradeDefinition.Target.SUMMON_MINION:
 			apply_upgrade(upgrade)
 
-func apply_upgrade(upgrade: Dictionary):
-	match upgrade["target"]:
-		"summon_minion":
+func apply_upgrade(upgrade: UpgradeDefinition):
+	match upgrade.target:
+		UpgradeDefinition.Target.SUMMON_MINION:
 			summon_minion()
-		"player":
+		UpgradeDefinition.Target.PLAYER:
 			player.apply_upgrade(upgrade)
-		"minion":
+		UpgradeDefinition.Target.MINION:
 			for current_minion in get_tree().get_nodes_in_group("minion"):
 				current_minion.apply_upgrade(upgrade)
 	
-	upgrade["count"] += 1
-	upgrades_state.append(upgrade)
-	ui.hud_ui.update_upgrades_display(upgrade)
-
+	upgrade_counts[upgrade.stat] += 1
+	ui.hud_ui.update_upgrades_display(upgrade, upgrade_counts[upgrade.stat])
 
 func _on_spawn_timer_timeout():
 	for i in range(current_wave.count):
@@ -251,18 +269,17 @@ func _on_spawn_timer_timeout():
 
 func _on_level_up(_player_level):
 	get_tree().paused = true
-	upgrades_pool.shuffle()
+	upgrade_pool.shuffle()
 	var current_upgrade_options: Array
-	for upgrade in upgrades_pool:
-		if upgrade["count"] < upgrade["max"]:
+	for upgrade in upgrade_pool:
+		if upgrade_counts[upgrade.stat] < upgrade.max_count:
 			current_upgrade_options.append(upgrade)
 		if current_upgrade_options.size() >= number_of_upgrade_choices:
 			break
-	#var current_upgrade_options = upgrades_pool.slice(0,number_of_upgrade_choices)
 	ui.level_up_ui.populate_upgrade_buttons(current_upgrade_options)
 	ui.show_level_up_ui()
 
-func _on_apply_upgrade(upgrade: Dictionary):
+func _on_apply_upgrade(upgrade: UpgradeDefinition):
 	apply_upgrade(upgrade)
 	
 	# Handle UI updates
@@ -272,8 +289,8 @@ func _on_apply_upgrade(upgrade: Dictionary):
 	player.max_exp *= exp_increase_per_level
 
 func _on_apply_upgrade_item(stat: String):
-	for upgrade in upgrades_pool:
-		if upgrade["stat"] == stat:
+	for upgrade in upgrade_pool:
+		if upgrade.stat == stat:
 			apply_upgrade(upgrade)
 			return
 
@@ -285,9 +302,10 @@ func _input(event: InputEvent) -> void:
 func summon_minion():
 	var minion_instance = minion.instantiate()
 	minion_instance.global_position = player.global_position
-	for upgrade in upgrades_state:
-		if upgrade["target"] == "minion":
-			minion_instance.apply_upgrade(upgrade)
+	for upgrade in upgrade_pool:
+		if upgrade.target == UpgradeDefinition.Target.MINION:
+			for i in upgrade_counts[upgrade.stat]:
+				minion_instance.apply_upgrade(upgrade)
 	minion_instance.crit_landed.connect(_on_minion_crit_landed)
 	y_sort_container.add_child(minion_instance)
 

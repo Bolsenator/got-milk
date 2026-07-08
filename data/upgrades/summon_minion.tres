@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://vc8cqxvf8agk"]
+
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_lbj4f"]
+[ext_resource type="Texture2D" uid="uid://dtlx1tyskmocn" path="res://ui/upgrades/summon_minion.png" id="1_vqbod"]
+
+[resource]
+script = ExtResource("1_lbj4f")
+upgrade_name = "Summon Minion"
+description = "Summon an additional skeleton minion"
+target = 2
+stat = "summon_minion"
+max_count = 5
+icon = ExtResource("1_vqbod")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

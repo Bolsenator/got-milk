@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://bj72kf35lam15"]
+
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_4fh3a"]
+[ext_resource type="Texture2D" uid="uid://n8iwgbut4esk" path="res://ui/upgrades/player_movement_speed.png" id="1_8q7ua"]
+
+[resource]
+script = ExtResource("1_4fh3a")
+upgrade_name = "Player Movement Speed"
+description = "Increase player movement speed by 5%"
+stat = "player_movement_speed_modifier"
+bonus = 0.05
+max_count = 10
+icon = ExtResource("1_8q7ua")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"

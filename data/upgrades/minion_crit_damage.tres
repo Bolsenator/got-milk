@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://cckjas3s4gors"]
+
+[ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_1xy5o"]
+[ext_resource type="Texture2D" uid="uid://bbwwegrss371c" path="res://ui/upgrades/minion_crit_damage.png" id="1_ofttf"]
+
+[resource]
+script = ExtResource("1_1xy5o")
+upgrade_name = "Minion Crit Damage"
+description = "Increase the damage of minion crits by 50%"
+target = 1
+stat = "crit_damage_modifier"
+bonus = 0.5
+max_count = 10
+icon = ExtResource("1_ofttf")
+metadata/_custom_type_script = "uid://d2s5p23xp3yck"
