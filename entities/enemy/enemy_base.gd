@@ -18,6 +18,8 @@ var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
 var flash_tween: Tween
 
+var is_boss: bool = false
+
 var current_target_position: Vector2
 var max_distance_squared_to_player: float = 4096.0 # Squared in advance for distance_to calculations
 
