@@ -1,60 +1,11 @@
+# Manager for the currently loaded level. Coordinates the player, minions, enemies, other entities, enemy spawning, and player upgrades.
+
 extends Node
-
-
 
 @onready var y_sort_container = $YSortContainer
 @onready var player = $YSortContainer/Player
 @onready var ui = $UI
 @onready var enemy_spawner = $EnemySpawner
-
-#########################################################################################################################		To be removed after enemy spawner rebuild
-#const WAVES: Array = [
-	#{"time": 60.0,  "enemy_type": "slime",  "count": 3, "interval": 5.0, "boss": null},
-	#{"time": 120.0,  "enemy_type": "snake",  "count": 6, "interval": 4.0, "boss": "bat"},
-	#{"time": 180.0,  "enemy_type": "slime",  "count": 12, "interval": 3.0, "boss": "bat"},
-	#{"time": 240.0,  "enemy_type": "spider",  "count": 6, "interval": 4.0, "boss": null},
-	#{"time": 300.0, "enemy_type": "spider",  "count": 8, "interval": 3.0, "boss": "wasps"},
-	#{"time": 360.0, "enemy_type": "bat",  "count": 12, "interval": 2.5, "boss": null},
-	#{"time": 420.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": "demon"},
-	#{"time": 480.0, "enemy_type": "wasps",  "count": 8, "interval": 4.0, "boss": null},
-	#{"time": 540.0, "enemy_type": "spider",  "count": 14, "interval": 2.5, "boss": "demon"},
-	#{"time": 600.0, "enemy_type": "spider",  "count": 12, "interval": 3.0, "boss": null},
-	#{"time": 660.0, "enemy_type": "spider",  "count": 12, "interval": 2.5, "boss": "golem"},
-	#{"time": 720.0, "enemy_type": "wasps",  "count": 20, "interval": 2.5, "boss": null},
-	#{"time": 780.0, "enemy_type": "spider",  "count": 16, "interval": 2.5, "boss": "beholder"},
-	#{"time": 840.0, "enemy_type": "demon",  "count": 8, "interval": 3.0, "boss": null},
-	#{"time": 900.0, "enemy_type": "demon",  "count": 12, "interval": 2.5, "boss": null},
-	#{"time": 960.0, "enemy_type": "wasps",  "count": 30, "interval": 1.0, "boss": "beholder"},
-	#{"time": 1020.0, "enemy_type": "demon",  "count": 12, "interval": 2.5, "boss": "beholder"},
-	#{"time": 1080.0, "enemy_type": "golem",  "count": 8, "interval": 3.0, "boss": null},
-	#{"time": 1140.0, "enemy_type": "golem",  "count": 12, "interval": 2.5, "boss": null},
-	#{"time": 1200.0, "enemy_type": "wasps",  "count": 40, "interval": 1.0, "boss": "beholder"},
-	#{"time": 1260.0, "enemy_type": "golem",  "count": 16, "interval": 2.0, "boss": null},
-	#{"time": 1320.0, "enemy_type": "beholder",  "count": 8, "interval": 2.5, "boss": null},
-	#{"time": 1380.0, "enemy_type": "wasps",  "count": 60, "interval": 1.0, "boss": "beholder"},
-	#{"time": 1440.0, "enemy_type": "beholder",  "count": 12, "interval": 2.5, "boss": "devil"},
-#]
-
-#var current_wave_idx: int = 0
-#var current_wave: Dictionary = WAVES[current_wave_idx]
-#var despawn_threshold_ms: int = 30000
-#var despawn_timer_s: float = 1.0
-
-#var enemy_spawn_distance_min: float = 900.0
-#var enemy_spawn_distance_max: float = 1200.0
-#var enemy_collision_layers: Array = [1] # list of collision layers to check against when spawning enemy
-#const ENEMY_SCENES: Dictionary = {
-	#"slime" 	: preload("res://entities/enemy/green_slime/green_slime.tscn"),
-	#"snake" 	: preload("res://entities/enemy/snake/snake.tscn"),
-	#"bat" 		: preload("res://entities/enemy/bat/bat.tscn"),
-	#"spider" 	: preload("res://entities/enemy/spider/spider.tscn"),
-	#"wasps" 	: preload("res://entities/enemy/wasps/wasps.tscn"),
-	#"demon" 	: preload("res://entities/enemy/demon/demon.tscn"),
-	#"golem" 	: preload("res://entities/enemy/golem/golem.tscn"),
-	#"beholder" 	: preload("res://entities/enemy/beholder/beholder.tscn"),
-	#"devil" 	: preload("res://entities/enemy/devil/devil.tscn")
-#}
-####################################################################################################################################################################
 
 var time_elapsed: float = 0.0 # this might need to stay for ui time update
 
@@ -116,13 +67,6 @@ func apply_upgrade(upgrade: UpgradeDefinition):
 	
 	upgrade_counts[upgrade.stat] += 1
 	ui.hud_ui.update_upgrades_display(upgrade, upgrade_counts[upgrade.stat])
-
-#func _on_spawn_timer_timeout():
-	#for i in range(current_wave.count):
-		#var enemy_instance = ENEMY_SCENES[current_wave.enemy_type].instantiate()
-		#enemy_instance.global_position = get_enemy_spawn_position()
-		#y_sort_container.add_child(enemy_instance)
-		#enemy_instance.died.connect(_on_enemy_died)
 
 func _on_level_up(_player_level):
 	get_tree().paused = true
@@ -191,40 +135,6 @@ func _on_enemy_died(exp_value: float, position: Vector2):
 func toggle_pause():
 	get_tree().paused = !get_tree().paused
 	ui.toggle_pause_ui()
-
-#func get_enemy_spawn_position() -> Vector2:
-	#var angle
-	#var distance
-	#var enemy_spawn_position
-	#
-	#var max_spawn_attempts = 100 # Prevents too many failed spawn attempts, quietly stops attempting
-	#var current_spawn_attempts = 0
-	#
-	## Generate random location until valid
-	#while current_spawn_attempts < max_spawn_attempts:
-		#current_spawn_attempts += 1
-		#angle = randf() * TAU
-		#distance = randf_range(enemy_spawn_distance_min,enemy_spawn_distance_max)
-		#enemy_spawn_position = player.global_position + ( Vector2(cos(angle), sin(angle)) * distance )
-		#if(is_valid_spawn_location(enemy_spawn_position)):
-			#break
-	#
-	#return enemy_spawn_position
-#
-#func is_valid_spawn_location(spawn_position: Vector2) -> bool:
-	#var collision_query_point = PhysicsPointQueryParameters2D.new()
-	#collision_query_point.position = spawn_position
-	#
-	#for layer_number in enemy_collision_layers:
-		#collision_query_point.collision_mask = 1 << (layer_number - 1)
-	#
-	#var space_state = get_viewport().get_world_2d().direct_space_state
-	#var collision_array = space_state.intersect_point(collision_query_point)
-	#
-	#if collision_array.size() == 0:
-		#return true
-	#else:
-		#return false
 
 func _on_create_offscreen_indicator(objective) -> void:
 	ui.hud_ui.create_offscreen_indicator(objective)
