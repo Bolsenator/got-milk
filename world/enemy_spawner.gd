@@ -75,8 +75,8 @@ func _on_boss_delay_timeout():
 	var boss_instance = current_wave.boss_scene.instantiate()
 	boss_instance.global_position = _get_enemy_spawn_position()
 	boss_instance.died.connect(_on_enemy_died)
+	boss_instance.is_boss = true
 	y_sort_container.add_child(boss_instance)
-	# Add flag for the boss to never despawn
 
 func _get_enemy_spawn_position() -> Vector2:
 	var angle
@@ -114,5 +114,5 @@ func _is_valid_spawn_location(spawn_position: Vector2) -> bool:
 
 func _on_despawn_timer_timeout() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemy"):
-		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen():
+		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen() and !enemy.is_boss:
 			enemy.queue_free()
