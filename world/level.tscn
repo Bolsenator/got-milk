@@ -18,11 +18,14 @@
 [ext_resource type="Resource" uid="uid://b61qjcrtwlk7e" path="res://data/upgrades/multi_attack.tres" id="9_vw35i"]
 [ext_resource type="Resource" uid="uid://bj72kf35lam15" path="res://data/upgrades/player_movement_speed.tres" id="10_xyp4h"]
 [ext_resource type="Resource" uid="uid://vc8cqxvf8agk" path="res://data/upgrades/summon_minion.tres" id="11_ksyvv"]
+[ext_resource type="Script" uid="uid://5bax2u8cko3b" path="res://world/enemy_spawner.gd" id="19_ev86w"]
+[ext_resource type="Resource" uid="uid://b51kei37la62x" path="res://data/waves/level_1_1_waves.tres" id="20_tjwke"]
 
 [node name="Level" type="Node" unique_id=1882998417]
 process_mode = 3
 script = ExtResource("1_ype84")
 upgrade_pool = Array[ExtResource("2_hx0it")]([ExtResource("3_f48di"), ExtResource("4_ev86w"), ExtResource("5_tjwke"), ExtResource("3_i2qu6"), ExtResource("4_be3xh"), ExtResource("5_f48di"), ExtResource("6_ev86w"), ExtResource("7_tjwke"), ExtResource("8_0gefm"), ExtResource("9_vw35i"), ExtResource("10_xyp4h"), ExtResource("11_ksyvv")])
+wave_set = ExtResource("20_tjwke")
 
 [node name="Dungeon" parent="." unique_id=1684005168 instance=ExtResource("1_0u2o0")]
 process_mode = 1
@@ -38,14 +41,6 @@ drag_vertical_enabled = true
 
 [node name="UI" parent="." unique_id=95054969 instance=ExtResource("4_s5sgh")]
 
-[node name="SpawnTimer" type="Timer" parent="." unique_id=2085828705]
-process_mode = 1
-autostart = true
-
-[node name="DespawnTimer" type="Timer" parent="." unique_id=120258139]
-process_mode = 1
-autostart = true
-
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=706112399]
 process_mode = 3
 stream = ExtResource("6_oh72w")
@@ -53,5 +48,22 @@ volume_db = -35.0
 autoplay = true
 parameters/looping = true
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
+[node name="EnemySpawner" type="Node" parent="." unique_id=919983497]
+process_mode = 1
+script = ExtResource("19_ev86w")
+
+[node name="WaveDurationTimer" type="Timer" parent="EnemySpawner" unique_id=588862810]
+one_shot = true
+
+[node name="DespawnTimer" type="Timer" parent="EnemySpawner" unique_id=120258139]
+process_mode = 1
+autostart = true
+
+[node name="BossDelay" type="Timer" parent="EnemySpawner" unique_id=1311095042]
+one_shot = true
+
+[node name="SpawnIntervalContainer" type="Node" parent="EnemySpawner" unique_id=1843905356]
+
+[connection signal="timeout" from="EnemySpawner/WaveDurationTimer" to="EnemySpawner" method="_on_wave_duration_timer_timeout"]
+[connection signal="timeout" from="EnemySpawner/DespawnTimer" to="EnemySpawner" method="_on_despawn_timer_timeout"]
+[connection signal="timeout" from="EnemySpawner/BossDelay" to="EnemySpawner" method="_on_boss_delay_timeout"]

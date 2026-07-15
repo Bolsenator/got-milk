@@ -1,0 +1,118 @@
+# Script to handle spawning and despawning of enemies in the level.
+# Script entry is made by the parent level scene which calls start_enemy_spawns() when the level is ready to begin the spawning
+
+extends Node
+
+# Spawn and despawn values
+var enemy_spawn_distance_min: float = 900.0
+var enemy_spawn_distance_max: float = 1200.0
+var enemy_collision_layers: Array = [1] # list of collision layers to check against when spawning enemy
+var despawn_threshold_ms: int = 30000 # 30 seconds before attempting to despawn an enemy
+
+# These must be initialized from the parent node which has this data
+var wave_set: WaveSet
+var player: CharacterBody2D
+var y_sort_container: Node2D
+
+# Wave state
+var current_wave: WaveDefinition
+var _current_wave_index: int = 0
+
+signal enemy_died(exp_value: float, _position: Vector2)
+
+@onready var wave_duration_timer = $WaveDurationTimer
+@onready var boss_delay = $BossDelay
+@onready var spawn_interval_container = $SpawnIntervalContainer # Node holds a timer for each group of enemy spawning in the current wave
+
+func initialize(_wave_set: WaveSet, _player: CharacterBody2D, _y_sort_container: Node2D) -> void:
+	wave_set = _wave_set
+	player = _player
+	y_sort_container = _y_sort_container
+
+func start_enemy_spawns() -> void:
+	current_wave = wave_set.waves[_current_wave_index]
+	wave_duration_timer.start(current_wave.duration)
+	_set_spawn_interval_timers()
+	if current_wave.boss_spawn_delay:
+		boss_delay.start(current_wave.boss_spawn_delay)
+
+func _set_spawn_interval_timers() -> void:
+	
+	# Clear timer conatiner
+	for child in spawn_interval_container.get_children():
+		# Specifically removing child and then freeing, rather than just freeing because the next block of code adds new nodes
+		# There is a possible delay if only queue_free is called, but I need to ensure it is removed from the parent and before moving forward
+		spawn_interval_container.remove_child(child)
+		child.queue_free()
+	
+	# Add new timers to container
+	for enemy_entry in current_wave.enemy_entries:
+		# Create timer, set duration, connect signal
+		var timer = Timer.new()
+		timer.wait_time = enemy_entry.spawn_interval
+		timer.timeout.connect(_on_spawn_timer_timeout.bind(enemy_entry))
+		spawn_interval_container.add_child(timer)
+		timer.start()
+
+func _on_wave_duration_timer_timeout() -> void:
+	# Advance to next wave
+	_current_wave_index += 1
+	start_enemy_spawns()
+	# Reset spawn interval container
+
+func _on_enemy_died(exp_value: float, _position: Vector2) -> void:
+	enemy_died.emit(exp_value, _position)
+
+func _on_spawn_timer_timeout(enemy_entry: WaveEnemyEntry) -> void:
+	print("spawn timer timeout")
+	for i in enemy_entry.spawn_count:
+		var enemy_instance = enemy_entry.enemy_scene.instantiate()
+		enemy_instance.global_position = _get_enemy_spawn_position()
+		enemy_instance.died.connect(_on_enemy_died)
+		y_sort_container.add_child(enemy_instance)
+
+func _on_boss_delay_timeout():
+	var boss_instance = current_wave.boss_scene.instantiate()
+	boss_instance.global_position = _get_enemy_spawn_position()
+	boss_instance.died.connect(_on_enemy_died)
+	y_sort_container.add_child(boss_instance)
+	# Add flag for the boss to never despawn
+
+func _get_enemy_spawn_position() -> Vector2:
+	var angle
+	var distance
+	var enemy_spawn_position
+	
+	var max_spawn_attempts = 100 # Prevents too many failed spawn attempts, quietly stops attempting
+	var current_spawn_attempts = 0
+	
+	# Generate random location until valid
+	while current_spawn_attempts < max_spawn_attempts:
+		current_spawn_attempts += 1
+		angle = randf() * TAU
+		distance = randf_range(enemy_spawn_distance_min,enemy_spawn_distance_max)
+		enemy_spawn_position = player.global_position + ( Vector2(cos(angle), sin(angle)) * distance )
+		if(_is_valid_spawn_location(enemy_spawn_position)):
+			break
+	
+	return enemy_spawn_position
+
+func _is_valid_spawn_location(spawn_position: Vector2) -> bool:
+	var collision_query_point = PhysicsPointQueryParameters2D.new()
+	collision_query_point.position = spawn_position
+	
+	for layer_number in enemy_collision_layers:
+		collision_query_point.collision_mask = 1 << (layer_number - 1)
+	
+	var space_state = get_viewport().get_world_2d().direct_space_state
+	var collision_array = space_state.intersect_point(collision_query_point)
+	
+	if collision_array.size() == 0:
+		return true
+	else:
+		return false
+
+func _on_despawn_timer_timeout() -> void:
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen():
+			enemy.queue_free()

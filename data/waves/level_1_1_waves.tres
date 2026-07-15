@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="WaveSet" format=3 uid="uid://b51kei37la62x"]
+
+[ext_resource type="Script" uid="uid://e3shkhu5hdin" path="res://data/waves/wave_set.gd" id="1_emahh"]
+[ext_resource type="Script" uid="uid://chv5f2vt8t1xx" path="res://data/waves/wave_definition.gd" id="2_vhgdu"]
+[ext_resource type="Script" uid="uid://cmgjke1goj4sh" path="res://data/waves/wave_enemy_entry.gd" id="3_2akwv"]
+[ext_resource type="PackedScene" uid="uid://q46vjfa4qpnt" path="res://entities/enemy/green_slime/green_slime.tscn" id="4_vhgdu"]
+[ext_resource type="PackedScene" uid="uid://b435axgxym66m" path="res://entities/enemy/bat/bat.tscn" id="5_cfiw2"]
+[ext_resource type="PackedScene" uid="uid://cmjjwsl5heb3m" path="res://entities/enemy/spider/spider.tscn" id="6_shwaq"]
+[ext_resource type="PackedScene" uid="uid://kkplnisfycfg" path="res://entities/enemy/snake/snake.tscn" id="7_1mur3"]
+
+[sub_resource type="Resource" id="Resource_7cuie"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("4_vhgdu")
+spawn_count = 3
+spawn_interval = 3.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_cfiw2"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("5_cfiw2")
+spawn_count = 1
+spawn_interval = 20.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_emahh"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_7cuie"), SubResource("Resource_cfiw2")])
+duration = 30.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_x3562"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_1mur3")
+spawn_count = 3
+spawn_interval = 3.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_ptkmb"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("5_cfiw2")
+spawn_count = 1
+spawn_interval = 20.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_sac0l"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_x3562"), SubResource("Resource_ptkmb")])
+boss_scene = ExtResource("6_shwaq")
+boss_spawn_delay = 15.0
+duration = 30.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[resource]
+script = ExtResource("1_emahh")
+set_name = "level_1_1_waves"
+waves = Array[ExtResource("2_vhgdu")]([SubResource("Resource_emahh"), SubResource("Resource_sac0l")])
+metadata/_custom_type_script = "uid://e3shkhu5hdin"

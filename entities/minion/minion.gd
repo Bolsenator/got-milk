@@ -168,6 +168,7 @@ func attack_enemy() -> void:
 	var final_damage: float = damage
 	for body in hitbox.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
+			final_damage = damage
 			if randf() < crit_chance:
 				final_damage = damage * crit_damage
 				crit_landed.emit(body.global_position)
