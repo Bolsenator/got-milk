@@ -3,7 +3,7 @@
 class_name WaveDefinition
 extends Resource
 
-enum WaveAdvanceMode { TIMED, CLEARED, TIMED_OR_CLEARED }
+enum WaveAdvanceMode { TIMED, CLEARED, TIMED_OR_CLEARED, BOSS_CLEARED }
 
 @export var enemy_entries: Array[WaveEnemyEntry]
 @export var boss_scene: PackedScene # optional, null if no boss this wave
