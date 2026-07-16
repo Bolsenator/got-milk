@@ -4,9 +4,9 @@
 extends Node
 
 # Spawn and despawn values
-var enemy_spawn_distance_min: float = 900.0
-var enemy_spawn_distance_max: float = 1200.0
-var enemy_collision_layers: Array = [1] # list of collision layers to check against when spawning enemy
+var spawn_distance_min: float = 900.0 # distance from player
+var spawn_distance_max: float = 1200.0 # distance from player
+var spawn_collision_layers: Array = [1] # list of collision layers to check against when spawning enemy
 var despawn_threshold_ms: int = 30000 # 30 seconds before attempting to despawn an enemy
 
 # These must be initialized from the parent node which has this data
@@ -38,7 +38,7 @@ func start_enemy_spawns() -> void:
 
 func _set_spawn_interval_timers() -> void:
 	
-	# Clear timer conatiner
+	# Clear timer container
 	for child in spawn_interval_container.get_children():
 		# Specifically removing child and then freeing, rather than just freeing because the next block of code adds new nodes
 		# There is a possible delay if only queue_free is called, but I need to ensure it is removed from the parent and before moving forward
@@ -89,7 +89,7 @@ func _get_enemy_spawn_position() -> Vector2:
 	while current_spawn_attempts < max_spawn_attempts:
 		current_spawn_attempts += 1
 		angle = randf() * TAU
-		distance = randf_range(enemy_spawn_distance_min,enemy_spawn_distance_max)
+		distance = randf_range(spawn_distance_min, spawn_distance_max)
 		enemy_spawn_position = player.global_position + ( Vector2(cos(angle), sin(angle)) * distance )
 		if(_is_valid_spawn_location(enemy_spawn_position)):
 			break
@@ -100,7 +100,7 @@ func _is_valid_spawn_location(spawn_position: Vector2) -> bool:
 	var collision_query_point = PhysicsPointQueryParameters2D.new()
 	collision_query_point.position = spawn_position
 	
-	for layer_number in enemy_collision_layers:
+	for layer_number in spawn_collision_layers:
 		collision_query_point.collision_mask = 1 << (layer_number - 1)
 	
 	var space_state = get_viewport().get_world_2d().direct_space_state

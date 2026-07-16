@@ -7,7 +7,7 @@ extends Node
 @onready var ui = $UI
 @onready var enemy_spawner = $EnemySpawner
 
-var time_elapsed: float = 0.0 # this might need to stay for ui time update
+var time_elapsed: float = 0.0
 
 var minion = preload("res://entities/minion/minion.tscn")
 var exp_small = preload("res://entities/exp/exp_small.tscn")
@@ -103,12 +103,12 @@ func _input(event: InputEvent) -> void:
 func summon_minion():
 	var minion_instance = minion.instantiate()
 	minion_instance.global_position = player.global_position
+	minion_instance.crit_landed.connect(_on_minion_crit_landed)
+	y_sort_container.add_child(minion_instance)
 	for upgrade in upgrade_pool:
 		if upgrade.target == UpgradeDefinition.Target.MINION:
 			for i in upgrade_counts[upgrade.stat]:
 				minion_instance.apply_upgrade(upgrade)
-	minion_instance.crit_landed.connect(_on_minion_crit_landed)
-	y_sort_container.add_child(minion_instance)
 
 func _on_minion_crit_landed(enemy_position: Vector2):
 	var crit_indicator = crit_indicator_scene.instantiate()

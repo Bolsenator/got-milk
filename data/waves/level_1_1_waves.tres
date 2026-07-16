@@ -52,6 +52,5 @@ metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
 
 [resource]
 script = ExtResource("1_emahh")
-set_name = "level_1_1_waves"
 waves = Array[ExtResource("2_vhgdu")]([SubResource("Resource_emahh"), SubResource("Resource_sac0l")])
 metadata/_custom_type_script = "uid://e3shkhu5hdin"
