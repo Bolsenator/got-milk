@@ -41,7 +41,7 @@ func _ready():
 		upgrade_counts[upgrade.stat] = 0
 	
 	spawn_starting_minions()
-	await enemy_spawner.initialize(wave_set, player, y_sort_container)
+	enemy_spawner.initialize(wave_set, player, y_sort_container)
 	enemy_spawner.start_enemy_spawns()
 
 func _process(delta: float):

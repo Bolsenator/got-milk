@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://nl8s3owt2d1g"]
+
+[ext_resource type="Script" uid="uid://5bax2u8cko3b" path="res://world/enemy_spawner.gd" id="1_ah4w2"]
+
+[node name="EnemySpawner" type="Node" unique_id=1660327473]
+process_mode = 1
+script = ExtResource("1_ah4w2")
+
+[node name="WaveDurationTimer" type="Timer" parent="." unique_id=752853984]
+one_shot = true
+
+[node name="DespawnTimer" type="Timer" parent="." unique_id=1512787891]
+process_mode = 1
+autostart = true
+
+[node name="BossDelay" type="Timer" parent="." unique_id=1351457455]
+one_shot = true
+
+[node name="SpawnIntervalContainer" type="Node" parent="." unique_id=1166036385]
+
+[connection signal="timeout" from="WaveDurationTimer" to="." method="_on_wave_duration_timer_timeout"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
+[connection signal="timeout" from="BossDelay" to="." method="_on_boss_delay_timeout"]

@@ -33,7 +33,7 @@ func start_enemy_spawns() -> void:
 	current_wave = wave_set.waves[_current_wave_index]
 	wave_duration_timer.start(current_wave.duration)
 	_set_spawn_interval_timers()
-	if current_wave.boss_spawn_delay:
+	if current_wave.boss_scene:
 		boss_delay.start(current_wave.boss_spawn_delay)
 
 func _set_spawn_interval_timers() -> void:
@@ -64,7 +64,6 @@ func _on_enemy_died(exp_value: float, _position: Vector2) -> void:
 	enemy_died.emit(exp_value, _position)
 
 func _on_spawn_timer_timeout(enemy_entry: WaveEnemyEntry) -> void:
-	print("spawn timer timeout")
 	for i in enemy_entry.spawn_count:
 		var enemy_instance = enemy_entry.enemy_scene.instantiate()
 		enemy_instance.global_position = _get_enemy_spawn_position()
