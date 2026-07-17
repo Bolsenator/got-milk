@@ -57,7 +57,7 @@ func _physics_process(_delta: float):
 func _register_stats() -> void:
 	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
 	_register(StatModifier.new("max_health_modifier", 100.0))
-	_register(StatModifier.new("health_regen_per_sec_modifier", 1.0))
+	_register(StatModifier.new("health_regen_per_sec_modifier", 1.0, StatModifier.Mode.MULTIPLY, 0.0))
 	_register(StatModifier.new("damage_reduction_modifier", 1.0, StatModifier.Mode.MULTIPLY, 0.0))
 	_register(StatModifier.new("player_movement_speed_modifier", 300.0))
 	_register(StatModifier.new("exp_gain_modifier", 1.0))

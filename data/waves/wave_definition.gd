@@ -6,7 +6,8 @@ extends Resource
 enum WaveAdvanceMode { TIMED, CLEARED, TIMED_OR_CLEARED, TIMED_AND_BOSS_CLEARED }
 
 @export var enemy_entries: Array[WaveEnemyEntry]
-@export var boss_scene: PackedScene # optional, null if no boss this wave
-@export var boss_spawn_delay: float
 @export var wave_advance_mode: WaveAdvanceMode
 @export var duration: float
+@export_group("Boss")
+@export var boss_scene: PackedScene # optional, null if no boss this wave
+@export var boss_spawn_delay: float

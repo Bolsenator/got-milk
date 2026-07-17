@@ -7,50 +7,259 @@
 [ext_resource type="PackedScene" uid="uid://b435axgxym66m" path="res://entities/enemy/bat/bat.tscn" id="5_cfiw2"]
 [ext_resource type="PackedScene" uid="uid://cmjjwsl5heb3m" path="res://entities/enemy/spider/spider.tscn" id="6_shwaq"]
 [ext_resource type="PackedScene" uid="uid://kkplnisfycfg" path="res://entities/enemy/snake/snake.tscn" id="7_1mur3"]
+[ext_resource type="PackedScene" uid="uid://bxys781bchpya" path="res://entities/enemy/golem/golem.tscn" id="7_shwaq"]
+[ext_resource type="PackedScene" uid="uid://dcoj150vnib2q" path="res://entities/enemy/wasps/wasps.tscn" id="8_1mur3"]
+[ext_resource type="PackedScene" uid="uid://lunf4ynyq0yi" path="res://entities/enemy/demon/demon.tscn" id="9_x3562"]
+[ext_resource type="PackedScene" uid="uid://ccpep2gp05x06" path="res://entities/enemy/beholder/beholder.tscn" id="11_ptkmb"]
+[ext_resource type="PackedScene" uid="uid://cpw6sjf70gkaa" path="res://entities/enemy/devil/devil.tscn" id="12_sac0l"]
+
+[sub_resource type="Resource" id="Resource_2akwv"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("4_vhgdu")
+spawn_count = 3
+spawn_interval = 5.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_pbf23"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("5_cfiw2")
+spawn_count = 2
+spawn_interval = 10.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_cfiw2"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_2akwv"), SubResource("Resource_pbf23")])
+duration = 100.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
 
 [sub_resource type="Resource" id="Resource_7cuie"]
 script = ExtResource("3_2akwv")
 enemy_scene = ExtResource("4_vhgdu")
-spawn_count = 3
-spawn_interval = 3.0
+spawn_count = 4
+spawn_interval = 4.0
 metadata/_custom_type_script = "uid://cmgjke1goj4sh"
 
-[sub_resource type="Resource" id="Resource_cfiw2"]
+[sub_resource type="Resource" id="Resource_bkuqe"]
 script = ExtResource("3_2akwv")
-enemy_scene = ExtResource("5_cfiw2")
-spawn_count = 1
-spawn_interval = 20.0
+enemy_scene = ExtResource("7_1mur3")
+spawn_count = 2
+spawn_interval = 10.0
 metadata/_custom_type_script = "uid://cmgjke1goj4sh"
 
-[sub_resource type="Resource" id="Resource_emahh"]
+[sub_resource type="Resource" id="Resource_shwaq"]
 script = ExtResource("2_vhgdu")
-enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_7cuie"), SubResource("Resource_cfiw2")])
-duration = 30.0
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_7cuie"), SubResource("Resource_bkuqe")])
+duration = 100.0
 metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
 
 [sub_resource type="Resource" id="Resource_x3562"]
 script = ExtResource("3_2akwv")
-enemy_scene = ExtResource("7_1mur3")
-spawn_count = 3
+enemy_scene = ExtResource("4_vhgdu")
+spawn_count = 12
 spawn_interval = 3.0
 metadata/_custom_type_script = "uid://cmgjke1goj4sh"
 
 [sub_resource type="Resource" id="Resource_ptkmb"]
 script = ExtResource("3_2akwv")
 enemy_scene = ExtResource("5_cfiw2")
-spawn_count = 1
-spawn_interval = 20.0
+spawn_count = 10
+spawn_interval = 10.0
 metadata/_custom_type_script = "uid://cmgjke1goj4sh"
 
 [sub_resource type="Resource" id="Resource_sac0l"]
 script = ExtResource("2_vhgdu")
 enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_x3562"), SubResource("Resource_ptkmb")])
-boss_scene = ExtResource("6_shwaq")
-boss_spawn_delay = 15.0
-duration = 30.0
+duration = 100.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_yliua"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_1mur3")
+spawn_count = 6
+spawn_interval = 4.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_10fsv"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("8_1mur3")
+spawn_count = 2
+spawn_interval = 10.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_eaui1"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_yliua"), SubResource("Resource_10fsv")])
+duration = 100.0
+boss_scene = ExtResource("7_shwaq")
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_bbqfo"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_1mur3")
+spawn_count = 8
+spawn_interval = 4.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_2tmjq"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_1mur3")
+spawn_count = 2
+spawn_interval = 10.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_lqljk"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_bbqfo"), SubResource("Resource_2tmjq")])
+duration = 100.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_fn8kj"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_1mur3")
+spawn_count = 10
+spawn_interval = 3.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_bet1o"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("5_cfiw2")
+spawn_count = 20
+spawn_interval = 10.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_63wjk"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_fn8kj"), SubResource("Resource_bet1o")])
+duration = 100.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_6vd2p"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("6_shwaq")
+spawn_count = 4
+spawn_interval = 4.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_yyrc3"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("8_1mur3")
+spawn_count = 5
+spawn_interval = 10.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_axsoa"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_6vd2p"), SubResource("Resource_yyrc3")])
+duration = 100.0
+boss_scene = ExtResource("9_x3562")
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_tgnhn"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("6_shwaq")
+spawn_count = 6
+spawn_interval = 4.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_782cx"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_shwaq")
+spawn_count = 1
+spawn_interval = 30.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_mpv8o"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_tgnhn"), SubResource("Resource_782cx")])
+duration = 100.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_5up8b"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("6_shwaq")
+spawn_count = 8
+spawn_interval = 3.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_wm40j"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("5_cfiw2")
+spawn_count = 30
+spawn_interval = 10.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_82g1e"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_5up8b"), SubResource("Resource_wm40j")])
+duration = 100.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_thcs7"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_shwaq")
+spawn_count = 3
+spawn_interval = 4.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_u27yq"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("8_1mur3")
+spawn_count = 5
+spawn_interval = 10.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_00lep"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_thcs7"), SubResource("Resource_u27yq")])
+duration = 100.0
+boss_scene = ExtResource("11_ptkmb")
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_2mjqt"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_shwaq")
+spawn_count = 4
+spawn_interval = 4.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_leoiv"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("8_1mur3")
+spawn_count = 1
+spawn_interval = 1.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_d0veq"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_2mjqt"), SubResource("Resource_leoiv")])
+duration = 100.0
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[sub_resource type="Resource" id="Resource_deb7r"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("7_shwaq")
+spawn_count = 5
+spawn_interval = 3.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_irqvc"]
+script = ExtResource("3_2akwv")
+enemy_scene = ExtResource("8_1mur3")
+spawn_count = 20
+spawn_interval = 20.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_mqgjs"]
+script = ExtResource("2_vhgdu")
+enemy_entries = Array[ExtResource("3_2akwv")]([SubResource("Resource_deb7r"), SubResource("Resource_irqvc")])
+wave_advance_mode = 3
+duration = 100.0
+boss_scene = ExtResource("12_sac0l")
+boss_spawn_delay = 100.0
 metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
 
 [resource]
 script = ExtResource("1_emahh")
-waves = Array[ExtResource("2_vhgdu")]([SubResource("Resource_emahh"), SubResource("Resource_sac0l")])
+waves = Array[ExtResource("2_vhgdu")]([SubResource("Resource_cfiw2"), SubResource("Resource_shwaq"), SubResource("Resource_sac0l"), SubResource("Resource_eaui1"), SubResource("Resource_lqljk"), SubResource("Resource_63wjk"), SubResource("Resource_axsoa"), SubResource("Resource_mpv8o"), SubResource("Resource_82g1e"), SubResource("Resource_00lep"), SubResource("Resource_d0veq"), SubResource("Resource_mqgjs")])
 metadata/_custom_type_script = "uid://e3shkhu5hdin"
