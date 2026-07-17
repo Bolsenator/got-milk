@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WaveSet" format=3 uid="uid://b1welwqfupdn7"]
+
+[ext_resource type="Script" uid="uid://e3shkhu5hdin" path="res://data/waves/wave_set.gd" id="1_qvf3e"]
+[ext_resource type="Script" uid="uid://chv5f2vt8t1xx" path="res://data/waves/wave_definition.gd" id="2_24777"]
+[ext_resource type="PackedScene" uid="uid://kkplnisfycfg" path="res://entities/enemy/snake/snake.tscn" id="3_tpnsp"]
+[ext_resource type="Script" uid="uid://cmgjke1goj4sh" path="res://data/waves/wave_enemy_entry.gd" id="4_vkt03"]
+[ext_resource type="PackedScene" uid="uid://q46vjfa4qpnt" path="res://entities/enemy/green_slime/green_slime.tscn" id="5_27ssc"]
+
+[sub_resource type="Resource" id="Resource_txrkl"]
+script = ExtResource("4_vkt03")
+enemy_scene = ExtResource("5_27ssc")
+spawn_count = 3
+spawn_interval = 3.0
+metadata/_custom_type_script = "uid://cmgjke1goj4sh"
+
+[sub_resource type="Resource" id="Resource_i7e4p"]
+script = ExtResource("2_24777")
+enemy_entries = Array[ExtResource("4_vkt03")]([SubResource("Resource_txrkl")])
+wave_advance_mode = 3
+boss_scene = ExtResource("3_tpnsp")
+metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
+
+[resource]
+script = ExtResource("1_qvf3e")
+waves = Array[ExtResource("2_24777")]([SubResource("Resource_i7e4p")])
+metadata/_custom_type_script = "uid://e3shkhu5hdin"

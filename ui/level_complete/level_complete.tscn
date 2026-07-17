@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://djemr0nga7yob"]
+
+[ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_txdad"]
+[ext_resource type="Script" uid="uid://b2bqkacffi7i2" path="res://ui/level_complete/level_complete.gd" id="2_m1qp6"]
+[ext_resource type="Texture2D" uid="uid://bko6du74afear" path="res://ui/theme/basic_menu.png" id="3_28xte"]
+[ext_resource type="Texture2D" uid="uid://beu383x1nl0gp" path="res://ui/buttons/restart_button.png" id="4_0drub"]
+[ext_resource type="Texture2D" uid="uid://beh7tm8f4r47c" path="res://ui/buttons/quit_button.png" id="5_vnfi5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7ayw"]
+atlas = ExtResource("4_0drub")
+region = Rect2(0, 0, 82, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ugh3"]
+atlas = ExtResource("4_0drub")
+region = Rect2(94, 0, 82, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hcq4"]
+atlas = ExtResource("5_vnfi5")
+region = Rect2(0, 0, 48, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu5ql"]
+atlas = ExtResource("5_vnfi5")
+region = Rect2(64, 0, 47, 21)
+
+[node name="LevelComplete" type="Control" unique_id=88389703]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -480.0
+offset_bottom = -270.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+size_flags_vertical = 0
+mouse_filter = 2
+theme = ExtResource("1_txdad")
+script = ExtResource("2_m1qp6")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=824338216]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.6875
+offset_top = -36.875
+offset_right = 114.6875
+offset_bottom = 36.875
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_28xte")
+region_rect = Rect2(7, 7, 34, 34)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=748570909]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1096589109]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="Restart" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1159789492]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_d7ayw")
+texture_pressed = SubResource("AtlasTexture_0ugh3")
+
+[node name="Quit" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=2052475674]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("AtlasTexture_0hcq4")
+texture_pressed = SubResource("AtlasTexture_cu5ql")
+
+[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

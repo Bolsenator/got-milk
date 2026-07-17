@@ -31,6 +31,7 @@ func _ready():
 	ui.level_up_ui.apply_upgrade.connect(_on_apply_upgrade)
 	ui.pause_ui.resume.connect(_on_resume_from_pause)
 	enemy_spawner.enemy_died.connect(_on_enemy_died)
+	enemy_spawner.wave_set_completed.connect(_level_completed)
 	for upgrade_item in get_tree().get_nodes_in_group("upgrade_item"):
 		upgrade_item.apply_upgrade_item.connect(_on_apply_upgrade_item)
 		upgrade_item.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
@@ -138,4 +139,7 @@ func toggle_pause():
 
 func _on_create_offscreen_indicator(objective) -> void:
 	ui.hud_ui.create_offscreen_indicator(objective)
-	
+
+func _level_completed() -> void:
+	get_tree().paused = true
+	ui.show_level_complete_ui()

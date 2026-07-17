@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var level_up_ui = $LevelUp
 @onready var game_over_ui = $GameOver
+@onready var level_complete_ui = $LevelComplete
 @onready var pause_ui = $Pause
 @onready var hud_ui = $HUD
 
@@ -16,6 +17,12 @@ func show_game_over_ui():
 	
 func hide_game_over_ui():
 	game_over_ui.hide()
+
+func show_level_complete_ui():
+	level_complete_ui.show()
+
+func hide_level_complete_ui():
+	level_complete_ui.hide()
 
 func toggle_pause_ui():
 	pause_ui.visible = !pause_ui.visible

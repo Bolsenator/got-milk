@@ -19,6 +19,7 @@ var current_wave: WaveDefinition
 var _current_wave_index: int = 0
 
 signal enemy_died(exp_value: float, _position: Vector2)
+signal wave_set_completed()
 
 @onready var wave_duration_timer = $WaveDurationTimer
 @onready var boss_delay = $BossDelay
@@ -55,13 +56,24 @@ func _set_spawn_interval_timers() -> void:
 		timer.start()
 
 func _on_wave_duration_timer_timeout() -> void:
-	# Advance to next wave
-	_current_wave_index += 1
-	start_enemy_spawns()
-	# Reset spawn interval container
+	if current_wave.wave_advance_mode == WaveDefinition.WaveAdvanceMode.TIMED:
+		_current_wave_index += 1
+		if _is_final_wave():
+			wave_set_completed.emit()
+		else:
+			start_enemy_spawns()
 
-func _on_enemy_died(exp_value: float, _position: Vector2) -> void:
-	enemy_died.emit(exp_value, _position)
+func _on_enemy_died(_exp_value: float, _position: Vector2) -> void:
+	enemy_died.emit(_exp_value, _position)
+
+func _on_boss_died(_exp_value: float, _position: Vector2) -> void:
+	enemy_died.emit(_exp_value, _position)
+	if current_wave.wave_advance_mode == WaveDefinition.WaveAdvanceMode.BOSS_CLEARED:
+		_current_wave_index += 1
+		if _is_final_wave():
+			wave_set_completed.emit()
+		else:
+			start_enemy_spawns()
 
 func _on_spawn_timer_timeout(enemy_entry: WaveEnemyEntry) -> void:
 	for i in enemy_entry.spawn_count:
@@ -73,7 +85,7 @@ func _on_spawn_timer_timeout(enemy_entry: WaveEnemyEntry) -> void:
 func _on_boss_delay_timeout():
 	var boss_instance = current_wave.boss_scene.instantiate()
 	boss_instance.global_position = _get_enemy_spawn_position()
-	boss_instance.died.connect(_on_enemy_died)
+	boss_instance.died.connect(_on_boss_died)
 	boss_instance.is_boss = true
 	y_sort_container.add_child(boss_instance)
 
@@ -115,3 +127,9 @@ func _on_despawn_timer_timeout() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen() and !enemy.is_boss:
 			enemy.queue_free()
+
+func _is_final_wave() -> bool:
+	if _current_wave_index >= wave_set.waves.size():
+		return true
+	else:
+		return false
