@@ -9,27 +9,39 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t3fb8"]
 atlas = ExtResource("4_fuq3x")
-region = Rect2(4, 3, 8, 10)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25a3s"]
 atlas = ExtResource("4_fuq3x")
-region = Rect2(20, 3, 8, 10)
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4hjj"]
+atlas = ExtResource("4_fuq3x")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixyhc"]
 atlas = ExtResource("5_7i4wi")
-region = Rect2(0, 0, 82, 21)
+region = Rect2(0, 0, 89, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cn5ha"]
 atlas = ExtResource("5_7i4wi")
-region = Rect2(94, 0, 82, 21)
+region = Rect2(89, 0, 89, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpvrf"]
+atlas = ExtResource("5_7i4wi")
+region = Rect2(178, 0, 89, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fuq3x"]
 atlas = ExtResource("4_ve8qa")
-region = Rect2(0, 0, 48, 21)
+region = Rect2(0, 0, 59, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7i4wi"]
 atlas = ExtResource("4_ve8qa")
-region = Rect2(64, 0, 47, 21)
+region = Rect2(59, 0, 59, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r40wx"]
+atlas = ExtResource("4_ve8qa")
+region = Rect2(118, 0, 59, 33)
 
 [node name="Pause" type="Control" unique_id=88389703]
 process_mode = 3
@@ -78,11 +90,13 @@ anchor_left = 0.95800006
 anchor_top = 0.036000002
 anchor_right = 0.98700005
 anchor_bottom = 0.125
-offset_left = -0.060028076
-offset_top = -0.03199911
-offset_right = 0.15997314
+offset_left = -3.310028
+offset_top = -2.781999
+offset_right = 3.4099731
+offset_bottom = 3.25
 texture_normal = SubResource("AtlasTexture_t3fb8")
 texture_pressed = SubResource("AtlasTexture_25a3s")
+texture_hover = SubResource("AtlasTexture_f4hjj")
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=748570909]
 layout_mode = 1
@@ -110,6 +124,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_ixyhc")
 texture_pressed = SubResource("AtlasTexture_cn5ha")
+texture_hover = SubResource("AtlasTexture_kpvrf")
 
 [node name="Quit" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=1568380066]
 layout_mode = 2
@@ -117,6 +132,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_fuq3x")
 texture_pressed = SubResource("AtlasTexture_7i4wi")
+texture_hover = SubResource("AtlasTexture_r40wx")
 
 [connection signal="pressed" from="NinePatchRect/CloseMenu" to="." method="_on_close_menu_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]

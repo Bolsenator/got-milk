@@ -17,19 +17,27 @@ shader_parameter/glow_pulse_speed = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w2r0d"]
 atlas = ExtResource("6_u184e")
-region = Rect2(0, 0, 52, 21)
+region = Rect2(0, 0, 59, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4e78x"]
 atlas = ExtResource("6_u184e")
-region = Rect2(64, 0, 52, 21)
+region = Rect2(59, 0, 59, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4pem"]
+atlas = ExtResource("6_u184e")
+region = Rect2(118, 0, 59, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u184e"]
 atlas = ExtResource("6_joh67")
-region = Rect2(0, 0, 47, 21)
+region = Rect2(0, 0, 59, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mijq"]
 atlas = ExtResource("6_joh67")
-region = Rect2(64, 0, 47, 21)
+region = Rect2(59, 0, 59, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xio0d"]
+atlas = ExtResource("6_joh67")
+region = Rect2(118, 0, 59, 33)
 
 [node name="MainMenu" type="Control" unique_id=751677809]
 layout_mode = 3
@@ -104,12 +112,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_w2r0d")
 texture_pressed = SubResource("AtlasTexture_4e78x")
+texture_hover = SubResource("AtlasTexture_s4pem")
 
 [node name="Quit" type="TextureButton" parent="VBoxContainer" unique_id=2135707295]
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = SubResource("AtlasTexture_u184e")
 texture_pressed = SubResource("AtlasTexture_6mijq")
+texture_hover = SubResource("AtlasTexture_xio0d")
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

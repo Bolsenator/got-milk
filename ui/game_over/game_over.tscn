@@ -8,19 +8,27 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7ayw"]
 atlas = ExtResource("4_0hcq4")
-region = Rect2(0, 0, 82, 21)
+region = Rect2(0, 0, 89, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ugh3"]
 atlas = ExtResource("4_0hcq4")
-region = Rect2(94, 0, 82, 21)
+region = Rect2(89, 0, 89, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgkxs"]
+atlas = ExtResource("4_0hcq4")
+region = Rect2(178, 0, 89, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hcq4"]
 atlas = ExtResource("4_6lpyu")
-region = Rect2(0, 0, 48, 21)
+region = Rect2(0, 0, 59, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cu5ql"]
 atlas = ExtResource("4_6lpyu")
-region = Rect2(64, 0, 47, 21)
+region = Rect2(59, 0, 59, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ire01"]
+atlas = ExtResource("4_6lpyu")
+region = Rect2(118, 0, 59, 33)
 
 [node name="GameOver" type="Control" unique_id=88389703]
 process_mode = 3
@@ -88,6 +96,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_d7ayw")
 texture_pressed = SubResource("AtlasTexture_0ugh3")
+texture_hover = SubResource("AtlasTexture_kgkxs")
 
 [node name="Quit" type="TextureButton" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=2052475674]
 layout_mode = 2
@@ -95,6 +104,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = SubResource("AtlasTexture_0hcq4")
 texture_pressed = SubResource("AtlasTexture_cu5ql")
+texture_hover = SubResource("AtlasTexture_ire01")
 
 [connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="NinePatchRect/MarginContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
