@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud/hud.gd" id="1_276te"]
 [ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_546lt"]
 [ext_resource type="PackedScene" uid="uid://dw2ycadystmey" path="res://ui/upgrades/summon_minion.tscn" id="3_3mxrk"]
-[ext_resource type="Texture2D" uid="uid://dntis3wxx5rtk" path="res://ui/hud/exp_bar_empty.png" id="3_w75iv"]
 [ext_resource type="PackedScene" uid="uid://bih8hd365p1f7" path="res://ui/upgrades/max_health.tscn" id="4_6gxmt"]
-[ext_resource type="Texture2D" uid="uid://drq4xvakr0taq" path="res://ui/hud/exp_bar_full.png" id="4_imuuq"]
 [ext_resource type="PackedScene" uid="uid://by6ghdcb0etlm" path="res://ui/upgrades/health_regen.tscn" id="5_olkg6"]
 [ext_resource type="PackedScene" uid="uid://dosevbpwyis8x" path="res://ui/upgrades/damage_reduction.tscn" id="6_hk13k"]
 [ext_resource type="PackedScene" uid="uid://wt5ree5kt1mb" path="res://ui/upgrades/player_movement_speed.tscn" id="7_uyo40"]
@@ -16,6 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://bo4ppb88xp1qc" path="res://ui/upgrades/minion_crit_chance.tscn" id="12_fs87q"]
 [ext_resource type="PackedScene" uid="uid://b108kl8g766gy" path="res://ui/upgrades/minion_crit_damage.tscn" id="13_3i4ml"]
 [ext_resource type="PackedScene" uid="uid://bumdh84xp1cce" path="res://ui/upgrades/multi_attack.tscn" id="14_6gxmt"]
+[ext_resource type="Texture2D" uid="uid://c1bwyml3bunyh" path="res://ui/hud/exp_bar.png" id="15_3mxrk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gxmt"]
+atlas = ExtResource("15_3mxrk")
+region = Rect2(0, 16, 403, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olkg6"]
+atlas = ExtResource("15_3mxrk")
+region = Rect2(0, 0, 403, 12)
 
 [node name="HUD" type="Control" unique_id=2085557247]
 process_mode = 1
@@ -57,8 +64,8 @@ scale = Vector2(4, 4)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-texture_under = ExtResource("3_w75iv")
-texture_progress = ExtResource("4_imuuq")
+texture_under = SubResource("AtlasTexture_6gxmt")
+texture_progress = SubResource("AtlasTexture_olkg6")
 metadata/_edit_use_anchors_ = true
 
 [node name="OffscreenIndicatorsContainer" type="Node2D" parent="." unique_id=536801711]
