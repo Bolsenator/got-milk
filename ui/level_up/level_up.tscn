@@ -65,7 +65,7 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Upgrade1" type="Button" parent="NinePatchRect/MarginContainer/UpgradeButtons" unique_id=1741274740]
-custom_minimum_size = Vector2(192, 32)
+custom_minimum_size = Vector2(320, 32)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Upgrade 1"

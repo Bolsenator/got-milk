@@ -1,40 +1,40 @@
 [gd_resource type="Theme" format=3 uid="uid://bkeh78fptsoaf"]
 
-[ext_resource type="FontFile" uid="uid://dajcr630xeyno" path="res://assets/fonts/Fabled_Font.ttf" id="1_udl1o"]
-[ext_resource type="Texture2D" uid="uid://cfc50wyljylb3" path="res://ui/buttons/base_button_normal.png" id="2_dxksr"]
-[ext_resource type="Texture2D" uid="uid://57rjk8wfbi37" path="res://ui/buttons/base_button_pressed.png" id="2_qdpcs"]
+[ext_resource type="Texture2D" uid="uid://dr2kykt6h1rix" path="res://ui/buttons/base_button.png" id="1_705gf"]
+[ext_resource type="FontFile" uid="uid://ct68h1075wr1b" path="res://assets/fonts/Logic_Loop.ttf" id="3_ap17h"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udl1o"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
+[sub_resource type="AtlasTexture" id="AtlasTexture_705gf"]
+atlas = ExtResource("1_705gf")
+region = Rect2(118, 0, 59, 33)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ap17h"]
-texture = ExtResource("2_dxksr")
+texture = SubResource("AtlasTexture_705gf")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bp0j3"]
-texture = ExtResource("2_dxksr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap17h"]
+atlas = ExtResource("1_705gf")
+region = Rect2(0, 0, 59, 33)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qdpcs"]
+texture = SubResource("AtlasTexture_ap17h")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vuqvt"]
-texture = ExtResource("2_qdpcs")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxksr"]
+atlas = ExtResource("1_705gf")
+region = Rect2(59, 0, 59, 33)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v1yaa"]
+texture = SubResource("AtlasTexture_dxksr")
 texture_margin_left = 5.0
 texture_margin_top = 5.0
 texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vuqvt"]
 content_margin_left = 4.0
@@ -60,8 +60,8 @@ expand_margin_bottom = 2.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bp0j3"]
 
 [resource]
-default_font = ExtResource("1_udl1o")
-default_font_size = 10
+default_font = ExtResource("3_ap17h")
+default_font_size = 13
 Button/colors/font_color = Color(1, 0.9411765, 0.85882354, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(1, 0.9411765, 0.85882354, 1)
@@ -75,24 +75,20 @@ Button/colors/icon_hover_color = Color(1, 0.9411765, 0.85882354, 1)
 Button/colors/icon_hover_pressed_color = Color(1, 0.9411765, 0.85882354, 1)
 Button/colors/icon_normal_color = Color(1, 0.9411765, 0.85882354, 1)
 Button/colors/icon_pressed_color = Color(1, 0.9411765, 0.85882354, 1)
-Button/constants/align_to_largest_stylebox = 0
-Button/constants/h_separation = 4
-Button/constants/icon_max_width = 0
 Button/constants/outline_size = 2
-Button/font_sizes/font_size = 10
-Button/styles/disabled = SubResource("StyleBoxFlat_udl1o")
+Button/font_sizes/font_size = 13
 Button/styles/hover = SubResource("StyleBoxTexture_ap17h")
-Button/styles/normal = SubResource("StyleBoxTexture_bp0j3")
-Button/styles/pressed = SubResource("StyleBoxTexture_vuqvt")
+Button/styles/normal = SubResource("StyleBoxTexture_qdpcs")
+Button/styles/pressed = SubResource("StyleBoxTexture_v1yaa")
 Label/colors/font_color = Color(1, 0.9411765, 0.85882354, 1)
 Label/colors/font_outline_color = Color(0.3372549, 0.12941177, 0.16470589, 0)
 Label/colors/font_shadow_color = Color(0.6666667, 0.63529414, 0.6039216, 1)
-Label/constants/line_spacing = 3
+Label/constants/line_spacing = 0
 Label/constants/outline_size = 0
 Label/constants/shadow_offset_x = 2
 Label/constants/shadow_offset_y = 2
 Label/constants/shadow_outline_size = 2
-Label/font_sizes/font_size = 15
+Label/font_sizes/font_size = 13
 Label/styles/focus = SubResource("StyleBoxFlat_vuqvt")
 Label/styles/normal = SubResource("StyleBoxEmpty_bp0j3")
 TooltipLabel/constants/shadow_offset_x = 1
