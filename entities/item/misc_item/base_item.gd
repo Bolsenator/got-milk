@@ -6,10 +6,10 @@ var pop_distance_min: float = 24.0
 var pop_distance_max: float = 48.0
 var pop_duration: float = 1.0
 
-func _ready():
+func _ready() -> void:
 	pop_and_land()
 
-func pop_and_land():
+func pop_and_land() -> void:
 	var angle: float = randf_range(0, TAU)
 	var distance: float = randf_range(pop_distance_min, pop_distance_max)
 	var landing_offset: Vector2 = Vector2.from_angle(angle) * distance

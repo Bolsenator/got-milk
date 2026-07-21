@@ -21,9 +21,9 @@ var _current_wave_index: int = 0
 signal enemy_died(exp_value: float, _position: Vector2)
 signal wave_set_completed()
 
-@onready var wave_duration_timer = $WaveDurationTimer
-@onready var boss_delay = $BossDelay
-@onready var spawn_interval_container = $SpawnIntervalContainer # Node holds a timer for each group of enemy spawning in the current wave
+@onready var wave_duration_timer: Node = $WaveDurationTimer
+@onready var boss_delay: Node = $BossDelay
+@onready var spawn_interval_container: Node = $SpawnIntervalContainer # Node holds a timer for each group of enemy spawning in the current wave
 
 func initialize(_wave_set: WaveSet, _player: CharacterBody2D, _y_sort_container: Node2D) -> void:
 	wave_set = _wave_set
@@ -40,16 +40,16 @@ func start_enemy_spawns() -> void:
 func _set_spawn_interval_timers() -> void:
 	
 	# Clear timer container
-	for child in spawn_interval_container.get_children():
+	for child: Timer in spawn_interval_container.get_children():
 		# Specifically removing child and then freeing, rather than just freeing because the next block of code adds new nodes
 		# There is a possible delay if only queue_free is called, but I need to ensure it is removed from the parent and before moving forward
 		spawn_interval_container.remove_child(child)
 		child.queue_free()
 	
 	# Add new timers to container
-	for enemy_entry in current_wave.enemy_entries:
+	for enemy_entry: WaveEnemyEntry in current_wave.enemy_entries:
 		# Create timer, set duration, connect signal
-		var timer = Timer.new()
+		var timer: Timer = Timer.new()
 		timer.wait_time = enemy_entry.spawn_interval
 		timer.timeout.connect(_on_spawn_timer_timeout.bind(enemy_entry))
 		spawn_interval_container.add_child(timer)
@@ -76,26 +76,26 @@ func _on_boss_died(_exp_value: float, _position: Vector2) -> void:
 			start_enemy_spawns()
 
 func _on_spawn_timer_timeout(enemy_entry: WaveEnemyEntry) -> void:
-	for i in enemy_entry.spawn_count:
-		var enemy_instance = enemy_entry.enemy_scene.instantiate()
+	for i: int in enemy_entry.spawn_count:
+		var enemy_instance: Node = enemy_entry.enemy_scene.instantiate()
 		enemy_instance.global_position = _get_enemy_spawn_position()
 		enemy_instance.died.connect(_on_enemy_died)
 		y_sort_container.add_child(enemy_instance)
 
-func _on_boss_delay_timeout():
-	var boss_instance = current_wave.boss_scene.instantiate()
+func _on_boss_delay_timeout() -> void:
+	var boss_instance: Node = current_wave.boss_scene.instantiate()
 	boss_instance.global_position = _get_enemy_spawn_position()
 	boss_instance.died.connect(_on_boss_died)
 	boss_instance.is_boss = true
 	y_sort_container.add_child(boss_instance)
 
 func _get_enemy_spawn_position() -> Vector2:
-	var angle
-	var distance
-	var enemy_spawn_position
+	var angle: float
+	var distance: float
+	var enemy_spawn_position : Vector2
 	
-	var max_spawn_attempts = 100 # Prevents too many failed spawn attempts, quietly stops attempting
-	var current_spawn_attempts = 0
+	var max_spawn_attempts: int = 100 # Prevents too many failed spawn attempts, quietly stops attempting
+	var current_spawn_attempts: int = 0
 	
 	# Generate random location until valid
 	while current_spawn_attempts < max_spawn_attempts:
@@ -109,14 +109,14 @@ func _get_enemy_spawn_position() -> Vector2:
 	return enemy_spawn_position
 
 func _is_valid_spawn_location(spawn_position: Vector2) -> bool:
-	var collision_query_point = PhysicsPointQueryParameters2D.new()
+	var collision_query_point: PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
 	collision_query_point.position = spawn_position
 	
-	for layer_number in spawn_collision_layers:
+	for layer_number: int in spawn_collision_layers:
 		collision_query_point.collision_mask = 1 << (layer_number - 1)
 	
-	var space_state = get_viewport().get_world_2d().direct_space_state
-	var collision_array = space_state.intersect_point(collision_query_point)
+	var space_state: PhysicsDirectSpaceState2D = get_viewport().get_world_2d().direct_space_state
+	var collision_array: Array = space_state.intersect_point(collision_query_point)
 	
 	if collision_array.size() == 0:
 		return true
@@ -124,7 +124,7 @@ func _is_valid_spawn_location(spawn_position: Vector2) -> bool:
 		return false
 
 func _on_despawn_timer_timeout() -> void:
-	for enemy in get_tree().get_nodes_in_group("enemy"):
+	for enemy: EnemyBase in get_tree().get_nodes_in_group("enemy"):
 		if Time.get_ticks_msec() - enemy.spawn_time_ms > despawn_threshold_ms and !enemy.on_screen_notifier.is_on_screen() and !enemy.is_boss:
 			enemy.queue_free()
 

@@ -20,6 +20,11 @@ boot_splash/size/viewport_height=648
 
 GameManager="*uid://uewks6eupfb0"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+gdscript/warnings/inferred_declaration=2
+
 [display]
 
 window/size/viewport_width=1920

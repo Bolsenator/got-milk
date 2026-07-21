@@ -1,7 +1,7 @@
 class_name EnemyWasps
 extends EnemyBase
 
-func _ready():
+func _ready() -> void:
 	speed = 275.0
 	max_health = 10.0
 	damage = 10.0

@@ -3,7 +3,7 @@ extends Control
 signal restart()
 signal quit()
 
-func _ready():
+func _ready() -> void:
 	GameManager.register_game_over_ui(self)
 
 func _on_restart_pressed() -> void:

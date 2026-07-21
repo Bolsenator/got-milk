@@ -1,8 +1,8 @@
 extends Control
 
-@onready var label = $Label
+@onready var label: Label = $Label
 
-func update_display(upgrade: UpgradeDefinition, count: int):
+func update_display(upgrade: UpgradeDefinition, count: int) -> void:
 	# Update label
 	label.text = "x" + str(count) + "/" + str(upgrade.max_count)
 	

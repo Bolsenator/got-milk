@@ -1,30 +1,30 @@
 extends CharacterBody2D
 
-@onready var animated_sprite = $AnimatedSprite2D
-@onready var health_bar = $TextureProgressBar
-@onready var level = $"../.."
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var health_bar: TextureProgressBar = $TextureProgressBar
+@onready var level: Node = $"../.."
 
-@onready var heal_sound = $HealSound
-@onready var take_damage_sound = $TakeDamageSound
-@onready var level_up_sound = $LevelUpSound
-@onready var died_sound = $DiedSound
-@onready var health_regen_timer = $HealthRegenTimer
+@onready var heal_sound: AudioStreamPlayer = $HealSound
+@onready var take_damage_sound: AudioStreamPlayer = $TakeDamageSound
+@onready var level_up_sound: AudioStreamPlayer = $LevelUpSound
+@onready var died_sound: AudioStreamPlayer = $DiedSound
+@onready var health_regen_timer: Timer = $HealthRegenTimer
 
-signal exp_changed(new_exp, max_exp)
+signal exp_changed(new_exp: float, max_exp: float)
 signal level_up()
 signal player_died()
 
-var stats:= StatBlock.new()
+var stats: StatBlock = StatBlock.new()
 
-var max_health
-var health_regen_per_sec
-var damage_reduction
-var player_movement_speed
-var exp_gain
+var max_health: float
+var health_regen_per_sec: float
+var damage_reduction: float
+var player_movement_speed: float
+var exp_gain: float
 
-var health_regen_cooldown_sec = 1.0
+var health_regen_cooldown_sec: float = 1.0
 var rotation_speed : float = 1.5
-var current_health = 100.0 :
+var current_health: float = 100.0 :
 	set(new_value):
 		current_health = clamp (new_value, 0, max_health)
 		health_bar.value = current_health
@@ -36,7 +36,7 @@ var max_exp : float = 30.0
 var player_level: int = 1
 var flash_tween: Tween
 
-func _ready():
+func _ready() -> void:
 	_register_stats()
 	stats.stat_changed.connect(_on_stat_changed)
 	
@@ -46,8 +46,8 @@ func _ready():
 	health_bar.value = current_health
 	health_regen_timer.start(health_regen_cooldown_sec)
 
-func _physics_process(_delta: float):
-	var direction = Input.get_vector("left","right","up","down")
+func _physics_process(_delta: float) -> void:
+	var direction: Vector2 = Input.get_vector("left","right","up","down")
 	velocity = direction * player_movement_speed
 	move_and_slide()
 	
@@ -66,10 +66,10 @@ func _register(modifier: StatModifier) -> void:
 	stats.register(modifier)
 	_on_stat_changed(modifier.stat_name, modifier.value)
 
-func collect_exp_item():
+func collect_exp_item() -> void:
 	gain_exp(max_exp)
 
-func gain_exp(exp_amount : float):
+func gain_exp(exp_amount : float) -> void:
 	current_exp += exp_amount * exp_gain
 
 	while current_exp >= max_exp:
@@ -79,14 +79,14 @@ func gain_exp(exp_amount : float):
 		await level.level_up_reward_chosen
 		current_exp -= max_exp
 
-func apply_upgrade(upgrade):
+func apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	stats.apply_upgrade(upgrade)
 
-func heal(amount: float):
+func heal(amount: float) -> void:
 	current_health += amount
 	heal_sound.play()
 
-func take_damage(damage) -> void:
+func take_damage(damage: float) -> void:
 	current_health -= damage * (1.00 - damage_reduction)
 	take_damage_sound.play()
 	flash_damage()
@@ -101,14 +101,14 @@ func flash_damage() -> void:
 	flash_tween.tween_property(animated_sprite, "modulate", Color("cf0a0a"), 0.03)
 	flash_tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.15)
 
-func die():
+func die() -> void:
 	died_sound.play()
 	player_died.emit()
 
 func _on_health_regen_timer_timeout() -> void:
 	current_health += health_regen_per_sec * max_health
 
-func _on_stat_changed(stat_name: String, new_value: float):
+func _on_stat_changed(stat_name: String, new_value: float) -> void:
 	match stat_name:
 		"max_health_modifier":
 			max_health = new_value

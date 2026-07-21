@@ -1,7 +1,7 @@
 class_name EnemyBeholder
 extends EnemyBase
 
-func _ready():
+func _ready() -> void:
 	speed = 150.0
 	max_health = 300.0
 	damage = 40.0

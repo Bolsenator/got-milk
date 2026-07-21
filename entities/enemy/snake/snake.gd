@@ -1,7 +1,7 @@
 class_name EnemySnake
 extends EnemyBase
 
-func _ready():
+func _ready() -> void:
 	speed = 60.0
 	max_health = 7.5
 	damage = 10.0

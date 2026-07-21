@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1pa3o3jev81c"]
 
 [ext_resource type="PackedScene" uid="uid://bopqhe2yuqahi" path="res://entities/item/misc_item/base_item.tscn" id="1_ptghm"]
-[ext_resource type="Script" uid="uid://iaakkhnbhqqh" path="res://milk_bucket.gd" id="2_f48uy"]
+[ext_resource type="Script" uid="uid://iaakkhnbhqqh" path="res://entities/item/misc_item/milk_bucket.gd" id="2_f48uy"]
 [ext_resource type="Texture2D" uid="uid://chlt3j8hyhh2r" path="res://entities/item/misc_item/milk_bucket.png" id="3_f48uy"]
 
 [node name="MilkBucket" unique_id=2037045122 instance=ExtResource("1_ptghm")]
