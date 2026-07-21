@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
-signal died(exp: int, position: Vector2)
+signal died(_exp_reward: int, _position: Vector2)
 
 var spawn_time_ms: int
 var max_health: float = 5.0
