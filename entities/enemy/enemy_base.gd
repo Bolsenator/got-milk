@@ -48,6 +48,7 @@ func _physics_process(delta: float) -> void:
 	# Chase player
 	if has_target_moved_past_threshold():
 		set_target_position()
+	set_pathfinding_velocity()
 	
 	move_and_slide()
 	animated_sprite.flip_h = velocity.x < 0
@@ -55,6 +56,8 @@ func _physics_process(delta: float) -> void:
 func set_target_position() -> void:
 	current_target_position = player.global_position 
 	navigation_agent.target_position = current_target_position
+
+func set_pathfinding_velocity() -> void:
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 	var new_velocity: Vector2 = current_agent_position.direction_to(next_path_position) * speed
