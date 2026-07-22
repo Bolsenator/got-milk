@@ -165,10 +165,9 @@ func set_targeting_state() -> void:
 		state = State.FOLLOW
 
 func attack_enemy() -> void:
-	var final_damage: float = damage
 	for body: PhysicsBody2D in hitbox.get_overlapping_bodies():
 		if body.is_in_group("enemy"):
-			final_damage = damage
+			var final_damage: float = damage
 			if randf() < crit_chance:
 				final_damage = damage * crit_damage
 				crit_landed.emit(body.global_position)
@@ -179,7 +178,6 @@ func attack_enemy() -> void:
 	attack_sound.play()
 	animated_sprite.play("attack")
 	await animated_sprite.animation_finished
-	return
 
 func apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	stats.apply_upgrade(upgrade)
