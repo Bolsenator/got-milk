@@ -7,7 +7,7 @@
 script = ExtResource("1_7ymrt")
 upgrade_name = "Max Health"
 description = "Increase max health by 10%"
-stat = "max_health_modifier"
+stat = 3
 bonus = 0.1
 max_count = 10
 icon = ExtResource("1_x0tse")

@@ -7,7 +7,7 @@
 script = ExtResource("1_rc1ug")
 upgrade_name = "Exp Gained"
 description = "Increase exp gained by 10%"
-stat = "exp_gain_modifier"
+stat = 1
 bonus = 0.1
 max_count = 5
 icon = ExtResource("1_babc1")

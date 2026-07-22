@@ -90,9 +90,9 @@ func _on_apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	level_up_reward_chosen.emit() # Signal to reset exp bar after choosing upgrade
 	player.max_exp *= exp_increase_per_level
 
-func _on_apply_upgrade_item(stat: String) -> void:
+func _on_apply_upgrade_item(_stat: UpgradeDefinition.Stat) -> void:
 	for upgrade: UpgradeDefinition in upgrade_pool:
-		if upgrade.stat == stat:
+		if upgrade.stat == _stat:
 			apply_upgrade(upgrade)
 			return
 

@@ -2,13 +2,13 @@ class_name StatBlock
 extends RefCounted
 
 var _modifiers: Dictionary = {} # stat_name -> StatModifier
-signal stat_changed(stat_name: String, new_value: float)
+signal stat_changed(stat: String, new_value: float)
 
 func register(modifier: StatModifier) -> void:
-	_modifiers[modifier.stat_name] = modifier
+	_modifiers[modifier.stat] = modifier
 
-func get_value(stat_name: String) -> float:
-	return _modifiers[stat_name].value
+func get_value(_stat: UpgradeDefinition.Stat) -> float:
+	return _modifiers[_stat].value
 
 func apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	var new_value: float = _modifiers[upgrade.stat].apply_bonus(upgrade.bonus)

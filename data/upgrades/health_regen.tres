@@ -7,7 +7,7 @@
 script = ExtResource("1_6mj8d")
 upgrade_name = "Health Regen"
 description = "Increase % of health regenerated per second by 1%"
-stat = "health_regen_per_sec_modifier"
+stat = 2
 bonus = 0.01
 max_count = 5
 icon = ExtResource("1_ekt35")

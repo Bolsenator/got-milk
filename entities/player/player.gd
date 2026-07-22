@@ -56,15 +56,15 @@ func _physics_process(_delta: float) -> void:
 
 func _register_stats() -> void:
 	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
-	_register(StatModifier.new("max_health_modifier", 100.0))
-	_register(StatModifier.new("health_regen_per_sec_modifier", 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new("damage_reduction_modifier", 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new("player_movement_speed_modifier", 300.0))
-	_register(StatModifier.new("exp_gain_modifier", 1.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.MAX_HEALTH, 100.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.HEALTH_REGEN, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.DAMAGE_REDUCTION, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.PLAYER_MOVEMENT_SPEED, 300.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.EXP_GAIN, 1.0))
 
 func _register(modifier: StatModifier) -> void:
 	stats.register(modifier)
-	_on_stat_changed(modifier.stat_name, modifier.value)
+	_on_stat_changed(modifier.stat, modifier.value)
 
 func collect_exp_item() -> void:
 	gain_exp(max_exp)
@@ -108,16 +108,16 @@ func die() -> void:
 func _on_health_regen_timer_timeout() -> void:
 	current_health += health_regen_per_sec * max_health
 
-func _on_stat_changed(stat_name: String, new_value: float) -> void:
-	match stat_name:
-		"max_health_modifier":
+func _on_stat_changed(_stat: UpgradeDefinition.Stat, new_value: float) -> void:
+	match _stat:
+		UpgradeDefinition.Stat.MAX_HEALTH:
 			max_health = new_value
 			health_bar.max_value = max_health
-		"health_regen_per_sec_modifier":
+		UpgradeDefinition.Stat.HEALTH_REGEN:
 			health_regen_per_sec = new_value
-		"damage_reduction_modifier":
+		UpgradeDefinition.Stat.DAMAGE_REDUCTION:
 			damage_reduction = new_value
-		"player_movement_speed_modifier":
+		UpgradeDefinition.Stat.PLAYER_MOVEMENT_SPEED:
 			player_movement_speed = new_value
-		"exp_gain_modifier":
+		UpgradeDefinition.Stat.EXP_GAIN:
 			exp_gain = new_value

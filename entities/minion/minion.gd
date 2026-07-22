@@ -103,16 +103,17 @@ func _physics_process(delta: float) -> void:
 
 func _register_stats() -> void:
 	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
-	_register(StatModifier.new("damage_modifier", 5.0))
-	_register(StatModifier.new("attack_cooldown_modifier", 2.0))
-	_register(StatModifier.new("minion_movement_speed_modifier", 325.0))
-	_register(StatModifier.new("crit_chance_modifier", 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new("crit_damage_modifier", 1.0, StatModifier.Mode.MULTIPLY, 1.5))
-	_register(StatModifier.new("multi_attack_modifier", 1.0, StatModifier.Mode.ADD, 0.0))
+	# This is using magic numbers. Might be worth moving to global script vars for easier modifying
+	_register(StatModifier.new(UpgradeDefinition.Stat.DAMAGE, 5.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.ATTACK_COOLDOWN, 2.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.MINION_MOVEMENT_SPEED, 325.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.CRIT_CHANCE, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
+	_register(StatModifier.new(UpgradeDefinition.Stat.CRIT_DAMAGE, 1.0, StatModifier.Mode.MULTIPLY, 1.5))
+	_register(StatModifier.new(UpgradeDefinition.Stat.MULTI_ATTACK, 1.0, StatModifier.Mode.ADD, 0.0))
 
 func _register(modifier: StatModifier) -> void:
 	stats.register(modifier)
-	_on_stat_changed(modifier.stat_name, modifier.value)
+	_on_stat_changed(modifier.stat, modifier.value)
 
 func set_target_position(target: CharacterBody2D, target_desired_distance: float) -> void:
 	navigation_agent.target_desired_distance = target_desired_distance
@@ -204,18 +205,18 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		animated_sprite.play("idle")
 
-func _on_stat_changed(stat_name: String, new_value: float) -> void:
-	match stat_name:
-		"damage_modifier":
+func _on_stat_changed(_stat: UpgradeDefinition.Stat, new_value: float) -> void:
+	match _stat:
+		UpgradeDefinition.Stat.DAMAGE:
 			damage = new_value
-		"attack_cooldown_modifier":
+		UpgradeDefinition.Stat.ATTACK_COOLDOWN:
 			attack_cooldown = new_value
 			attack_cooldown_bar.max_value = attack_cooldown
-		"minion_movement_speed_modifier":
+		UpgradeDefinition.Stat.MINION_MOVEMENT_SPEED:
 			minion_movement_speed = new_value
-		"crit_chance_modifier":
+		UpgradeDefinition.Stat.CRIT_CHANCE:
 			crit_chance = new_value
-		"crit_damage_modifier":
+		UpgradeDefinition.Stat.CRIT_DAMAGE:
 			crit_damage = new_value
-		"multi_attack_modifier":
+		UpgradeDefinition.Stat.MULTI_ATTACK:
 			multi_attack = new_value
