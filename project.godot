@@ -78,7 +78,7 @@ esc={
 2d_physics/layer_3="Pickups"
 2d_physics/layer_4="Followers"
 2d_physics/layer_5="Enemies"
-2d_physics/layer_6="FollowerToFollower"
+2d_physics/layer_6="MinionToMinion"
 avoidance/layer_1="Enemy"
 avoidance/layer_2="Follower"
 

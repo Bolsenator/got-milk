@@ -3,10 +3,11 @@
 
 extends Node
 
+@export_flags_2d_physics var spawn_collision_mask: int # collision layers to check against when spawning enemy
+
 # Spawn and despawn values
 var spawn_distance_min: float = 900.0 # distance from player
 var spawn_distance_max: float = 1200.0 # distance from player
-var spawn_collision_layers: Array = [1] # list of collision layers to check against when spawning enemy
 var despawn_threshold_ms: int = 30000 # 30 seconds before attempting to despawn an enemy
 
 # These must be initialized from the parent node which has this data
@@ -110,18 +111,13 @@ func _get_enemy_spawn_position() -> Vector2:
 
 func _is_valid_spawn_location(spawn_position: Vector2) -> bool:
 	var collision_query_point: PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
+	collision_query_point.collision_mask = spawn_collision_mask
 	collision_query_point.position = spawn_position
-	
-	for layer_number: int in spawn_collision_layers:
-		collision_query_point.collision_mask = 1 << (layer_number - 1)
 	
 	var space_state: PhysicsDirectSpaceState2D = get_viewport().get_world_2d().direct_space_state
 	var collision_array: Array = space_state.intersect_point(collision_query_point)
 	
-	if collision_array.size() == 0:
-		return true
-	else:
-		return false
+	return collision_array.size() == 0
 
 func _on_despawn_timer_timeout() -> void:
 	for enemy: EnemyBase in get_tree().get_nodes_in_group("enemy"):
