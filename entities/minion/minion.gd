@@ -27,12 +27,14 @@ var crit_chance: float
 var crit_damage: float
 var multi_attack: float
 
+var multi_attack_cooldown_multiplier: float = 1.0 # This is currently coded as a speed multiplier. Adjust this if implemented in the statblock
 var soft_leash_radius: float = 300.0
 var hard_leash_radius: float = 800.0
 var deceleration: float = 2.0
 var minion_to_minion_repulsion_speed: float = 25.0
 var attack_cushion: float = 16 # Prevents sprite from going crazy when right on enemy
 var cooldown_timer: float = 0.0
+var is_attacking: bool = false
 var is_on_cooldown: bool = false
 var enemy_in_range: bool = false # Range for attack to proc
 var target_enemy_distance_to_player: float
@@ -84,9 +86,8 @@ func _physics_process(delta: float) -> void:
 	# Act on state
 	match state:
 		State.ATTACK:
-			if enemy_in_range and !is_on_cooldown:
-				for attack: int in multi_attack:
-					await attack_enemy()
+			if !is_on_cooldown and !is_attacking and enemy_in_range:
+				attack_enemy()
 			else:
 				set_target_position(target_enemy, attack_cushion)
 		State.FOLLOW:
@@ -166,19 +167,25 @@ func set_targeting_state() -> void:
 		state = State.FOLLOW
 
 func attack_enemy() -> void:
-	for body: PhysicsBody2D in hitbox.get_overlapping_bodies():
-		if body.is_in_group("enemy"):
-			var final_damage: float = damage
-			if randf() < crit_chance:
-				final_damage = damage * crit_damage
-				crit_landed.emit(body.global_position)
-			body.take_damage(final_damage)
+	is_attacking = true
+	# Attack per multi attack
+	for attack: int in multi_attack:
+		for body: PhysicsBody2D in hitbox.get_overlapping_bodies():
+			if body.is_in_group("enemy"):
+				var final_damage: float = damage
+				if randf() < crit_chance:
+					final_damage = damage * crit_damage
+					crit_landed.emit(body.global_position)
+				body.take_damage(final_damage)
+		attack_sound.play()
+		animated_sprite.play("attack", multi_attack_cooldown_multiplier)
+		await animated_sprite.animation_finished
+	
+	# Attack ends here, so add cooldown
 	cooldown_timer = attack_cooldown
 	is_on_cooldown = true
 	pop_in_attack_cooldown_bar()
-	attack_sound.play()
-	animated_sprite.play("attack")
-	await animated_sprite.animation_finished
+	is_attacking = false
 
 func apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	stats.apply_upgrade(upgrade)
