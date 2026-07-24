@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var level_up_sound: AudioStreamPlayer = $LevelUpSound
 @onready var died_sound: AudioStreamPlayer = $DiedSound
 @onready var health_regen_timer: Timer = $HealthRegenTimer
+@onready var invulnerability_phase_timer: Timer = $InvulnerabilityPhaseTimer
 
 signal exp_changed(new_exp: float, max_exp: float)
 signal level_up()
@@ -23,7 +24,6 @@ var player_movement_speed: float
 var exp_gain: float
 
 var health_regen_cooldown_sec: float = 1.0
-var rotation_speed : float = 1.5
 var current_health: float = 100.0 :
 	set(new_value):
 		current_health = clamp (new_value, 0, max_health)
@@ -35,6 +35,7 @@ var current_exp : float = 0.0 :
 var max_exp : float = 30.0
 var player_level: int = 1
 var flash_tween: Tween
+var _is_invulnerable: bool = false
 
 func _ready() -> void:
 	_register_stats()
@@ -87,6 +88,13 @@ func heal(amount: float) -> void:
 	heal_sound.play()
 
 func take_damage(damage: float) -> void:
+	# Handle invulnerability phase
+	if _is_invulnerable:
+		return
+	_is_invulnerable = true
+	invulnerability_phase_timer.start()
+	
+	# Deal damage
 	current_health -= damage * (1.00 - damage_reduction)
 	take_damage_sound.play()
 	flash_damage()
@@ -107,6 +115,9 @@ func die() -> void:
 
 func _on_health_regen_timer_timeout() -> void:
 	current_health += health_regen_per_sec * max_health
+
+func _on_invulnerability_phase_timer_timeout() -> void:
+	_is_invulnerable = false
 
 func _on_stat_changed(_stat: UpgradeDefinition.Stat, new_value: float) -> void:
 	match _stat:

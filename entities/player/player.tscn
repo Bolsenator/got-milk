@@ -96,4 +96,9 @@ volume_db = -30.0
 [node name="HealthRegenTimer" type="Timer" parent="." unique_id=330318706]
 process_callback = 0
 
+[node name="InvulnerabilityPhaseTimer" type="Timer" parent="." unique_id=835952171]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen_timer_timeout"]
+[connection signal="timeout" from="InvulnerabilityPhaseTimer" to="." method="_on_invulnerability_phase_timer_timeout"]
