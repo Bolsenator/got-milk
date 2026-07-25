@@ -138,8 +138,8 @@ func toggle_pause() -> void:
 	get_tree().paused = !get_tree().paused
 	ui.toggle_pause_ui()
 
-func _on_create_offscreen_indicator(objective: UpgradeItem) -> void:
-	ui.hud_ui.create_offscreen_indicator(objective)
+func _on_create_offscreen_indicator(entity: UpgradeItem, texture: Texture2D) -> void:
+	ui.hud_ui.create_offscreen_indicator(entity, texture)
 
 func _level_completed() -> void:
 	get_tree().paused = true

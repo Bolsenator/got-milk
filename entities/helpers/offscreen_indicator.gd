@@ -9,13 +9,15 @@ var right_margin: float = 64.0
 var bottom_margin: float = 64.0
 
 @onready var arrow_sprite: Sprite2D = $ArrowSprite
+@onready var entity_sprite: Sprite2D = $EntitySprite
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
-func initialize(_objective: Node) -> void:
+func initialize(_objective: Node, _texture: Texture2D) -> void:
 	objective = _objective
 	objective.tree_exited.connect(_on_objective_tree_exited)
+	entity_sprite.texture = _texture
 
 func _process(_delta: float) -> void:
 	

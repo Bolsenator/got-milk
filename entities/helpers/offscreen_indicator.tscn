@@ -8,7 +8,7 @@
 scale = Vector2(4, 4)
 script = ExtResource("1_21enq")
 
-[node name="ObjectiveSprite" type="Sprite2D" parent="." unique_id=189747340]
+[node name="EntitySprite" type="Sprite2D" parent="." unique_id=189747340]
 texture = ExtResource("3_mdryl")
 
 [node name="ArrowSprite" type="Sprite2D" parent="." unique_id=584785664]

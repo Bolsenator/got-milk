@@ -68,7 +68,7 @@ func update_upgrades_display(upgrade: UpgradeDefinition, count: int) -> void:
 		active_upgrade_widgets[stat] = new_widget
 	active_upgrade_widgets[stat].update_display(upgrade, count)
 
-func create_offscreen_indicator(objective: Node) -> void:
+func create_offscreen_indicator(entity: Node, texture: Texture2D) -> void:
 	var new_indicator: Node2D = offscreen_indicator_scene.instantiate()
-	new_indicator.initialize(objective)
 	offscreen_indicators_container.add_child(new_indicator)
+	new_indicator.initialize(entity, texture)
