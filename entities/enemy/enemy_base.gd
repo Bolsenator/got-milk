@@ -19,7 +19,9 @@ var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
 var flash_tween: Tween
 var is_boss: bool = false
-var boss_multiplier: float = 10.0
+var boss_multiplier_health: float = 10.0
+var boss_multiplier_damage: float = 10.0
+var boss_multiplier_exp: int = 100
 
 var current_target_position: Vector2
 var max_distance_squared_to_player: float = 4096.0 # Squared in advance for distance_to calculations
@@ -59,9 +61,9 @@ func _physics_process(delta: float) -> void:
 
 func set_boss() -> void:
 	scale = Vector2(2,2)
-	max_health *= boss_multiplier
-	damage *= boss_multiplier
-	exp_reward *= boss_multiplier
+	max_health *= boss_multiplier_health
+	damage *= boss_multiplier_damage
+	exp_reward *= boss_multiplier_exp
 	create_offscreen_indicator.emit(self, animated_sprite.sprite_frames.get_frame_texture("idle",0))
 
 func set_target_position() -> void:
