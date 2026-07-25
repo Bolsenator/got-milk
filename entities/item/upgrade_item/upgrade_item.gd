@@ -5,7 +5,7 @@ extends Area2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 
-signal create_offscreen_indicator(upgrade_item: Area2D, texture: Texture2D)
+signal create_offscreen_indicator(entity: Node, texture: Texture2D)
 signal apply_upgrade_item(upgrade: UpgradeDefinition)
 
 func _ready() -> void:

@@ -41,6 +41,7 @@ minion_to_minion_hitbox=""
 navigation_polygon_source_geometry_group=""
 upgrade_item=""
 exp=""
+static_item=""
 
 [input]
 

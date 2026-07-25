@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var on_screen_notifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 signal died(_exp_reward: int, _position: Vector2)
+signal create_offscreen_indicator(entity: Node, texture: Texture2D)
 
 var spawn_time_ms: int
 var max_health: float = 5.0
@@ -17,8 +18,8 @@ var player_in_range: bool = false
 var attack_cooldown: float = 1.0
 var cooldown_timer: float = 0.0
 var flash_tween: Tween
-
 var is_boss: bool = false
+var boss_multiplier: float = 10.0
 
 var current_target_position: Vector2
 var max_distance_squared_to_player: float = 4096.0 # Squared in advance for distance_to calculations
@@ -26,11 +27,14 @@ var max_distance_squared_to_player: float = 4096.0 # Squared in advance for dist
 var player: CharacterBody2D
 
 func _ready() -> void:
+	if is_boss:
+		set_boss()
 	spawn_time_ms = Time.get_ticks_msec()
 	health = max_health
 	player = get_tree().get_first_node_in_group("player")
 	animated_sprite.play("idle")
 	navigation_agent.max_speed = speed
+	
 	# Wait for navigation map to be ready
 	await get_tree().physics_frame
 	set_target_position()
@@ -52,6 +56,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	animated_sprite.flip_h = velocity.x < 0
+
+func set_boss() -> void:
+	scale = Vector2(2,2)
+	max_health *= boss_multiplier
+	damage *= boss_multiplier
+	exp_reward *= boss_multiplier
+	create_offscreen_indicator.emit(self, animated_sprite.sprite_frames.get_frame_texture("idle",0))
 
 func set_target_position() -> void:
 	current_target_position = player.global_position 

@@ -19,6 +19,7 @@ var y_sort_container: Node2D
 var current_wave: WaveDefinition
 var _current_wave_index: int = 0
 
+signal create_offscreen_indicator(entity: Node, texture: Texture2D)
 signal enemy_died(exp_value: float, _position: Vector2)
 signal wave_set_completed()
 
@@ -87,8 +88,12 @@ func _on_boss_delay_timeout() -> void:
 	var boss_instance: Node = current_wave.boss_scene.instantiate()
 	boss_instance.global_position = _get_enemy_spawn_position()
 	boss_instance.died.connect(_on_boss_died)
+	boss_instance.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
 	boss_instance.is_boss = true
 	y_sort_container.add_child(boss_instance)
+
+func _on_create_offscreen_indicator(_entity: Node, _texture: Texture2D) -> void:
+	create_offscreen_indicator.emit(_entity, _texture)
 
 func _get_enemy_spawn_position() -> Vector2:
 	var angle: float

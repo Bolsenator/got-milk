@@ -2,12 +2,17 @@ class_name BaseItem
 
 extends Area2D
 
+signal create_offscreen_indicator(entity: Node, texture: Texture2D)
+
+@onready var sprite: Sprite2D = $Sprite2D
+
 var pop_distance_min: float = 24.0
 var pop_distance_max: float = 48.0
 var pop_duration: float = 1.0
 
 func _ready() -> void:
 	pop_and_land()
+	create_offscreen_indicator.emit(self, sprite.texture)
 
 func pop_and_land() -> void:
 	var angle: float = randf_range(0, TAU)

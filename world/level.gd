@@ -37,11 +37,15 @@ func _ready() -> void:
 		upgrade_item.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
 		upgrade_item.level_ready()
 	
+	for static_item: Area2D in get_tree().get_nodes_in_group("static_item"):
+		static_item.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
+	
 	# Initialize upgrade count array
 	for upgrade: UpgradeDefinition in upgrade_pool:
 		upgrade_counts[upgrade.stat] = 0
 	
 	spawn_starting_minions()
+	enemy_spawner.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
 	enemy_spawner.initialize(wave_set, player, y_sort_container)
 	enemy_spawner.start_enemy_spawns()
 
@@ -138,7 +142,7 @@ func toggle_pause() -> void:
 	get_tree().paused = !get_tree().paused
 	ui.toggle_pause_ui()
 
-func _on_create_offscreen_indicator(entity: UpgradeItem, texture: Texture2D) -> void:
+func _on_create_offscreen_indicator(entity: Node, texture: Texture2D) -> void:
 	ui.hud_ui.create_offscreen_indicator(entity, texture)
 
 func _level_completed() -> void:
