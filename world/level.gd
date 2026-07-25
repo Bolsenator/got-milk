@@ -35,7 +35,7 @@ func _ready() -> void:
 	for upgrade_item: UpgradeItem in get_tree().get_nodes_in_group("upgrade_item"):
 		upgrade_item.apply_upgrade_item.connect(_on_apply_upgrade_item)
 		upgrade_item.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
-		upgrade_item._on_level_ready()
+		upgrade_item.level_ready()
 	
 	# Initialize upgrade count array
 	for upgrade: UpgradeDefinition in upgrade_pool:
@@ -90,11 +90,12 @@ func _on_apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	level_up_reward_chosen.emit() # Signal to reset exp bar after choosing upgrade
 	player.max_exp *= exp_increase_per_level
 
-func _on_apply_upgrade_item(_stat: UpgradeDefinition.Stat) -> void:
-	for upgrade: UpgradeDefinition in upgrade_pool:
-		if upgrade.stat == _stat:
-			apply_upgrade(upgrade)
-			return
+func _on_apply_upgrade_item(_upgrade: UpgradeDefinition) -> void:
+	apply_upgrade(_upgrade)
+	#for upgrade: UpgradeDefinition in upgrade_pool:
+		#if upgrade.stat == _stat:
+			#apply_upgrade(upgrade)
+			#return
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc"):

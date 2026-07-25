@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://bf3bflwj8l7k" path="res://world/dungeon/base_floor_tile.png" id="1_5cnkq"]
 [ext_resource type="Texture2D" uid="uid://biln6a43k6s7" path="res://world/dungeon/wall_tiles.png" id="2_5cnkq"]
-[ext_resource type="PackedScene" uid="uid://ct0tf4jt1woq2" path="res://entities/item/upgrade_item/crit_chance.tscn" id="5_33x4t"]
-[ext_resource type="PackedScene" uid="uid://pt0bsrunun1u" path="res://entities/item/upgrade_item/damage.tscn" id="7_nklpf"]
+[ext_resource type="PackedScene" uid="uid://da2olmh5criav" path="res://entities/item/upgrade_item/upgrade_item.tscn" id="4_bra34"]
+[ext_resource type="Resource" uid="uid://b43x2teji3yyb" path="res://data/upgrades/health_regen.tres" id="5_3xc0y"]
+[ext_resource type="Resource" uid="uid://cu5o87jwibkar" path="res://data/upgrades/damage.tres" id="6_5hh37"]
+[ext_resource type="Resource" uid="uid://b8kvmjxcwtntt" path="res://data/upgrades/crit_chance.tres" id="7_ws2wm"]
+[ext_resource type="Resource" uid="uid://b61qjcrtwlk7e" path="res://data/upgrades/multi_attack.tres" id="8_4v1qo"]
+[ext_resource type="Resource" uid="uid://vc8cqxvf8agk" path="res://data/upgrades/summon_minion.tres" id="8_ws2wm"]
 [ext_resource type="PackedScene" uid="uid://70vahs1eh6qr" path="res://entities/item/misc_item/vase.tscn" id="9_ws2wm"]
-[ext_resource type="PackedScene" uid="uid://dfopc747kx4d8" path="res://entities/item/upgrade_item/health_regen.tscn" id="10_qsgj5"]
-[ext_resource type="PackedScene" uid="uid://bljr8qhk88myq" path="res://entities/item/upgrade_item/multi_attack.tscn" id="13_3cmxv"]
-[ext_resource type="PackedScene" uid="uid://cdk60k111mqj8" path="res://entities/item/upgrade_item/summon_minion.tscn" id="15_iev1l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xc0y"]
 texture = ExtResource("1_5cnkq")
@@ -182,21 +183,6 @@ navigation_polygon = SubResource("NavigationPolygon_5cnkq")
 
 [node name="Items" type="Node2D" parent="." unique_id=1435524720]
 
-[node name="MultiAttack" parent="Items" unique_id=1840333002 instance=ExtResource("13_3cmxv")]
-position = Vector2(5408, -4896)
-
-[node name="Damage" parent="Items" unique_id=735621618 instance=ExtResource("7_nklpf")]
-position = Vector2(-7136, 3104)
-
-[node name="HealthRegen" parent="Items" unique_id=1685790082 instance=ExtResource("10_qsgj5")]
-position = Vector2(-32, 1760)
-
-[node name="SummonMinion" parent="Items" unique_id=1845336274 instance=ExtResource("15_iev1l")]
-position = Vector2(10336, -3424)
-
-[node name="CritChance" parent="Items" unique_id=1266509450 instance=ExtResource("5_33x4t")]
-position = Vector2(-8544, -9888)
-
 [node name="Vase" parent="Items" unique_id=976931231 instance=ExtResource("9_ws2wm")]
 position = Vector2(-2560, -1888)
 
@@ -346,3 +332,23 @@ position = Vector2(-7192, -984)
 
 [node name="Vase50" parent="Items" unique_id=1172695340 instance=ExtResource("9_ws2wm")]
 position = Vector2(-4896, -5944)
+
+[node name="UpgradeItem" parent="." unique_id=1840333002 instance=ExtResource("4_bra34")]
+position = Vector2(-34, 1772)
+upgrade = ExtResource("5_3xc0y")
+
+[node name="UpgradeItem2" parent="." unique_id=75514506 instance=ExtResource("4_bra34")]
+position = Vector2(-7160, 2936)
+upgrade = ExtResource("6_5hh37")
+
+[node name="UpgradeItem3" parent="." unique_id=973906910 instance=ExtResource("4_bra34")]
+position = Vector2(-8609, -9768)
+upgrade = ExtResource("7_ws2wm")
+
+[node name="UpgradeItem4" parent="." unique_id=1078696760 instance=ExtResource("4_bra34")]
+position = Vector2(10297, -3941)
+upgrade = ExtResource("8_ws2wm")
+
+[node name="UpgradeItem5" parent="." unique_id=431577685 instance=ExtResource("4_bra34")]
+position = Vector2(5373, -4865)
+upgrade = ExtResource("8_4v1qo")
