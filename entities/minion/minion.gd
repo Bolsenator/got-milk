@@ -18,6 +18,7 @@ var target_enemy: CharacterBody2D = null
 var current_target_position: Vector2
 var max_distance_squared_to_target: float = 256.0 # Squared in advance for distance_to calculations
 
+@export var base_stat_block: BaseStatBlock
 var stats: StatBlock = StatBlock.new()
 
 var minion_movement_speed: float
@@ -98,18 +99,10 @@ func _physics_process(delta: float) -> void:
 	animated_sprite.flip_h = velocity.x < 0
 
 func _register_stats() -> void:
-	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
-	# This is using magic numbers. Might be worth moving to global script vars for easier modifying
-	_register(StatModifier.new(StatId.Stat.DAMAGE, 5.0))
-	_register(StatModifier.new(StatId.Stat.ATTACK_COOLDOWN, 2.0))
-	_register(StatModifier.new(StatId.Stat.MINION_MOVEMENT_SPEED, 325.0))
-	_register(StatModifier.new(StatId.Stat.CRIT_CHANCE, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new(StatId.Stat.CRIT_DAMAGE, 1.0, StatModifier.Mode.MULTIPLY, 1.5))
-	_register(StatModifier.new(StatId.Stat.MULTI_ATTACK, 1.0, StatModifier.Mode.ADD, 0.0))
-
-func _register(modifier: StatModifier) -> void:
-	stats.register(modifier)
-	_on_stat_changed(modifier.stat, modifier.value)
+	for base_stat: BaseStatDefinition in base_stat_block.base_stats:
+		var new_modifer: StatModifier = StatModifier.new(base_stat.stat, base_stat.initial_value, base_stat.mode, base_stat.initial_modifier)
+		stats.register(new_modifer)
+		_on_stat_changed(new_modifer.stat, new_modifer.value)
 
 func set_target_position(target: CharacterBody2D, target_desired_distance: float) -> void:
 	navigation_agent.target_desired_distance = target_desired_distance

@@ -1,3 +1,5 @@
+# Block of runtime stats for an entity, udpated as stats are modified throughout the game
+
 class_name StatBlock
 extends RefCounted
 

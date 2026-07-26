@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c7h2bw03q2tu0"]
 
 [ext_resource type="Script" uid="uid://daya5063y5353" path="res://entities/minion/minion.gd" id="1_syyib"]
+[ext_resource type="Resource" uid="uid://dsq50ssb2lm7y" path="res://data/stats/minion_basic_stat_block.tres" id="2_ai3kx"]
 [ext_resource type="Texture2D" uid="uid://7x3ghr46v6sf" path="res://entities/minion/minion_basic_idle.png" id="2_awkh2"]
 [ext_resource type="Texture2D" uid="uid://bj4ytbdijrpsb" path="res://entities/minion/minion_basic_attack.png" id="2_sy8s3"]
 [ext_resource type="AudioStream" uid="uid://ca734tmp2e7ej" path="res://assets/sfx/follower_attack.wav" id="3_sy8s3"]
@@ -129,6 +130,7 @@ _data = {
 process_mode = 1
 collision_layer = 8
 script = ExtResource("1_syyib")
+base_stat_block = ExtResource("2_ai3kx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=833127862]
 scale = Vector2(4, 4)

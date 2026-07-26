@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="BaseStatBlock" format=3 uid="uid://dsq50ssb2lm7y"]
+
+[ext_resource type="Script" uid="uid://debb2rmdeffnj" path="res://data/stats/base_stat_definition.gd" id="1_ols3f"]
+[ext_resource type="Script" uid="uid://doet26b027vfa" path="res://data/stats/base_stat_block.gd" id="2_5f2qm"]
+
+[sub_resource type="Resource" id="Resource_ols3f"]
+script = ExtResource("1_ols3f")
+stat = 8
+initial_value = 5.0
+metadata/_custom_type_script = "uid://debb2rmdeffnj"
+
+[sub_resource type="Resource" id="Resource_5f2qm"]
+script = ExtResource("1_ols3f")
+stat = 5
+initial_value = 2.0
+metadata/_custom_type_script = "uid://debb2rmdeffnj"
+
+[sub_resource type="Resource" id="Resource_44gjc"]
+script = ExtResource("1_ols3f")
+stat = 9
+initial_value = 325.0
+metadata/_custom_type_script = "uid://debb2rmdeffnj"
+
+[sub_resource type="Resource" id="Resource_voidl"]
+script = ExtResource("1_ols3f")
+stat = 6
+initial_modifier = 0.0
+metadata/_custom_type_script = "uid://debb2rmdeffnj"
+
+[sub_resource type="Resource" id="Resource_dfvsv"]
+script = ExtResource("1_ols3f")
+stat = 7
+initial_modifier = 1.5
+metadata/_custom_type_script = "uid://debb2rmdeffnj"
+
+[sub_resource type="Resource" id="Resource_3wdv3"]
+script = ExtResource("1_ols3f")
+stat = 10
+mode = 1
+initial_modifier = 0.0
+metadata/_custom_type_script = "uid://debb2rmdeffnj"
+
+[resource]
+script = ExtResource("2_5f2qm")
+base_stats = Array[ExtResource("1_ols3f")]([SubResource("Resource_ols3f"), SubResource("Resource_5f2qm"), SubResource("Resource_44gjc"), SubResource("Resource_voidl"), SubResource("Resource_dfvsv"), SubResource("Resource_3wdv3")])
+metadata/_custom_type_script = "uid://doet26b027vfa"

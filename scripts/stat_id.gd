@@ -17,3 +17,5 @@ enum Stat {
 	
 	SUMMON_MINION = 11,
 }
+
+enum Mode { MULTIPLY, ADD }

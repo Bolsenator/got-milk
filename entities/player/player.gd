@@ -15,6 +15,7 @@ signal exp_changed(new_exp: float, max_exp: float)
 signal level_up()
 signal player_died()
 
+@export var base_stat_block: BaseStatBlock
 var stats: StatBlock = StatBlock.new()
 
 var player_movement_speed: float
@@ -52,16 +53,10 @@ func _physics_process(_delta: float) -> void:
 		animated_sprite.flip_h = direction.x < 0
 
 func _register_stats() -> void:
-	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
-	_register(StatModifier.new(StatId.Stat.MAX_HEALTH, 100.0))
-	_register(StatModifier.new(StatId.Stat.HEALTH_REGEN, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new(StatId.Stat.DAMAGE_REDUCTION, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new(StatId.Stat.PLAYER_MOVEMENT_SPEED, 300.0))
-	_register(StatModifier.new(StatId.Stat.EXP_GAIN, 1.0))
-
-func _register(modifier: StatModifier) -> void:
-	stats.register(modifier)
-	_on_stat_changed(modifier.stat, modifier.value)
+	for base_stat: BaseStatDefinition in base_stat_block.base_stats:
+		var new_modifer: StatModifier = StatModifier.new(base_stat.stat, base_stat.initial_value, base_stat.mode, base_stat.initial_modifier)
+		stats.register(new_modifer)
+		_on_stat_changed(new_modifer.stat, new_modifer.value)
 
 func collect_exp_item() -> void:
 	gain_exp(max_exp)
