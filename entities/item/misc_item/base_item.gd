@@ -28,6 +28,4 @@ func pop_and_land() -> void:
 	tween.finished.connect(_on_landed)
 
 func _on_landed() -> void:
-	if not is_instance_valid(self):
-		return
 	set_deferred("monitoring", true)

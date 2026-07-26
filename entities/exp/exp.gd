@@ -9,7 +9,7 @@ var move_speed: float = 100.0
 func _ready() -> void:
 	animated_sprite.play("default")
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_magnet_enabled:
 		global_position = global_position.move_toward(player.global_position, move_speed * delta)
 

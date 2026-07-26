@@ -14,9 +14,6 @@ func hide_level_up_ui() -> void:
 
 func show_game_over_ui() -> void:
 	game_over_ui.show()
-	
-func hide_game_over_ui() -> void:
-	game_over_ui.hide()
 
 func show_level_complete_ui() -> void:
 	level_complete_ui.show()
