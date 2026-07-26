@@ -20,12 +20,7 @@ var max_distance_squared_to_target: float = 256.0 # Squared in advance for dista
 
 var stats: StatBlock = StatBlock.new()
 
-var damage: float
-var attack_cooldown: float
 var minion_movement_speed: float
-var crit_chance: float
-var crit_damage: float
-var multi_attack: float
 
 var multi_attack_cooldown_multiplier: float = 1.0 # This is currently coded as a speed multiplier. Adjust this if implemented in the statblock
 var soft_leash_radius: float = 300.0
@@ -169,12 +164,12 @@ func set_targeting_state() -> void:
 func attack_enemy() -> void:
 	is_attacking = true
 	# Attack per multi attack
-	for attack: int in multi_attack:
+	for attack: int in stats.get_value(UpgradeDefinition.Stat.MULTI_ATTACK):
 		for body: PhysicsBody2D in hitbox.get_overlapping_bodies():
 			if body.is_in_group("enemy"):
-				var final_damage: float = damage
-				if randf() < crit_chance:
-					final_damage = damage * crit_damage
+				var final_damage: float = stats.get_value(UpgradeDefinition.Stat.DAMAGE)
+				if randf() < stats.get_value(UpgradeDefinition.Stat.CRIT_CHANCE):
+					final_damage *= stats.get_value(UpgradeDefinition.Stat.CRIT_DAMAGE)
 					crit_landed.emit(body.global_position)
 				body.take_damage(final_damage)
 		attack_sound.play()
@@ -182,7 +177,7 @@ func attack_enemy() -> void:
 		await animated_sprite.animation_finished
 	
 	# Attack ends here, so add cooldown
-	cooldown_timer = attack_cooldown
+	cooldown_timer = stats.get_value(UpgradeDefinition.Stat.ATTACK_COOLDOWN)
 	is_on_cooldown = true
 	pop_in_attack_cooldown_bar()
 	is_attacking = false
@@ -213,17 +208,13 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		animated_sprite.play("idle")
 
 func _on_stat_changed(_stat: UpgradeDefinition.Stat, new_value: float) -> void:
+	# Only updates things which require to be updated, not every stat
 	match _stat:
-		UpgradeDefinition.Stat.DAMAGE:
-			damage = new_value
 		UpgradeDefinition.Stat.ATTACK_COOLDOWN:
-			attack_cooldown = new_value
-			attack_cooldown_bar.max_value = attack_cooldown
+			# Update cooldown UI
+			attack_cooldown_bar.max_value = new_value
 		UpgradeDefinition.Stat.MINION_MOVEMENT_SPEED:
+			# Movement speed requires a locally cached var because it is called every physics frame
 			minion_movement_speed = new_value
-		UpgradeDefinition.Stat.CRIT_CHANCE:
-			crit_chance = new_value
-		UpgradeDefinition.Stat.CRIT_DAMAGE:
-			crit_damage = new_value
-		UpgradeDefinition.Stat.MULTI_ATTACK:
-			multi_attack = new_value
+			# Update navigation agent
+			navigation_agent.max_speed = minion_movement_speed
