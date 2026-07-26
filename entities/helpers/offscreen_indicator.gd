@@ -34,7 +34,6 @@ func _process(_delta: float) -> void:
 		var bounds: Rect2 = viewport_rect.grow_individual(-left_margin, -top_margin, -right_margin, -bottom_margin)
 		position = entity_position.clamp(bounds.position, bounds.position + bounds.size)
 	
-
 	arrow_sprite.look_at(entity_position)
 
 func _on_entity_tree_exited() -> void:

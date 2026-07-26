@@ -17,16 +17,11 @@ signal player_died()
 
 var stats: StatBlock = StatBlock.new()
 
-var max_health: float
-var health_regen_per_sec: float
-var damage_reduction: float
 var player_movement_speed: float
-var exp_gain: float
 
-var health_regen_cooldown_sec: float = 1.0
 var current_health: float = 100.0 :
 	set(new_value):
-		current_health = clamp (new_value, 0, max_health)
+		current_health = clamp (new_value, 0, stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH))
 		health_bar.value = current_health
 var current_exp : float = 0.0 :
 	set(new_value):
@@ -42,10 +37,11 @@ func _ready() -> void:
 	stats.stat_changed.connect(_on_stat_changed)
 	
 	animated_sprite.play("idle")
-	health_bar.max_value = max_health
+	health_bar.max_value = stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
 	health_bar.min_value = 0
+	current_health = stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
 	health_bar.value = current_health
-	health_regen_timer.start(health_regen_cooldown_sec)
+	health_regen_timer.start()
 
 func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("left","right","up","down")
@@ -71,7 +67,7 @@ func collect_exp_item() -> void:
 	gain_exp(max_exp)
 
 func gain_exp(exp_amount : float) -> void:
-	current_exp += exp_amount * exp_gain
+	current_exp += exp_amount * stats.get_value(UpgradeDefinition.Stat.EXP_GAIN)
 
 	while current_exp >= max_exp:
 		player_level += 1
@@ -95,7 +91,7 @@ func take_damage(damage: float) -> void:
 	invulnerability_phase_timer.start()
 	
 	# Deal damage
-	current_health -= damage * (1.00 - damage_reduction)
+	current_health -= damage * (1.00 - stats.get_value(UpgradeDefinition.Stat.DAMAGE_REDUCTION))
 	take_damage_sound.play()
 	flash_damage()
 	if current_health <= 0:
@@ -114,21 +110,17 @@ func die() -> void:
 	player_died.emit()
 
 func _on_health_regen_timer_timeout() -> void:
-	current_health += health_regen_per_sec * max_health
+	current_health += stats.get_value(UpgradeDefinition.Stat.HEALTH_REGEN) * stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
 
 func _on_invulnerability_phase_timer_timeout() -> void:
 	_is_invulnerable = false
 
 func _on_stat_changed(_stat: UpgradeDefinition.Stat, new_value: float) -> void:
+	# Only updates things which require to be updated, not every stat
 	match _stat:
 		UpgradeDefinition.Stat.MAX_HEALTH:
-			max_health = new_value
-			health_bar.max_value = max_health
-		UpgradeDefinition.Stat.HEALTH_REGEN:
-			health_regen_per_sec = new_value
-		UpgradeDefinition.Stat.DAMAGE_REDUCTION:
-			damage_reduction = new_value
+			# Update health bar UI
+			health_bar.max_value = stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
 		UpgradeDefinition.Stat.PLAYER_MOVEMENT_SPEED:
+			# Movement speed requires a locally cached var because it is called every physics frame
 			player_movement_speed = new_value
-		UpgradeDefinition.Stat.EXP_GAIN:
-			exp_gain = new_value
