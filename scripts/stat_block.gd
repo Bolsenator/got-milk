@@ -7,7 +7,7 @@ signal stat_changed(stat: String, new_value: float)
 func register(modifier: StatModifier) -> void:
 	_modifiers[modifier.stat] = modifier
 
-func get_value(_stat: UpgradeDefinition.Stat) -> float:
+func get_value(_stat: StatId.Stat) -> float:
 	return _modifiers[_stat].value
 
 func apply_upgrade(upgrade: UpgradeDefinition) -> void:

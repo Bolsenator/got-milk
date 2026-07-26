@@ -100,12 +100,12 @@ func _physics_process(delta: float) -> void:
 func _register_stats() -> void:
 	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
 	# This is using magic numbers. Might be worth moving to global script vars for easier modifying
-	_register(StatModifier.new(UpgradeDefinition.Stat.DAMAGE, 5.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.ATTACK_COOLDOWN, 2.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.MINION_MOVEMENT_SPEED, 325.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.CRIT_CHANCE, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.CRIT_DAMAGE, 1.0, StatModifier.Mode.MULTIPLY, 1.5))
-	_register(StatModifier.new(UpgradeDefinition.Stat.MULTI_ATTACK, 1.0, StatModifier.Mode.ADD, 0.0))
+	_register(StatModifier.new(StatId.Stat.DAMAGE, 5.0))
+	_register(StatModifier.new(StatId.Stat.ATTACK_COOLDOWN, 2.0))
+	_register(StatModifier.new(StatId.Stat.MINION_MOVEMENT_SPEED, 325.0))
+	_register(StatModifier.new(StatId.Stat.CRIT_CHANCE, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
+	_register(StatModifier.new(StatId.Stat.CRIT_DAMAGE, 1.0, StatModifier.Mode.MULTIPLY, 1.5))
+	_register(StatModifier.new(StatId.Stat.MULTI_ATTACK, 1.0, StatModifier.Mode.ADD, 0.0))
 
 func _register(modifier: StatModifier) -> void:
 	stats.register(modifier)
@@ -164,12 +164,12 @@ func set_targeting_state() -> void:
 func attack_enemy() -> void:
 	is_attacking = true
 	# Attack per multi attack
-	for attack: int in stats.get_value(UpgradeDefinition.Stat.MULTI_ATTACK):
+	for attack: int in stats.get_value(StatId.Stat.MULTI_ATTACK):
 		for body: PhysicsBody2D in hitbox.get_overlapping_bodies():
 			if body.is_in_group("enemy"):
-				var final_damage: float = stats.get_value(UpgradeDefinition.Stat.DAMAGE)
-				if randf() < stats.get_value(UpgradeDefinition.Stat.CRIT_CHANCE):
-					final_damage *= stats.get_value(UpgradeDefinition.Stat.CRIT_DAMAGE)
+				var final_damage: float = stats.get_value(StatId.Stat.DAMAGE)
+				if randf() < stats.get_value(StatId.Stat.CRIT_CHANCE):
+					final_damage *= stats.get_value(StatId.Stat.CRIT_DAMAGE)
 					crit_landed.emit(body.global_position)
 				body.take_damage(final_damage)
 		attack_sound.play()
@@ -177,7 +177,7 @@ func attack_enemy() -> void:
 		await animated_sprite.animation_finished
 	
 	# Attack ends here, so add cooldown
-	cooldown_timer = stats.get_value(UpgradeDefinition.Stat.ATTACK_COOLDOWN)
+	cooldown_timer = stats.get_value(StatId.Stat.ATTACK_COOLDOWN)
 	is_on_cooldown = true
 	pop_in_attack_cooldown_bar()
 	is_attacking = false
@@ -207,13 +207,13 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
 		animated_sprite.play("idle")
 
-func _on_stat_changed(_stat: UpgradeDefinition.Stat, new_value: float) -> void:
+func _on_stat_changed(_stat: StatId.Stat, new_value: float) -> void:
 	# Only updates things which require to be updated, not every stat
 	match _stat:
-		UpgradeDefinition.Stat.ATTACK_COOLDOWN:
+		StatId.Stat.ATTACK_COOLDOWN:
 			# Update cooldown UI
 			attack_cooldown_bar.max_value = new_value
-		UpgradeDefinition.Stat.MINION_MOVEMENT_SPEED:
+		StatId.Stat.MINION_MOVEMENT_SPEED:
 			# Movement speed requires a locally cached var because it is called every physics frame
 			minion_movement_speed = new_value
 			# Update navigation agent

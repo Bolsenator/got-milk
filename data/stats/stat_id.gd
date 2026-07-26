@@ -1,0 +1,19 @@
+class_name StatId
+extends Resource
+
+enum Stat { 
+	DAMAGE_REDUCTION = 0,
+	EXP_GAIN = 1,
+	HEALTH_REGEN = 2,
+	MAX_HEALTH = 3,
+	PLAYER_MOVEMENT_SPEED = 4,
+	
+	ATTACK_COOLDOWN = 5,
+	CRIT_CHANCE = 6,
+	CRIT_DAMAGE = 7,
+	DAMAGE = 8,
+	MINION_MOVEMENT_SPEED = 9,
+	MULTI_ATTACK = 10,
+	
+	SUMMON_MINION = 11,
+}

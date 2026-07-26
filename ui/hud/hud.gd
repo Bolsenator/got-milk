@@ -46,7 +46,7 @@ func update_time_elapsed(time_elapsed: float) -> void:
 	time_elapsed_ui.text = str("%02d:%02d" % [minutes, seconds])
 
 func update_upgrades_display(upgrade: UpgradeDefinition, count: int) -> void:
-	var stat: UpgradeDefinition.Stat = upgrade.stat
+	var stat: StatId.Stat = upgrade.stat
 	if !active_upgrade_widgets.has(stat):
 		var new_widget: Control = upgrade_widget_scene.instantiate()
 		upgrades_display.add_child(new_widget)

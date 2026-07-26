@@ -21,7 +21,7 @@ var player_movement_speed: float
 
 var current_health: float = 100.0 :
 	set(new_value):
-		current_health = clamp (new_value, 0, stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH))
+		current_health = clamp (new_value, 0, stats.get_value(StatId.Stat.MAX_HEALTH))
 		health_bar.value = current_health
 var current_exp : float = 0.0 :
 	set(new_value):
@@ -37,9 +37,9 @@ func _ready() -> void:
 	stats.stat_changed.connect(_on_stat_changed)
 	
 	animated_sprite.play("idle")
-	health_bar.max_value = stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
+	health_bar.max_value = stats.get_value(StatId.Stat.MAX_HEALTH)
 	health_bar.min_value = 0
-	current_health = stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
+	current_health = stats.get_value(StatId.Stat.MAX_HEALTH)
 	health_bar.value = current_health
 	health_regen_timer.start()
 
@@ -53,11 +53,11 @@ func _physics_process(_delta: float) -> void:
 
 func _register_stats() -> void:
 	# modifier constructor format: (name: String, start: float, m: Mode = Mode.MULTIPLY, initial_modifier: float = 1.0)
-	_register(StatModifier.new(UpgradeDefinition.Stat.MAX_HEALTH, 100.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.HEALTH_REGEN, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.DAMAGE_REDUCTION, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.PLAYER_MOVEMENT_SPEED, 300.0))
-	_register(StatModifier.new(UpgradeDefinition.Stat.EXP_GAIN, 1.0))
+	_register(StatModifier.new(StatId.Stat.MAX_HEALTH, 100.0))
+	_register(StatModifier.new(StatId.Stat.HEALTH_REGEN, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
+	_register(StatModifier.new(StatId.Stat.DAMAGE_REDUCTION, 1.0, StatModifier.Mode.MULTIPLY, 0.0))
+	_register(StatModifier.new(StatId.Stat.PLAYER_MOVEMENT_SPEED, 300.0))
+	_register(StatModifier.new(StatId.Stat.EXP_GAIN, 1.0))
 
 func _register(modifier: StatModifier) -> void:
 	stats.register(modifier)
@@ -67,7 +67,7 @@ func collect_exp_item() -> void:
 	gain_exp(max_exp)
 
 func gain_exp(exp_amount : float) -> void:
-	current_exp += exp_amount * stats.get_value(UpgradeDefinition.Stat.EXP_GAIN)
+	current_exp += exp_amount * stats.get_value(StatId.Stat.EXP_GAIN)
 
 	while current_exp >= max_exp:
 		player_level += 1
@@ -91,7 +91,7 @@ func take_damage(damage: float) -> void:
 	invulnerability_phase_timer.start()
 	
 	# Deal damage
-	current_health -= damage * (1.00 - stats.get_value(UpgradeDefinition.Stat.DAMAGE_REDUCTION))
+	current_health -= damage * (1.00 - stats.get_value(StatId.Stat.DAMAGE_REDUCTION))
 	take_damage_sound.play()
 	flash_damage()
 	if current_health <= 0:
@@ -110,17 +110,17 @@ func die() -> void:
 	player_died.emit()
 
 func _on_health_regen_timer_timeout() -> void:
-	current_health += stats.get_value(UpgradeDefinition.Stat.HEALTH_REGEN) * stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
+	current_health += stats.get_value(StatId.Stat.HEALTH_REGEN) * stats.get_value(StatId.Stat.MAX_HEALTH)
 
 func _on_invulnerability_phase_timer_timeout() -> void:
 	_is_invulnerable = false
 
-func _on_stat_changed(_stat: UpgradeDefinition.Stat, new_value: float) -> void:
+func _on_stat_changed(_stat: StatId.Stat, new_value: float) -> void:
 	# Only updates things which require to be updated, not every stat
 	match _stat:
-		UpgradeDefinition.Stat.MAX_HEALTH:
+		StatId.Stat.MAX_HEALTH:
 			# Update health bar UI
-			health_bar.max_value = stats.get_value(UpgradeDefinition.Stat.MAX_HEALTH)
-		UpgradeDefinition.Stat.PLAYER_MOVEMENT_SPEED:
+			health_bar.max_value = stats.get_value(StatId.Stat.MAX_HEALTH)
+		StatId.Stat.PLAYER_MOVEMENT_SPEED:
 			# Movement speed requires a locally cached var because it is called every physics frame
 			player_movement_speed = new_value
