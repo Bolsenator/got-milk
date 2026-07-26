@@ -6,19 +6,6 @@ extends Control
 @onready var upgrades_display: HBoxContainer = $UpgradesDisplay
 @onready var offscreen_indicators_container: Node2D = $OffscreenIndicatorsContainer
 
-@export var summon_minion_scene: PackedScene
-@export var max_health_scene: PackedScene
-@export var health_regen_per_sec_scene: PackedScene
-@export var damage_reduction_scene: PackedScene
-@export var player_movement_speed_scene: PackedScene
-@export var exp_gain_scene: PackedScene
-@export var damage_scene: PackedScene
-@export var attack_cooldown_scene: PackedScene
-@export var minion_movement_speed_scene: PackedScene
-@export var crit_chance_scene: PackedScene
-@export var crit_damage_scene: PackedScene
-@export var multi_attack_scene: PackedScene
-
 var offscreen_indicator_scene: PackedScene = preload("res://entities/helpers/offscreen_indicator.tscn")
 var upgrade_widget_scene: PackedScene = preload("uid://n2d0gi6ngryu")
 var active_upgrade_widgets: Dictionary

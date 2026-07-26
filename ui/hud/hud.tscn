@@ -2,18 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bp63bkhbu7jdk" path="res://ui/hud/hud.gd" id="1_276te"]
 [ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_546lt"]
-[ext_resource type="PackedScene" uid="uid://dw2ycadystmey" path="res://ui/upgrades/summon_minion.tscn" id="3_3mxrk"]
-[ext_resource type="PackedScene" uid="uid://bih8hd365p1f7" path="res://ui/upgrades/max_health.tscn" id="4_6gxmt"]
-[ext_resource type="PackedScene" uid="uid://by6ghdcb0etlm" path="res://ui/upgrades/health_regen.tscn" id="5_olkg6"]
-[ext_resource type="PackedScene" uid="uid://dosevbpwyis8x" path="res://ui/upgrades/damage_reduction.tscn" id="6_hk13k"]
-[ext_resource type="PackedScene" uid="uid://wt5ree5kt1mb" path="res://ui/upgrades/player_movement_speed.tscn" id="7_uyo40"]
-[ext_resource type="PackedScene" uid="uid://cdhw58vnuqg7j" path="res://ui/upgrades/exp_gained.tscn" id="8_m6r7j"]
-[ext_resource type="PackedScene" uid="uid://b8u6t4akp26gl" path="res://ui/upgrades/minion_damage.tscn" id="9_3rj2y"]
-[ext_resource type="PackedScene" uid="uid://c7lu4uuaif8y6" path="res://ui/upgrades/minion_attack_cooldown.tscn" id="10_sm7np"]
-[ext_resource type="PackedScene" uid="uid://c1d6cifsilc3w" path="res://ui/upgrades/minion_movement_speed.tscn" id="11_wkyli"]
-[ext_resource type="PackedScene" uid="uid://bo4ppb88xp1qc" path="res://ui/upgrades/minion_crit_chance.tscn" id="12_fs87q"]
-[ext_resource type="PackedScene" uid="uid://b108kl8g766gy" path="res://ui/upgrades/minion_crit_damage.tscn" id="13_3i4ml"]
-[ext_resource type="PackedScene" uid="uid://bumdh84xp1cce" path="res://ui/upgrades/multi_attack.tscn" id="14_6gxmt"]
 [ext_resource type="Texture2D" uid="uid://c1bwyml3bunyh" path="res://ui/hud/exp_bar.png" id="15_3mxrk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6gxmt"]
@@ -35,18 +23,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_546lt")
 script = ExtResource("1_276te")
-summon_minion_scene = ExtResource("3_3mxrk")
-max_health_scene = ExtResource("4_6gxmt")
-health_regen_per_sec_scene = ExtResource("5_olkg6")
-damage_reduction_scene = ExtResource("6_hk13k")
-player_movement_speed_scene = ExtResource("7_uyo40")
-exp_gain_scene = ExtResource("8_m6r7j")
-damage_scene = ExtResource("9_3rj2y")
-attack_cooldown_scene = ExtResource("10_sm7np")
-minion_movement_speed_scene = ExtResource("11_wkyli")
-crit_chance_scene = ExtResource("12_fs87q")
-crit_damage_scene = ExtResource("13_3i4ml")
-multi_attack_scene = ExtResource("14_6gxmt")
 
 [node name="ExpBar" type="TextureProgressBar" parent="." unique_id=332021824]
 layout_mode = 1
