@@ -12,8 +12,8 @@ func register_main_menu_ui(main_menu: Control) -> void:
 	main_menu.quit_pressed.connect(_on_quit_game)
 
 func register_pause_ui(pause_ui: Control) -> void:
-	pause_ui.restart.connect(_on_restart)
-	pause_ui.quit.connect(_on_quit_game)
+	pause_ui.restart_pressed.connect(_on_restart)
+	pause_ui.quit_pressed.connect(_on_quit_game)
 
 func register_game_over_ui(game_over_ui: Control) -> void:
 	game_over_ui.restart.connect(_on_restart)

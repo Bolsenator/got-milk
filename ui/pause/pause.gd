@@ -1,20 +1,17 @@
 extends Control
 
-signal resume()
-signal restart()
-signal quit()
+signal close_pause_menu_pressed()
+signal restart_pressed()
+signal quit_pressed()
 
 func _ready() -> void:
 	GameManager.register_pause_ui(self)
 
-func _on_resume_pressed() -> void:
-	resume.emit()
-
 func _on_restart_pressed() -> void:
-	restart.emit()
+	restart_pressed.emit()
 
 func _on_quit_pressed() -> void:
-	quit.emit()
+	quit_pressed.emit()
 
 func _on_close_menu_pressed() -> void:
-	resume.emit()
+	close_pause_menu_pressed.emit()

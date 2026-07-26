@@ -21,5 +21,8 @@ func show_level_complete_ui() -> void:
 func hide_level_complete_ui() -> void:
 	level_complete_ui.hide()
 
-func toggle_pause_ui() -> void:
-	pause_ui.visible = !pause_ui.visible
+func show_pause_ui() -> void:
+	pause_ui.show()
+
+func hide_pause_ui() -> void:
+	pause_ui.hide()

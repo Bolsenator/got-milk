@@ -20,15 +20,14 @@
 [ext_resource type="Resource" uid="uid://vc8cqxvf8agk" path="res://data/upgrades/summon_minion.tres" id="11_ksyvv"]
 [ext_resource type="PackedScene" uid="uid://nl8s3owt2d1g" path="res://world/enemy_spawner.tscn" id="20_0gefm"]
 [ext_resource type="Resource" uid="uid://b51kei37la62x" path="res://data/waves/level_1_1_waves.tres" id="20_tjwke"]
+[ext_resource type="Script" uid="uid://cu7ikacvaxwy2" path="res://world/pause_controller.gd" id="21_0gefm"]
 
 [node name="Level" type="Node" unique_id=1882998417]
-process_mode = 3
 script = ExtResource("1_ype84")
 upgrade_pool = Array[ExtResource("2_hx0it")]([ExtResource("3_f48di"), ExtResource("4_ev86w"), ExtResource("5_tjwke"), ExtResource("3_i2qu6"), ExtResource("4_be3xh"), ExtResource("5_f48di"), ExtResource("6_ev86w"), ExtResource("7_tjwke"), ExtResource("8_0gefm"), ExtResource("9_vw35i"), ExtResource("10_xyp4h"), ExtResource("11_ksyvv")])
 wave_set = ExtResource("20_tjwke")
 
 [node name="Dungeon" parent="." unique_id=1684005168 instance=ExtResource("1_0u2o0")]
-process_mode = 1
 
 [node name="YSortContainer" type="Node2D" parent="." unique_id=1836483269]
 y_sort_enabled = true
@@ -51,3 +50,5 @@ parameters/looping = true
 [node name="EnemySpawner" parent="." unique_id=1660327473 instance=ExtResource("20_0gefm")]
 
 [node name="PauseController" type="Node" parent="." unique_id=1002771014]
+process_mode = 3
+script = ExtResource("21_0gefm")

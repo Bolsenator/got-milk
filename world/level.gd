@@ -6,6 +6,7 @@ extends Node
 @onready var player: CharacterBody2D = $YSortContainer/Player
 @onready var ui: CanvasLayer = $UI
 @onready var enemy_spawner: Node = $EnemySpawner
+@onready var pause_controller: Node = $PauseController
 
 var time_elapsed: float = 0.0
 
@@ -29,7 +30,9 @@ func _ready() -> void:
 	player.level_up.connect(_on_level_up)
 	player.player_died.connect(_on_game_over)
 	ui.level_up_ui.apply_upgrade.connect(_on_apply_upgrade)
-	ui.pause_ui.resume.connect(_on_resume_from_pause)
+	ui.pause_ui.close_pause_menu_pressed.connect(_on_close_pause_menu_pressed)
+	pause_controller.game_paused.connect(_on_game_paused)
+	pause_controller.game_resumed.connect(_on_game_resumed)
 	enemy_spawner.enemy_died.connect(_on_enemy_died)
 	enemy_spawner.wave_set_completed.connect(_level_completed)
 	for upgrade_item: UpgradeItem in get_tree().get_nodes_in_group("upgrade_item"):
@@ -51,9 +54,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Keep run time updated
-	if not get_tree().paused:
-		time_elapsed += delta
-		ui.hud_ui.update_time_elapsed(time_elapsed)
+	time_elapsed += delta
+	ui.hud_ui.update_time_elapsed(time_elapsed)
 
 func spawn_starting_minions() -> void:
 	for upgrade: UpgradeDefinition in upgrade_pool:
@@ -74,7 +76,7 @@ func apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	ui.hud_ui.update_upgrades_display(upgrade, upgrade_counts[upgrade.stat])
 
 func _on_level_up(_player_level: int) -> void:
-	get_tree().paused = true
+	pause_controller.toggle_pause(pause_controller.PauseReason.LEVEL_UP)
 	upgrade_pool.shuffle()
 	var current_upgrade_options: Array
 	for upgrade: UpgradeDefinition in upgrade_pool:
@@ -89,22 +91,13 @@ func _on_apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	apply_upgrade(upgrade)
 	
 	# Handle UI updates
-	get_tree().paused = false
+	pause_controller.toggle_pause(pause_controller.PauseReason.NONE)
 	ui.hide_level_up_ui()
 	level_up_reward_chosen.emit() # Signal to reset exp bar after choosing upgrade
 	player.max_exp *= exp_increase_per_level
 
 func _on_apply_upgrade_item(_upgrade: UpgradeDefinition) -> void:
 	apply_upgrade(_upgrade)
-	#for upgrade: UpgradeDefinition in upgrade_pool:
-		#if upgrade.stat == _stat:
-			#apply_upgrade(upgrade)
-			#return
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("esc"):
-		toggle_pause()
-		get_viewport().set_input_as_handled()
 
 func summon_minion() -> void:
 	var minion_instance: CharacterBody2D = minion.instantiate()
@@ -121,11 +114,17 @@ func _on_minion_crit_landed(enemy_position: Vector2) -> void:
 	crit_indicator.global_position = enemy_position
 	add_child(crit_indicator)
 
-func _on_resume_from_pause() -> void:
-	toggle_pause()
+func _on_game_paused() -> void:
+	ui.show_pause_ui()
+
+func _on_game_resumed() -> void:
+	ui.hide_pause_ui()
+
+func _on_close_pause_menu_pressed() -> void:
+	pause_controller.toggle_pause(pause_controller.PauseReason.NONE)
 
 func _on_game_over() -> void:
-	get_tree().paused = true
+	pause_controller.toggle_pause(pause_controller.PauseReason.GAME_OVER)
 	ui.show_game_over_ui()
 
 func _on_enemy_died(exp_value: float, position: Vector2) -> void:
@@ -138,13 +137,9 @@ func _on_enemy_died(exp_value: float, position: Vector2) -> void:
 		y_sort_container.add_child(exp_instance)
 		exp_instance.initialize(exp_value, position)
 
-func toggle_pause() -> void:
-	get_tree().paused = !get_tree().paused
-	ui.toggle_pause_ui()
-
 func _on_create_offscreen_indicator(entity: Node, texture: Texture2D) -> void:
 	ui.hud_ui.create_offscreen_indicator(entity, texture)
 
 func _level_completed() -> void:
-	get_tree().paused = true
+	pause_controller.toggle_pause(pause_controller.PauseReason.LEVEL_COMPLETED)
 	ui.show_level_complete_ui()
