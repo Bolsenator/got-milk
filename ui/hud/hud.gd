@@ -18,7 +18,6 @@ func _ready() -> void:
 	exp_bar_ui.value = player.current_exp
 	player_level.text = "Lvl " + str(player.player_level)
 
-
 func _on_exp_changed(new_exp: float, max_exp: float) -> void:
 	exp_bar_ui.max_value = max_exp
 	exp_bar_ui.value = new_exp

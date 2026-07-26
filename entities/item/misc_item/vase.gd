@@ -19,7 +19,7 @@ func _on_body_entered(body: Node2D) -> void:
 		var loot_scene: PackedScene = loot_table.pick_random()
 		var new_loot: BaseItem = loot_scene.instantiate()
 		new_loot.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
-		add_child(new_loot)
+		call_deferred("add_child", new_loot)
 
 func _on_create_offscreen_indicator(_entity: Node, _texture: Texture2D) -> void:
 	create_offscreen_indicator.emit(_entity, _texture)

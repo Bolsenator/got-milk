@@ -49,3 +49,5 @@ autoplay = true
 parameters/looping = true
 
 [node name="EnemySpawner" parent="." unique_id=1660327473 instance=ExtResource("20_0gefm")]
+
+[node name="PauseController" type="Node" parent="." unique_id=1002771014]
