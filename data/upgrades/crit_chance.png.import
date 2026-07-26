@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkwbgb4up4m1r"
-path="res://.godot/imported/minion_movement_speed.png-dcff9def771080c40d461ec8d29036b3.ctex"
+uid="uid://d2i3o2xuhjnrb"
+path="res://.godot/imported/crit_chance.png-d349eb22ee1d6d00466fc678be517b19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/minion_movement_speed.png"
-dest_files=["res://.godot/imported/minion_movement_speed.png-dcff9def771080c40d461ec8d29036b3.ctex"]
+source_file="res://data/upgrades/crit_chance.png"
+dest_files=["res://.godot/imported/crit_chance.png-d349eb22ee1d6d00466fc678be517b19.ctex"]
 
 [params]
 

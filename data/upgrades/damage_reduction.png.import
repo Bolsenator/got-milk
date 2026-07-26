@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1hu46qawhibd"
-path="res://.godot/imported/health_regen.png-fd9fc7692b37d670100a1c6aa741f4a8.ctex"
+uid="uid://bbx6bg3fkea8o"
+path="res://.godot/imported/damage_reduction.png-96d2ec5627b8f6d896e08319d4fbdf89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/health_regen.png"
-dest_files=["res://.godot/imported/health_regen.png-fd9fc7692b37d670100a1c6aa741f4a8.ctex"]
+source_file="res://data/upgrades/damage_reduction.png"
+dest_files=["res://.godot/imported/damage_reduction.png-96d2ec5627b8f6d896e08319d4fbdf89.ctex"]
 
 [params]
 

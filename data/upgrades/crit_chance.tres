@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://b8kvmjxcwtntt"]
 
-[ext_resource type="Texture2D" uid="uid://c33qq3ucqrlxh" path="res://ui/upgrades/minion_crit_chance.png" id="1_blonv"]
 [ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_llsih"]
+[ext_resource type="Texture2D" uid="uid://d2i3o2xuhjnrb" path="res://data/upgrades/crit_chance.png" id="1_n5th8"]
 
 [resource]
 script = ExtResource("1_llsih")
@@ -11,5 +11,5 @@ target = 1
 stat = 6
 bonus = 0.05
 max_count = 10
-icon = ExtResource("1_blonv")
+icon = ExtResource("1_n5th8")
 metadata/_custom_type_script = "uid://d2s5p23xp3yck"

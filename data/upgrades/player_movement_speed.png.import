@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbiwig855imvj"
-path="res://.godot/imported/minion_damage.png-4abbee2aa4c0e377de7824d54fa30e4e.ctex"
+uid="uid://cg5nploa05vkh"
+path="res://.godot/imported/player_movement_speed.png-7a088ab469d7f6fe92afb375f6c32771.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/minion_damage.png"
-dest_files=["res://.godot/imported/minion_damage.png-4abbee2aa4c0e377de7824d54fa30e4e.ctex"]
+source_file="res://data/upgrades/player_movement_speed.png"
+dest_files=["res://.godot/imported/player_movement_speed.png-7a088ab469d7f6fe92afb375f6c32771.ctex"]
 
 [params]
 

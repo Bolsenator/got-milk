@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n8iwgbut4esk"
-path="res://.godot/imported/player_movement_speed.png-f54988157450b5c15893c3557f320647.ctex"
+uid="uid://cuqche8dv77p2"
+path="res://.godot/imported/minion_movement_speed.png-c3a4a4d0caf79710161b8ee1e09a1929.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/player_movement_speed.png"
-dest_files=["res://.godot/imported/player_movement_speed.png-f54988157450b5c15893c3557f320647.ctex"]
+source_file="res://data/upgrades/minion_movement_speed.png"
+dest_files=["res://.godot/imported/minion_movement_speed.png-c3a4a4d0caf79710161b8ee1e09a1929.ctex"]
 
 [params]
 

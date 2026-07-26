@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://b61qjcrtwlk7e"]
 
-[ext_resource type="Texture2D" uid="uid://cngymjn25if61" path="res://ui/upgrades/multi_attack.png" id="1_25yt4"]
+[ext_resource type="Texture2D" uid="uid://cr27fhyvipmtx" path="res://data/upgrades/multi_attack.png" id="1_25yt4"]
 [ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_x028y"]
 
 [resource]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsh8ek8w2q0bk"
-path="res://.godot/imported/exp_gained.png-c590ab4fe2f789f9ad36283ab34ad65c.ctex"
+uid="uid://dkmi8txj5ti8f"
+path="res://.godot/imported/attack_cooldown.png-58b145ae4334127c7866bd2c1e83337d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/exp_gained.png"
-dest_files=["res://.godot/imported/exp_gained.png-c590ab4fe2f789f9ad36283ab34ad65c.ctex"]
+source_file="res://data/upgrades/attack_cooldown.png"
+dest_files=["res://.godot/imported/attack_cooldown.png-58b145ae4334127c7866bd2c1e83337d.ctex"]
 
 [params]
 

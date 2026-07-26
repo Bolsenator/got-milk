@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://b8ry3obx01tu5"]
 
-[ext_resource type="Texture2D" uid="uid://dsh8ek8w2q0bk" path="res://ui/upgrades/exp_gained.png" id="1_babc1"]
+[ext_resource type="Texture2D" uid="uid://dm04q3q21xkq5" path="res://data/upgrades/exp_gained.png" id="1_babc1"]
 [ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_rc1ug"]
 
 [resource]

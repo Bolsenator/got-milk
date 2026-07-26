@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbwwegrss371c"
-path="res://.godot/imported/minion_crit_damage.png-3edd4d3c88c02a50cc5385e1bcc4cfc4.ctex"
+uid="uid://cr27fhyvipmtx"
+path="res://.godot/imported/multi_attack.png-713ce67ceb2d1016c7f32f1316458c14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/minion_crit_damage.png"
-dest_files=["res://.godot/imported/minion_crit_damage.png-3edd4d3c88c02a50cc5385e1bcc4cfc4.ctex"]
+source_file="res://data/upgrades/multi_attack.png"
+dest_files=["res://.godot/imported/multi_attack.png-713ce67ceb2d1016c7f32f1316458c14.ctex"]
 
 [params]
 

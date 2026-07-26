@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://20y37yn57sr1"
-path="res://.godot/imported/minion_attack_cooldown.png-44b60fe070f075009e8bdb1037b5c9c5.ctex"
+uid="uid://b70cpxxaebehm"
+path="res://.godot/imported/max_health.png-fa08b97f011d6d1fedd4d1b1624f5d4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/minion_attack_cooldown.png"
-dest_files=["res://.godot/imported/minion_attack_cooldown.png-44b60fe070f075009e8bdb1037b5c9c5.ctex"]
+source_file="res://data/upgrades/max_health.png"
+dest_files=["res://.godot/imported/max_health.png-fa08b97f011d6d1fedd4d1b1624f5d4b.ctex"]
 
 [params]
 

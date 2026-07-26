@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://n2d0gi6ngryu"]
 
-[ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_dhkhp"]
-[ext_resource type="Script" uid="uid://dgv0ye6feiu4n" path="res://ui/upgrades/base_upgrade.gd" id="2_dhkhp"]
+[ext_resource type="Theme" uid="uid://bkeh78fptsoaf" path="res://ui/theme/ui_theme.tres" id="1_qovfg"]
+[ext_resource type="Script" uid="uid://dgv0ye6feiu4n" path="res://ui/hud/upgrade_widget.gd" id="2_yrjl8"]
 
 [node name="BaseUpgrade" type="Control" unique_id=665901954]
 custom_minimum_size = Vector2(96, 64)
@@ -13,8 +13,8 @@ offset_bottom = -191.96002
 scale = Vector2(4, 4)
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme = ExtResource("1_dhkhp")
-script = ExtResource("2_dhkhp")
+theme = ExtResource("1_qovfg")
+script = ExtResource("2_yrjl8")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=380375803]
 custom_minimum_size = Vector2(16, 16)

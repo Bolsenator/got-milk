@@ -1,5 +1,6 @@
 extends Control
 
+@onready var texture_rect: TextureRect = $TextureRect
 @onready var label: Label = $Label
 
 func update_display(upgrade: UpgradeDefinition, count: int) -> void:

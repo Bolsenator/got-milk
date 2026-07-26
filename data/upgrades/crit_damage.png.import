@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c33qq3ucqrlxh"
-path="res://.godot/imported/minion_crit_chance.png-5f7023f898873a54c318367f10c3ddf6.ctex"
+uid="uid://dk1ps3nf8gtem"
+path="res://.godot/imported/crit_damage.png-7ebbf2a2f35b27af4f893fa6d7c0cabb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/minion_crit_chance.png"
-dest_files=["res://.godot/imported/minion_crit_chance.png-5f7023f898873a54c318367f10c3ddf6.ctex"]
+source_file="res://data/upgrades/crit_damage.png"
+dest_files=["res://.godot/imported/crit_damage.png-7ebbf2a2f35b27af4f893fa6d7c0cabb.ctex"]
 
 [params]
 

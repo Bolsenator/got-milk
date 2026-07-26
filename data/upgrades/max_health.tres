@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://hoiaj7catrna"]
 
 [ext_resource type="Script" uid="uid://d2s5p23xp3yck" path="res://data/upgrades/upgrade_definition.gd" id="1_7ymrt"]
-[ext_resource type="Texture2D" uid="uid://cbj8csmk5wjc1" path="res://ui/upgrades/max_health.png" id="1_x0tse"]
+[ext_resource type="Texture2D" uid="uid://b70cpxxaebehm" path="res://data/upgrades/max_health.png" id="1_x0tse"]
 
 [resource]
 script = ExtResource("1_7ymrt")

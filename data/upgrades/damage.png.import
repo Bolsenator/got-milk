@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtlx1tyskmocn"
-path="res://.godot/imported/summon_minion.png-a0120404463a21944e3c8e105acb1a0d.ctex"
+uid="uid://bblnfofolx0vh"
+path="res://.godot/imported/damage.png-57abb8b64352b9403c5fb9ad4fd36c48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/upgrades/summon_minion.png"
-dest_files=["res://.godot/imported/summon_minion.png-a0120404463a21944e3c8e105acb1a0d.ctex"]
+source_file="res://data/upgrades/damage.png"
+dest_files=["res://.godot/imported/damage.png-57abb8b64352b9403c5fb9ad4fd36c48.ctex"]
 
 [params]
 
