@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="got-milk"
-run/main_scene="uid://decapard53thi"
+run/main_scene="uid://qxwyqy8puniw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 boot_splash/size/viewport_height=648
@@ -42,6 +42,11 @@ navigation_polygon_source_geometry_group=""
 upgrade_item=""
 exp=""
 static_item=""
+
+[gui]
+
+timers/layer_1="Enemy"
+timers/layer_2="Minion"
 
 [input]
 
@@ -80,8 +85,8 @@ esc={
 2d_physics/layer_4="Minions"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="MinionToMinion"
-avoidance/layer_1="Enemy"
-avoidance/layer_2="Follower"
+avoidance/layer_1="Enemies"
+avoidance/layer_2="Minions"
 
 [physics]
 

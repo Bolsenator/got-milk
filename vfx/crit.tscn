@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bt86ptrmmewdb"]
 
-[ext_resource type="Texture2D" uid="uid://clxv5yek080sj" path="res://animations/crit.png" id="1_gjwod"]
-[ext_resource type="Script" uid="uid://dsgatsktuk3cu" path="res://animations/crit.gd" id="1_i71pq"]
+[ext_resource type="Texture2D" uid="uid://clxv5yek080sj" path="res://vfx/crit.png" id="1_gjwod"]
+[ext_resource type="Script" uid="uid://dsgatsktuk3cu" path="res://vfx/crit.gd" id="1_i71pq"]
 
 [sub_resource type="Animation" id="Animation_i71pq"]
 length = 0.001
