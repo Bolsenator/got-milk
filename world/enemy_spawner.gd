@@ -18,6 +18,7 @@ var y_sort_container: Node2D
 # Wave state
 var current_wave: WaveDefinition
 var _current_wave_index: int = 0
+var current_boss_count: int = 0
 
 signal create_offscreen_indicator(entity: Node, texture: Texture2D)
 signal enemy_died(exp_value: float, _position: Vector2)
@@ -70,7 +71,8 @@ func _on_enemy_died(_exp_value: float, _position: Vector2) -> void:
 
 func _on_boss_died(_exp_value: float, _position: Vector2) -> void:
 	enemy_died.emit(_exp_value, _position)
-	if current_wave.wave_advance_mode == WaveDefinition.WaveAdvanceMode.BOSS_CLEARED:
+	current_boss_count -= 1
+	if current_wave.wave_advance_mode == WaveDefinition.WaveAdvanceMode.BOSS_CLEARED and current_boss_count <= 0:
 		_current_wave_index += 1
 		if _is_final_wave():
 			wave_set_completed.emit()
@@ -90,7 +92,9 @@ func _on_boss_delay_timeout() -> void:
 	boss_instance.died.connect(_on_boss_died)
 	boss_instance.create_offscreen_indicator.connect(_on_create_offscreen_indicator)
 	boss_instance.is_boss = true
+	boss_instance.add_to_group("boss")
 	y_sort_container.add_child(boss_instance)
+	current_boss_count += 1
 
 func _on_create_offscreen_indicator(_entity: Node, _texture: Texture2D) -> void:
 	create_offscreen_indicator.emit(_entity, _texture)
@@ -130,7 +134,4 @@ func _on_despawn_timer_timeout() -> void:
 			enemy.queue_free()
 
 func _is_final_wave() -> bool:
-	if _current_wave_index >= wave_set.waves.size():
-		return true
-	else:
-		return false
+	return _current_wave_index >= wave_set.waves.size()

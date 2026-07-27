@@ -17,6 +17,7 @@ metadata/_custom_type_script = "uid://cmgjke1goj4sh"
 script = ExtResource("2_24777")
 enemy_entries = Array[ExtResource("4_vkt03")]([SubResource("Resource_txrkl")])
 wave_advance_mode = 3
+duration = 5.0
 boss_scene = ExtResource("3_tpnsp")
 metadata/_custom_type_script = "uid://chv5f2vt8t1xx"
 
