@@ -6,7 +6,7 @@ extends Control
 @onready var upgrades_display: HBoxContainer = $UpgradesDisplay
 @onready var offscreen_indicators_container: Node2D = $OffscreenIndicatorsContainer
 
-var offscreen_indicator_scene: PackedScene = preload("res://entities/helpers/offscreen_indicator.tscn")
+var offscreen_indicator_scene: PackedScene = preload("uid://bgq5so1jkvful")
 var upgrade_widget_scene: PackedScene = preload("uid://n2d0gi6ngryu")
 var active_upgrade_widgets: Dictionary
 

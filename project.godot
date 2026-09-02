@@ -32,6 +32,10 @@ window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ghostty-terminal/plugin.cfg")
+
 [global_group]
 
 player=""
