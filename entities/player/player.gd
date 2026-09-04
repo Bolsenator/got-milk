@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health_bar: TextureProgressBar = $TextureProgressBar
-@onready var level: Node = $"../.."
 
 @onready var heal_sound: AudioStreamPlayer = $HealSound
 @onready var take_damage_sound: AudioStreamPlayer = $TakeDamageSound
@@ -68,7 +67,6 @@ func gain_exp(exp_amount : float) -> void:
 		player_level += 1
 		level_up_sound.play()
 		level_up.emit(player_level)
-		await level.level_up_reward_chosen
 		current_exp -= max_exp
 
 func apply_upgrade(upgrade: UpgradeDefinition) -> void:

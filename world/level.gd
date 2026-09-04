@@ -22,7 +22,6 @@ var number_of_upgrade_choices: int = 5
 @export var wave_set: WaveSet
 
 var upgrade_counts: Dictionary = {} # stat name -> int
-signal level_up_reward_chosen
 
 func _ready() -> void:
 	
@@ -93,7 +92,7 @@ func _on_apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	# Handle UI updates
 	pause_controller.toggle_pause(pause_controller.PauseReason.NONE)
 	ui.hide_level_up_ui()
-	level_up_reward_chosen.emit() # Signal to reset exp bar after choosing upgrade
+	ui.hud_ui.level_up_reward_chosen(player.current_exp, player.max_exp)
 	player.max_exp *= exp_increase_per_level
 
 func _on_apply_upgrade_item(_upgrade: UpgradeDefinition) -> void:

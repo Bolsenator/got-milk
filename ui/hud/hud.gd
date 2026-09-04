@@ -6,6 +6,7 @@ extends Control
 @onready var upgrades_display: HBoxContainer = $UpgradesDisplay
 @onready var offscreen_indicators_container: Node2D = $OffscreenIndicatorsContainer
 
+var _holding_full_exp: bool = false
 var offscreen_indicator_scene: PackedScene = preload("uid://bgq5so1jkvful")
 var upgrade_widget_scene: PackedScene = preload("uid://n2d0gi6ngryu")
 var active_upgrade_widgets: Dictionary
@@ -19,11 +20,24 @@ func _ready() -> void:
 	player_level.text = "Lvl " + str(player.player_level)
 
 func _on_exp_changed(new_exp: float, max_exp: float) -> void:
-	exp_bar_ui.max_value = max_exp
-	exp_bar_ui.value = new_exp
+	if _holding_full_exp:
+		return
+	_set_exp_bar_values(new_exp, max_exp)
 
 func _on_level_up(new_player_level: int) -> void:
 	player_level.text = "Lvl " + str(new_player_level)
+	
+	# Hold exp bar at full while in the level up screen
+	_set_exp_bar_values(exp_bar_ui.max_value, exp_bar_ui.max_value)
+	_holding_full_exp = true
+
+func _set_exp_bar_values(new_exp: float, max_exp: float) -> void:
+	exp_bar_ui.max_value = max_exp
+	exp_bar_ui.value = new_exp
+
+func level_up_reward_chosen(new_exp: float, max_exp: float) -> void:
+	_holding_full_exp = false
+	_set_exp_bar_values(new_exp, max_exp)
 
 func update_time_elapsed(time_elapsed: float) -> void:
 	@warning_ignore("integer_division") # Integer division intentional to get minutes and drop the decimal
