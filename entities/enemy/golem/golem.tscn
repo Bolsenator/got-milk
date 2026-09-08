@@ -38,5 +38,4 @@ script = ExtResource("2_lcjsr")
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=833127862]
 sprite_frames = SubResource("SpriteFrames_y63yu")
-animation = &"idle"
 frame_progress = 0.4779139
