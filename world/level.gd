@@ -26,10 +26,15 @@ var upgrade_counts: Dictionary = {} # stat name -> int
 func _ready() -> void:
 	
 	# Connect signals
+	
+	GameManager.register_level_signals(ui.pause_ui)
+	GameManager.register_level_signals(ui.level_complete_ui)
+	GameManager.register_level_signals(ui.game_over_ui)
+	
 	player.level_up.connect(_on_level_up)
 	player.player_died.connect(_on_game_over)
 	ui.level_up_ui.apply_upgrade.connect(_on_apply_upgrade)
-	ui.pause_ui.close_pause_menu_pressed.connect(_on_close_pause_menu_pressed)
+	ui.pause_ui.close_pause_menu.connect(_on_close_pause_menu)
 	pause_controller.game_paused.connect(_on_game_paused)
 	pause_controller.game_resumed.connect(_on_game_resumed)
 	enemy_spawner.enemy_died.connect(_on_enemy_died)
@@ -119,7 +124,7 @@ func _on_game_paused() -> void:
 func _on_game_resumed() -> void:
 	ui.hide_pause_ui()
 
-func _on_close_pause_menu_pressed() -> void:
+func _on_close_pause_menu() -> void:
 	pause_controller.toggle_pause(pause_controller.PauseReason.NONE)
 
 func _on_game_over() -> void:
