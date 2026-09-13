@@ -1,0 +1,22 @@
+Got Milk?
+Copyright (c) 2026 Luke Bolser. All Rights Reserved.
+ 
+This repository and its contents — including but not limited to source
+code, game design documents, artwork, audio, and any other creative or
+technical assets — are the exclusive property of Luke Bolser.
+ 
+No part of this project may be copied, modified, distributed,
+sublicensed, publicly performed, or otherwise used in any form, whether
+for commercial or non-commercial purposes, without the express prior
+written permission of the copyright holder.
+ 
+This repository is made publicly viewable for portfolio, educational,
+and demonstration purposes only. Viewing, cloning, or forking this
+repository does not grant any license or right to use, reproduce,
+redistribute, or create derivative works from its contents.
+ 
+Third-party software, engines, tools, and assets used in this project
+— including the Godot Engine and any third-party plugins, libraries,
+fonts, or asset packs — remain the property of their respective owners
+and are governed by their own license terms. See CREDITS.txt for
+attribution details.

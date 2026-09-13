@@ -1,0 +1,51 @@
+Got Milk? — Credits & Third-Party Attributions
+
+The assets listed below are used under their own separate licenses and
+are NOT covered by the "All Rights Reserved" terms in LICENSE.txt — see
+each entry for what's actually permitted.
+
+Pixel Art — VEXED (https://v3x3d.itch.io/)
+---------------------------------------------
+Used and modified (recolored and edited to varying degrees) under the
+pack'sstated terms on the creator's itch.io art pack pages, retrieved
+September 2026: "These assets can be used in commercial projects, and
+edited. Credit is appreciated."
+
+Assets used:
+- "Demonic Dungeon" (base pack)
+- "Demonic Dungeon - Arid Underground Expansion Pack" (expansion pack)
+- "Demonic Dungeon - Building Interior" (expansion pack)
+- "Demonic Dungeon - Frozen Cavern" (expansion pack)
+- "Demonic Dungeon - Haunted Temple" (expansion pack)
+- "Demonic Dungeon - Magma Maze" (expansion pack)
+- "Demonic Dungeon - User Interface" (expansion pack)
+
+Fonts
+-----
+"Logic Loop"
+by VEXED — https://v3x3d.itch.io/
+Licensed under Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/deed.en
+
+Background Music
+-----------------
+"8bit Dungeon Boss"
+by Kevin MacLeod — https://incompetech.com/
+Licensed under Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+
+Sound Effects
+-------------
+"Pixel Combat" SFX pack
+by Helton Yan — https://heltonyan.itch.io/
+Licensed under Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+
+Engine
+------
+Godot Engine — https://godotengine.org/
+Copyright (c) 2014-present Godot Engine contributors
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur
+Licensed under the MIT License
+Full contributor list & license text:
+https://github.com/godotengine/godot/blob/master/COPYRIGHT.txt
