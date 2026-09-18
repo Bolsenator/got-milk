@@ -93,9 +93,6 @@ esc={
 avoidance/layer_1="Enemies"
 avoidance/layer_2="Minions"
 
-[physics]
-
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

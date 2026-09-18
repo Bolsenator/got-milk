@@ -1,4 +1,4 @@
-# Static base stat block which defines the starting values for an entities stats
+# Static base stat block which defines the starting values for an entity's stats
 
 class_name BaseStatBlock
 extends Resource

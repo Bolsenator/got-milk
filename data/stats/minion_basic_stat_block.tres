@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BaseStatBlock" format=3 uid="uid://dsq50ssb2lm7y"]
 
-[ext_resource type="Script" uid="uid://debb2rmdeffnj" path="res://data/stats/base_stat_definition.gd" id="1_ols3f"]
-[ext_resource type="Script" uid="uid://doet26b027vfa" path="res://data/stats/base_stat_block.gd" id="2_5f2qm"]
+[ext_resource type="Script" uid="uid://debb2rmdeffnj" path="res://scripts/stats/base_stat_definition.gd" id="1_ols3f"]
+[ext_resource type="Script" uid="uid://doet26b027vfa" path="res://scripts/stats/base_stat_block.gd" id="2_5f2qm"]
 
 [sub_resource type="Resource" id="Resource_ols3f"]
 script = ExtResource("1_ols3f")

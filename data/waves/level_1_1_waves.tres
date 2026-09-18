@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="WaveSet" format=3 uid="uid://b51kei37la62x"]
 
-[ext_resource type="Script" uid="uid://e3shkhu5hdin" path="res://data/waves/wave_set.gd" id="1_emahh"]
-[ext_resource type="Script" uid="uid://chv5f2vt8t1xx" path="res://data/waves/wave_definition.gd" id="2_vhgdu"]
-[ext_resource type="Script" uid="uid://cmgjke1goj4sh" path="res://data/waves/wave_enemy_entry.gd" id="3_2akwv"]
+[ext_resource type="Script" uid="uid://e3shkhu5hdin" path="res://scripts/waves/wave_set.gd" id="1_emahh"]
+[ext_resource type="Script" uid="uid://chv5f2vt8t1xx" path="res://scripts/waves/wave_definition.gd" id="2_vhgdu"]
+[ext_resource type="Script" uid="uid://cmgjke1goj4sh" path="res://scripts/waves/wave_enemy_entry.gd" id="3_2akwv"]
 [ext_resource type="PackedScene" uid="uid://q46vjfa4qpnt" path="res://entities/enemy/green_slime/green_slime.tscn" id="4_vhgdu"]
 [ext_resource type="PackedScene" uid="uid://b435axgxym66m" path="res://entities/enemy/bat/bat.tscn" id="5_cfiw2"]
 [ext_resource type="PackedScene" uid="uid://cmjjwsl5heb3m" path="res://entities/enemy/spider/spider.tscn" id="6_shwaq"]
