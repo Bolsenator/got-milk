@@ -70,9 +70,6 @@ func spawn_starting_minions() -> void:
 		for count: int in minion_loadout.loadout[minion_type]:
 			print("summoning minion: " + str(count))
 			apply_upgrade(minion_upgrade_definitions[minion_type])
-	#for upgrade: UpgradeDefinition in upgrade_pool:
-		#if upgrade.target == UpgradeDefinition.Target.SUMMON_MINION:
-			#apply_upgrade(upgrade)
 
 func apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	match upgrade.target:
