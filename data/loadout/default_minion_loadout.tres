@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MinionLoadout" format=3 uid="uid://dfkvfxdmqf8oe"]
+
+[ext_resource type="Script" uid="uid://bk7caxkbfppqo" path="res://scripts/loadout/minion_loadout.gd" id="1_wly7d"]
+
+[resource]
+script = ExtResource("1_wly7d")
+loadout = Dictionary[int, int]({
+0: 1
+})
+metadata/_custom_type_script = "uid://bk7caxkbfppqo"

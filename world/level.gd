@@ -18,6 +18,8 @@ var exp_drop_size_threshold: float = 25.0
 var exp_increase_per_level: float = 1.3
 var number_of_upgrade_choices: int = 5
 
+@export var minion_loadout: MinionLoadout
+@export var minion_upgrade_definitions: Dictionary[MinionTypeId.Type, UpgradeDefinition]
 @export var upgrade_pool: Array[UpgradeDefinition] = []
 @export var wave_set: WaveSet
 
@@ -62,9 +64,15 @@ func _process(delta: float) -> void:
 	ui.hud_ui.update_time_elapsed(time_elapsed)
 
 func spawn_starting_minions() -> void:
-	for upgrade: UpgradeDefinition in upgrade_pool:
-		if upgrade.target == UpgradeDefinition.Target.SUMMON_MINION:
-			apply_upgrade(upgrade)
+	print(minion_loadout.loadout)
+	for minion_type: MinionTypeId.Type in minion_loadout.loadout:
+		print("spawning minions of type: " + str(minion_type))
+		for count: int in minion_loadout.loadout[minion_type]:
+			print("summoning minion: " + str(count))
+			apply_upgrade(minion_upgrade_definitions[minion_type])
+	#for upgrade: UpgradeDefinition in upgrade_pool:
+		#if upgrade.target == UpgradeDefinition.Target.SUMMON_MINION:
+			#apply_upgrade(upgrade)
 
 func apply_upgrade(upgrade: UpgradeDefinition) -> void:
 	match upgrade.target:
